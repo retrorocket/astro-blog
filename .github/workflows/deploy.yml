@@ -26,7 +26,7 @@ jobs:
       - name: rename images
         run: mv src/content/posts/_images src/content/posts/images
       - name: mv images
-        run: mv src/content/posts/images src/public/
+        run: mv src/content/posts/images public/
       - uses: actions/cache@v3
         with:
           path: "node_modules"
