@@ -23,8 +23,10 @@ jobs:
           repository: retrorocket/blog-contents
           path: src/content/posts
           token: ${{ secrets.PERSONAL_TOKEN }}
+      - name: rename images
+        run: mv src/content/posts/_images src/content/posts/_images
       - name: mv images
-        run: src/content/posts/_images src/public/images
+        run: mv src/content/posts/images src/public/
       - uses: actions/cache@v3
         with:
           path: "node_modules"
