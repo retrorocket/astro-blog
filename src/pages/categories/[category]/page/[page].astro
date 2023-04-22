@@ -1,0 +1,50 @@
+---
+import config from "@config/config.json";
+import Base from "@layouts/Base.astro";
+import Pagination from "@layouts/components/Pagination.astro";
+import Post from "@layouts/partials/Post.astro";
+import taxonomyFilter from "@lib/utils/taxonomyFilter";
+import { getSinglePage } from "@lib/contentParser.astro";
+import { sortByDate } from "@lib/utils/sortFunctions";
+import { getTaxonomy } from "@lib/taxonomyParser.astro";
+import type { GetStaticPathsOptions } from "astro";
+
+export const getStaticPaths = async ({ paginate }: GetStaticPathsOptions) => {
+  const { blog_folder, pagination } = config.settings;
+  const pages = await getSinglePage(blog_folder);
+  const posts = sortByDate(pages);
+
+  const categories = await getTaxonomy(blog_folder, "categories");
+  return categories.map((category) => {
+    const filterByTags = taxonomyFilter(posts, "categories", category);
+    return paginate(filterByTags, {
+      params: { category: category || "" },
+      pageSize: pagination,
+    });
+  });
+};
+const { page } = Astro.props;
+const { category } = Astro.params;
+---
+
+<Base title={category}>
+  <div class="section">
+    <div class="container">
+      <div class="row px-3">
+        <div class="mx-auto px-0 lg:col-10">
+          <h1 class="h2 pt-16">
+            Posts related to <span class="text-primary">{category}</span> category
+          </h1>
+          <div class="rounded px-9 py-12 md:p-[60px]">
+            {page.data.map((post: any) => <Post post={post} />)}
+            <Pagination
+              section={`categories/${category}`}
+              currentPage={page.currentPage}
+              totalPages={page.lastPage}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</Base>

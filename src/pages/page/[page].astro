@@ -1,0 +1,41 @@
+---
+import config from "@config/config.json";
+import Base from "@layouts/Base.astro";
+import Pagination from "@layouts/components/Pagination.astro";
+import Post from "@layouts/partials/Post.astro";
+import Categories from "@layouts/components/Categories.astro";
+import { getSinglePage } from "@lib/contentParser.astro";
+import { sortByDate } from "@lib/utils/sortFunctions";
+import type { GetStaticPathsOptions } from "astro";
+
+export const getStaticPaths = async ({ paginate }: GetStaticPathsOptions) => {
+  const posts = await getSinglePage(config.settings.blog_folder);
+  const sortedPosts = sortByDate(posts);
+
+  return paginate(sortedPosts, {
+    pageSize: config.settings.pagination,
+  });
+};
+const { page } = Astro.props;
+---
+
+<Base>
+  <div class="section">
+    <div class="container">
+      <div class="row px-3">
+        <div class="mx-auto px-0 lg:col-10">
+          <div class="rounded px-9 py-12 md:p-[60px]">
+            {page.data.map((post: any) => <Post post={post} />)}
+            <Pagination
+              currentPage={page.currentPage}
+              totalPages={page.lastPage}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <section class="mb-14">
+    <Categories />
+  </section>
+</Base>

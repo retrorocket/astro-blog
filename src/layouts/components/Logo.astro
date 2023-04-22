@@ -1,0 +1,20 @@
+---
+import config from "@config/config.json";
+const {
+  logo_text,
+}: {
+  logo_text: string;
+} = config.site;
+---
+
+<a
+  href="/"
+  class="navbar-brand inline-block font-bold tracking-widest text-primary"
+>
+  {logo_text}
+  {
+    /*   class="navbar-brand inline-block font-bold tracking-widest bg-gradient-to-r from-sky-300 via-rose-300 to-amber-300 bg-clip-text text-transparent"
+  class="navbar-brand inline-block tracking-widest bg-gradient-to-r from-primary to-gray-400 bg-[length:100%_2px] bg-no-repeat bg-bottom p-2 text-primary"
+ */
+  }
+</a>

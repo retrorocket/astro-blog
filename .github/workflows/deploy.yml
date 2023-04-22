@@ -1,0 +1,64 @@
+# This is a basic workflow to help you get started with Actions
+name: deploy-webhook-triger
+
+on:
+  workflow_dispatch:
+  repository_dispatch:
+    types:
+      - build
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    name: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Checkout other repo
+        uses: actions/checkout@v3
+        with:
+          repository: retrorocket/blog-contents
+          path: src/content/posts
+          token: ${{ secrets.PERSONAL_TOKEN }}
+      - name: mv images
+        run: src/content/posts/_images src/public/images
+      - uses: actions/cache@v3
+        with:
+          path: "node_modules"
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/package-lock.json') }}
+      - name: Install packages
+        run: npm install
+      - name: Run build
+        run: npm run build
+        env:
+          PUBLIC_ALGOLIA_APPID: ${{ secrets.PUBLIC_ALGOLIA_APPID }}
+          PUBLIC_ALGOLIA_APIKEY: ${{ secrets.PUBLIC_ALGOLIA_APIKEY }}
+      - name: rsync deployments
+        uses: burnett01/rsync-deployments@4.1
+        with:
+          switches: -avzr --delete --exclude "/.well-known"
+          path: dist/
+          remote_path: ${{secrets.DEPLOY_PATH}}
+          remote_host: ${{secrets.SSH_HOSTNAME}}
+          remote_port: ${{secrets.SSH_PORT}}
+          remote_user: ${{secrets.SSH_USERNAME}}
+          remote_key: ${{secrets.SSH_PRIVATE_KEY}}
+      - name: Commit files
+        run: |
+          git add -N .
+          if ! git diff --exit-code --quiet
+          then
+            git config --local user.email "1858830+retrorocket@users.noreply.github.com"
+            git config --local user.name "github-actions[bot]"
+            git add .
+            git commit -m "Add changes from actions"
+          fi
+      - name: Push changes
+        continue-on-error: true
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}

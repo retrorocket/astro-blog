@@ -1,0 +1,36 @@
+---
+import { settings } from "@config/config.json";
+const { blog_folder } = settings;
+import { getTaxonomy } from "@lib/taxonomyParser.astro";
+const categories = await getTaxonomy(blog_folder, "categories");
+import { humanize } from "@lib/utils/textConverter";
+---
+
+<div class="container text-center">
+  <div class="row px-3">
+    <div class="mx-auto px-0 lg:col-10">
+      <div class="rounded px-9">
+        <div class="card mb-12">
+          <h2 class="mb-12">Categories</h2>
+          <ul class="space-x-4 space-y-6">
+            {
+              categories.sort().map((category) => (
+                <li class="inline-block">
+                  <a
+                    href={`/categories/${category}`}
+                    class="rounded-lg bg-primary bg-opacity-20 px-4 py-2 text-primary transition hover:bg-primary hover:text-white"
+                  >
+                    #{" "}
+                    {category === "javascript"
+                      ? "JavaScript"
+                      : humanize(category || "")}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

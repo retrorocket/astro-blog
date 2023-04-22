@@ -1,0 +1,27 @@
+{
+  "site": {
+    "title": "return $lock;",
+    "base_url": "https://retrorocket.biz",
+    "base_path": "/",
+    "trailing_slash": false,
+    "favicon": "/assets/images/favicon.png",
+    "logo_text": "return $lock;"
+  },
+
+  "settings": {
+    "blog_folder": "posts",
+    "pagination": 5,
+    "summary_length": 140
+  },
+
+  "params": {
+    "contact_form_action": "#",
+    "copyright": "© 2023 [retrorocket](https://retrorocket.biz) All Rights Reserved"
+  },
+
+  "metadata": {
+    "meta_author": "りゅー",
+    "meta_image": "/assets/images/og-image.png",
+    "meta_description": "自分の作成したツールや開発環境やプログラミングについて書くブログです。たまに技術に関係ないことも書きます。"
+  }
+}

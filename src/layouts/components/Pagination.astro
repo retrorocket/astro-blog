@@ -1,0 +1,102 @@
+---
+const { section, currentPage, totalPages } = Astro.props;
+
+const indexPageLink = currentPage === 2;
+const hasPrevPage = currentPage > 1;
+const hasNextPage = totalPages > currentPage;
+const range = 3;
+---
+
+{
+  totalPages > 1 && (
+    <nav class="mb-4 flex justify-center space-x-2" aria-label="Pagination">
+      {/* previous */}
+      {hasPrevPage && (
+        <a
+          href={
+            indexPageLink
+              ? `${section ? "/" + section : "/"}`
+              : `${section ? "/" + section : ""}/page/${currentPage - 1}`
+          }
+          class="rounded px-2 py-2 text-text transition-all duration-200 hover:bg-primary hover:text-body"
+        >
+          <span class="sr-only">Previous</span>
+          <svg
+            class="mt-1 h-5 w-5"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </a>
+      )}
+
+      {/* page index */}
+      {Array.from({ length: totalPages }, (_, i) => {
+        if (currentPage < range + 2) {
+          // current が range より小さい時 1 `2` 3 4 5 6 7 で表示する
+          if (i > range * 2) return;
+        } else if (currentPage + range + 2 > totalPages) {
+          // current が numPages を超える時 10 11 12 13 `14` 15 16 で表示する
+          if (i + range * 2 + 1 < totalPages) return;
+        } else {
+          if (i < currentPage - range - 1 || i > currentPage + range - 1)
+            return;
+        }
+        if (i + 1 === currentPage) {
+          return (
+            <span
+              aria-current="page"
+              class={`rounded bg-primary px-4 py-2 text-white`}
+            >
+              {i + 1}
+            </span>
+          );
+        }
+
+        return (
+          <a
+            href={
+              i === 0
+                ? `${section ? "/" + section : "/"}`
+                : `${section ? "/" + section : ""}/page/${i + 1}`
+            }
+            aria-current="page"
+            class={`rounded px-4 py-2 text-text transition-all duration-200 hover:bg-primary hover:text-body`}
+          >
+            {i + 1}
+          </a>
+        );
+      })}
+
+      {/* next page */}
+      {hasNextPage && (
+        <a
+          href={`${section ? "/" + section : ""}/page/${currentPage + 1}`}
+          class="rounded px-2 py-2 text-text transition-all duration-200 hover:bg-primary hover:text-body"
+        >
+          <span class="sr-only">Next</span>
+          <svg
+            class="mt-1 h-5 w-5"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </a>
+      )}
+    </nav>
+  )
+}

@@ -1,0 +1,41 @@
+---
+import { settings } from "@config/config.json";
+import Base from "@layouts/Base.astro";
+import Pagination from "@layouts/components/Pagination.astro";
+import Post from "@layouts/partials/Post.astro";
+import Categories from "@layouts/components/Categories.astro";
+import { getSinglePage } from "@lib/contentParser.astro";
+import { sortByDate } from "@lib/utils/sortFunctions";
+const posts = await getSinglePage("posts");
+const sortPostByDate = sortByDate(posts);
+const { pagination } = settings;
+const totalPages = Math.ceil(posts.length / pagination);
+---
+
+<Base>
+  <div class="section">
+    <div class="container">
+      <div class="row px-3">
+        <div class="mx-auto px-0 lg:col-10">
+          <div
+            class="rounded px-9 py-12 md:p-[60px]"
+            role="main"
+            itemprop="mainEntityOfPage"
+            itemscope="itemscope"
+            itemtype="https://schema.org/Blog"
+          >
+            {
+              sortPostByDate
+                .slice(0, settings.pagination)
+                .map((post) => <Post post={post} />)
+            }
+            <Pagination currentPage={1} totalPages={totalPages} />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <section class="mb-14">
+    <Categories />
+  </section>
+</Base>
