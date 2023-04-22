@@ -11,7 +11,7 @@ const { title, categories, date } = post.data;
     <div class="row px-3">
       <div class="mx-auto lg:col-10">
         <div
-          class="rounded-xl px-9 py-12 md:p-[60px]"
+          class="rounded-xl py-8 md:p-[60px]"
           role="main"
           itemprop="mainEntityOfPage"
           itemscope="itemscope"
@@ -34,7 +34,7 @@ const { title, categories, date } = post.data;
                   <ul>
                     {
                       categories.map((category: string) => (
-                        <li class="inline-block mr-2">
+                        <li class="mr-2 inline-block">
                           <a
                             href={`/categories/${slugify(category)}`}
                             class="rounded-lg bg-primary bg-opacity-20 px-2.5 py-0.5 text-primary transition hover:bg-primary hover:text-white"

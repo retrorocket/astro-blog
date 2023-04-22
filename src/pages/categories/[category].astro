@@ -29,10 +29,10 @@ const totalPages = Math.ceil(filterByTags.length / pagination);
     <div class="container">
       <div class="row px-3">
         <div class="mx-auto px-0 lg:col-10">
-          <h1 class="h2 pt-16">
-            Posts related to <span class="text-primary">{category}</span> category
-          </h1>
-          <div class="rounded px-9 py-12 md:p-[60px]">
+          <div class="rounded px-9 py-8 md:p-[60px]">
+            <h1 class="h2 pb-10">
+              Posts related to <span class="text-primary">{category}</span> category
+            </h1>
             {
               filterByTags
                 .slice(0, pagination)

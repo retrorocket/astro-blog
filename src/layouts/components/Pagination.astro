@@ -9,7 +9,10 @@ const range = 3;
 
 {
   totalPages > 1 && (
-    <nav class="mb-4 flex justify-center space-x-2" aria-label="Pagination">
+    <nav
+      class="mb-4 flex flex-wrap justify-center space-x-2"
+      aria-label="Pagination"
+    >
       {/* previous */}
       {hasPrevPage && (
         <a
