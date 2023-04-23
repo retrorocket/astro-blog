@@ -76,7 +76,15 @@ const { title, meta_title, excerpt, image, noindex, canonical } = Astro.props;
     </title>
 
     <!-- canonical url -->
-    {canonical && <link rel="canonical" href={canonical} item-prop="url" />}
+    {
+      canonical && (
+        <link
+          rel="canonical"
+          href={`${config.site.base_url}/${canonical}`}
+          item-prop="url"
+        />
+      )
+    }
 
     <!-- noindex robots -->
     {noindex && <meta name="robots" content="noindex,nofollow" />}

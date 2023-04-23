@@ -16,6 +16,7 @@ export async function getStaticPaths() {
 }
 
 const { page } = Astro.props;
+const { regular } = Astro.params;
 const { title, meta_title, excerpt, image } = page.data;
 ---
 
@@ -24,6 +25,7 @@ const { title, meta_title, excerpt, image } = page.data;
   meta_title={meta_title}
   excerpt={excerpt}
   image={image}
+  canonical={regular}
 >
   <Default data={page} />
 </Base>
