@@ -16,7 +16,7 @@ import { plainify } from "@lib/utils/textConverter";
 
 type HitProps = {
   hit: AlgoliaHit<{
-    excerpt: string;
+    content: string;
     slug: string;
     title: string;
   }>;
@@ -64,7 +64,7 @@ const HitCompoment = ({ hit }: HitProps) => {
         </a>
       </h3>
       <p className="text-lg text-text">
-        {plainify(hit.excerpt?.slice(0, Number(summary_length)))}
+        {plainify(hit.content?.slice(0, Number(summary_length)))}
       </p>
       <a
         className="mt-3 inline-block border-b border-primary py-1 text-[15px] leading-[22px] text-primary"
