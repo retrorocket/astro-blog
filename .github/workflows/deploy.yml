@@ -38,6 +38,7 @@ jobs:
         env:
           PUBLIC_ALGOLIA_APPID: ${{ secrets.PUBLIC_ALGOLIA_APPID }}
           PUBLIC_ALGOLIA_APIKEY: ${{ secrets.PUBLIC_ALGOLIA_APIKEY }}
+          PRIVATE_ALGOLIA_WRITE_KEY: ${{ secrets.PRIVATE_ALGOLIA_WRITE_KEY }}
       - name: rsync deployments
         uses: burnett01/rsync-deployments@4.1
         with:

@@ -9,6 +9,8 @@ import remarkFigureCaption from "@microflash/remark-figure-caption";
 import remarkCollapse from "remark-collapse";
 import remarkToc from "remark-toc";
 import config from "./src/config/config.json";
+import pageToAlgoliaRecord from "./src/integrations/algolia-queries"
+
 
 // https://astro.build/config
 export default defineConfig({
@@ -16,6 +18,7 @@ export default defineConfig({
   base: config.site.base_path ? config.site.base_path : "/",
   trailingSlash: config.site.trailing_slash ? "always" : "never",
   integrations: [
+    pageToAlgoliaRecord(),
     react(),
     sitemap({
       serialize(item) {

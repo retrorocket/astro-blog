@@ -79,7 +79,7 @@ const HitCompoment = ({ hit }: HitProps) => {
 const AlgoliaSearchBox = () => {
   return (
     <div className="min-h-[45vh]">
-      <InstantSearch searchClient={searchClient} indexName="Pages">
+      <InstantSearch searchClient={searchClient} indexName="blog_retrorocket">
         <SearchBox
           placeholder="Search"
           autoFocus
