@@ -84,7 +84,7 @@ const { title, meta_title, excerpt, image, noindex, canonical } = Astro.props;
     <!-- meta-description -->
     <meta
       name="description"
-      content={plainify(excerpt ? excerpt : config.metadata.meta_description)}
+      content={excerpt ? excerpt : config.metadata.meta_description}
     />
 
     <!-- author from config.json -->
@@ -105,7 +105,7 @@ const { title, meta_title, excerpt, image, noindex, canonical } = Astro.props;
     <!-- og-description -->
     <meta
       property="og:description"
-      content={plainify(excerpt ? excerpt : config.metadata.meta_description)}
+      content={excerpt ? excerpt : config.metadata.meta_description}
     />
     <meta property="og:type" content="website" />
     <meta
@@ -128,7 +128,7 @@ const { title, meta_title, excerpt, image, noindex, canonical } = Astro.props;
     <!-- twitter-description -->
     <meta
       name="twitter:description"
-      content={plainify(excerpt ? excerpt : config.metadata.meta_description)}
+      content={excerpt ? excerpt : config.metadata.meta_description}
     />
 
     <!-- og-image -->

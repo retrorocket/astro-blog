@@ -44,7 +44,7 @@ const { post } = Astro.props;
     </li>
   </ul>
   <p class="text-lg text-text" itemprop="description">
-    {plainify(post.data.excerpt)}
+    {post.data.excerpt}
   </p>
   <a
     class="mt-3 inline-block border-b border-primary py-1 text-[15px] leading-[22px] text-primary"
