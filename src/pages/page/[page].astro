@@ -19,7 +19,7 @@ export const getStaticPaths = async ({ paginate }: GetStaticPathsOptions) => {
 const { page } = Astro.props;
 ---
 
-<Base>
+<Base title={`Page ${page.currentPage} of ${page.lastPage}`}>
   <div class="section">
     <div class="container">
       <div class="row px-3">

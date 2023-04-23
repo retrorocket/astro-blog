@@ -24,7 +24,7 @@ const filterByTags = taxonomyFilter(sortByDatePosts, "categories", category);
 const totalPages = Math.ceil(filterByTags.length / pagination);
 ---
 
-<Base title={category}>
+<Base title={`${category} の記事一覧`}>
   <div class="section">
     <div class="container">
       <div class="row px-3">

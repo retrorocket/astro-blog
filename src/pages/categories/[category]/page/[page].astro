@@ -27,7 +27,9 @@ const { page } = Astro.props;
 const { category } = Astro.params;
 ---
 
-<Base title={category}>
+<Base
+  title={`${category} の記事一覧 | Page ${page.currentPage} of ${page.lastPage}`}
+>
   <div class="section">
     <div class="container">
       <div class="row px-3">
