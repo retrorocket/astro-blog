@@ -1,7 +1,6 @@
 import image from "@astrojs/image";
 import mdx from "@astrojs/mdx";
 import react from "@astrojs/react";
-import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
 import AutoImport from "astro-auto-import";
 import { defineConfig } from "astro/config";
@@ -9,25 +8,18 @@ import remarkFigureCaption from "@microflash/remark-figure-caption";
 import remarkCollapse from "remark-collapse";
 import remarkToc from "remark-toc";
 import config from "./src/config/config.json";
-import pageToAlgoliaRecord from "./src/integrations/algolia-queries"
-
+import pageToAlgoliaRecord from "./src/integrations/algolia-queries";
+import sitemap from "./src/integrations/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-  site: config.site.base_url ? config.site.base_url : "http://examplesite.com",
+  site: config.site.base_url ? config.site.base_url : "https://retrorocket.biz",
   base: config.site.base_path ? config.site.base_path : "/",
   trailingSlash: config.site.trailing_slash ? "always" : "never",
   integrations: [
     pageToAlgoliaRecord(),
     react(),
-    sitemap({
-      serialize(item) {
-        if (/\/page\//.test(item.url)) {
-          return undefined;
-        }
-        return item;
-      },
-    }),
+    sitemap(),
     tailwind({
       config: {
         applyBaseStyles: false,

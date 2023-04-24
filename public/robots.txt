@@ -1,10 +1,10 @@
 User-agent: *
 Disallow: */page/*
 
-User-agent:Megalodon
+User-agent: Megalodon
 Disallow: /
 
-User-agent:ia_archiver
+User-agent: ia_archiver
 Disallow: /
 
-Sitemap: https://retrorocket.biz/sitemap-index.xml
+Sitemap: https://retrorocket.biz/sitemap.xml
