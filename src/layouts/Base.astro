@@ -19,10 +19,12 @@ export interface Props {
   image?: string;
   noindex?: boolean;
   canonical?: string;
+  noads?: boolean;
 }
 
 // distructure frontmatters
-const { title, meta_title, excerpt, image, noindex, canonical } = Astro.props;
+const { title, meta_title, excerpt, image, noindex, canonical, noads } =
+  Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -162,7 +164,8 @@ const { title, meta_title, excerpt, image, noindex, canonical } = Astro.props;
       title={`${config.site.title} Blog Feed`}
       href="/feed.xml"
     />
-    <link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+    {!noads && <script defer src="/assets/js/loadads.js" />}
   </head>
   <body>
     <TwSizeIndicator />

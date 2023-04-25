@@ -6,7 +6,7 @@ const entry = await getEntryBySlug("pages", "404");
 const { Content } = await entry.render();
 ---
 
-<Base title={entry.data.title}>
+<Base title={entry.data.title} noads={true}>
   <section class="section">
     <div class="container">
       <div class="flex h-[40vh] items-center justify-center">

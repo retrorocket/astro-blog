@@ -9,7 +9,7 @@ export default (): AstroIntegration => ({
   name: "algolia-queries",
   hooks: {
     "astro:build:done": async () => {
-      const filenames = globSync("./src/content/posts/**/*.md");
+      const filenames = globSync("./src/content/posts/**/*.md*");
       const data = filenames.map((filename) => {
         try {
           const markdownWithMeta = fs.readFileSync(filename);
@@ -20,8 +20,8 @@ export default (): AstroIntegration => ({
             title: frontmatter.title,
             content: removeMarkdown(content).replace(/\n/g, ""),
           };
-        } catch (e) {
-          // console.log(e.message)
+        } catch (e: any) {
+          console.log(e.message);
         }
       });
 

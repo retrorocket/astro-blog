@@ -4,6 +4,8 @@ import { writeFileSync } from "fs";
 import { Readable } from "stream";
 import { fileURLToPath } from "url";
 
+// astro の sitemap 生成にバグがあるので自作する
+// 参考: https://shinobiworks.com/blog/641/
 const sitemap = (): AstroIntegration => {
   return {
     name: "return_lock/sitemap",
@@ -15,10 +17,10 @@ const sitemap = (): AstroIntegration => {
         });
         const destinationDir = fileURLToPath(dir);
         const outputFileName = "sitemap.xml";
-        const excludePattern = /^page\/|^404$|\/page\/|^privacy-policy$/;
+        const excludePattern = /(?:^|\/)page\/|^404$|^privacy-policy$/;
         const sitemapRoutes = pages
-          .map((page: any) => {
-            if (!excludePattern.test(page.pathname)) return page.pathname;
+          .map(({ pathname }: any) => {
+            if (!excludePattern.test(pathname)) return pathname;
           })
           .filter((v) => v);
         const sitemap = await streamToPromise(
