@@ -54,7 +54,7 @@ const searchClient: SearchClient = {
 
 const HitCompoment = ({ hit }: HitProps) => {
   return (
-    <div className="card mb-12 border-b border-border pb-[30px]">
+    <div className="card mb-12 break-words border-b border-border pb-[30px]">
       <h3 className="h4 pb-[10px]">
         <a
           href={`${hit.slug}`}
