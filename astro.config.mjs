@@ -10,6 +10,7 @@ import remarkToc from "remark-toc";
 import config from "./src/config/config.json";
 import pageToAlgoliaRecord from "./src/integrations/algolia-queries";
 import sitemap from "./src/integrations/sitemap";
+import createOgImage from "./src/integrations/og-image";
 
 // https://astro.build/config
 export default defineConfig({
@@ -17,6 +18,7 @@ export default defineConfig({
   base: config.site.base_path ? config.site.base_path : "/",
   trailingSlash: config.site.trailing_slash ? "always" : "never",
   integrations: [
+    createOgImage(),
     pageToAlgoliaRecord(),
     react(),
     sitemap(),

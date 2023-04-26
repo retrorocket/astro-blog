@@ -1,4 +1,4 @@
-import algoliasearch from "algoliasearch"; // 追加
+import algoliasearch from "algoliasearch";
 import grayMatter from "gray-matter";
 import fs from "fs";
 import { globSync } from "glob";
