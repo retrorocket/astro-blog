@@ -132,6 +132,9 @@
   img {
     @apply max-h-[500px];
   }
+  figcaption {
+    @apply font-bold;
+  }
 }
 
 .toc-hidden {

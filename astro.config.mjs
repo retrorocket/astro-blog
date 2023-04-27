@@ -8,9 +8,9 @@ import remarkFigureCaption from "@microflash/remark-figure-caption";
 import remarkCollapse from "remark-collapse";
 import remarkToc from "remark-toc";
 import config from "./src/config/config.json";
-import pageToAlgoliaRecord from "./src/integrations/algolia-queries";
 import sitemap from "./src/integrations/sitemap";
 import createOgImage from "./src/integrations/og-image";
+import algoliaQueries from "./src/integrations/algolia-queries";
 
 // https://astro.build/config
 export default defineConfig({
@@ -19,7 +19,7 @@ export default defineConfig({
   trailingSlash: config.site.trailing_slash ? "always" : "never",
   integrations: [
     createOgImage(),
-    pageToAlgoliaRecord(),
+    algoliaQueries(),
     react(),
     sitemap(),
     tailwind({

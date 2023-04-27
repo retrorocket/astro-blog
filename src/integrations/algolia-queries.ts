@@ -1,6 +1,6 @@
 import algoliasearch from "algoliasearch";
 import grayMatter from "gray-matter";
-import fs from "fs";
+import { readFileSync } from "fs";
 import { globSync } from "glob";
 import removeMarkdown from "remove-markdown";
 import type { AstroIntegration } from "astro";
@@ -12,7 +12,7 @@ export default (): AstroIntegration => ({
       const filenames = globSync("./src/content/posts/**/*.md*");
       const data = filenames.map((filename) => {
         try {
-          const markdownWithMeta = fs.readFileSync(filename);
+          const markdownWithMeta = readFileSync(filename);
           const { data: frontmatter, content } = grayMatter(markdownWithMeta);
           return {
             objectID: frontmatter.postid,

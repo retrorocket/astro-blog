@@ -94,7 +94,7 @@ export default (): AstroIntegration => ({
         "base64"
       );
       const font = readFileSync(
-        path.resolve("./public/assets/fonts/NotoSansJP-Light.ttf")
+        path.resolve("./public/assets/fonts/NotoSansJP-Bold.ttf")
       );
       mkdir(fileURLToPath(dir) + "og-images/", (e) => {
         if (e) console.log(e);

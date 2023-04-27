@@ -6,9 +6,9 @@ import { fileURLToPath } from "url";
 
 // astro の sitemap 生成にバグがあるので自作する
 // 参考: https://shinobiworks.com/blog/641/
-const sitemap = (): AstroIntegration => {
+export default (): AstroIntegration => {
   return {
-    name: "return_lock/sitemap",
+    name: "create-sitemap",
     hooks: {
       "astro:build:done": async ({ dir, pages }) => {
         const hostname = "https://retrorocket.biz";
@@ -32,5 +32,3 @@ const sitemap = (): AstroIntegration => {
     },
   };
 };
-
-export default sitemap;
