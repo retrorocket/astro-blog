@@ -4,7 +4,7 @@ import PostSingle from "@layouts/PostSingle.astro";
 import { getSinglePage } from "@lib/contentParser.astro";
 import config from "@config/config.json";
 
-export async function getStaticPaths() {
+export const getStaticPaths = async () => {
   const posts = await getSinglePage(config.settings.blog_folder);
   const paths = posts.map((post) => ({
     params: {
@@ -13,7 +13,7 @@ export async function getStaticPaths() {
     props: { post },
   }));
   return paths;
-}
+};
 
 const { post } = Astro.props;
 const { title, meta_title, excerpt, image, postid } = post.data;

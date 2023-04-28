@@ -3,7 +3,7 @@ import Base from "@layouts/Base.astro";
 import Default from "@layouts/Default.astro";
 import { getSinglePage } from "@lib/contentParser.astro";
 
-export async function getStaticPaths() {
+export const getStaticPaths = async () => {
   const pages = await getSinglePage("pages");
 
   const paths = pages.map((page) => ({
@@ -13,7 +13,7 @@ export async function getStaticPaths() {
     props: { page },
   }));
   return paths;
-}
+};
 
 const { page } = Astro.props;
 const { regular } = Astro.params;

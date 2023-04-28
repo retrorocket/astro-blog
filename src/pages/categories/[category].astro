@@ -8,7 +8,8 @@ import { getTaxonomy } from "@lib/taxonomyParser.astro";
 import { sortByDate } from "@lib/utils/sortFunctions";
 import taxonomyFilter from "@lib/utils/taxonomyFilter";
 const { blog_folder, pagination } = config.settings;
-export async function getStaticPaths() {
+
+export const getStaticPaths = async () => {
   const { blog_folder } = config.settings;
   const categories = await getTaxonomy(blog_folder, "categories");
   return categories.map((category) => {
@@ -16,7 +17,8 @@ export async function getStaticPaths() {
       params: { category },
     };
   });
-}
+};
+
 const { category } = Astro.params;
 const allPosts = await getSinglePage(blog_folder);
 const sortByDatePosts = sortByDate(allPosts);
