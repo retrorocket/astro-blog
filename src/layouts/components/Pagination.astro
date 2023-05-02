@@ -4,15 +4,72 @@ const { section, currentPage, totalPages } = Astro.props;
 const indexPageLink = currentPage === 2;
 const hasPrevPage = currentPage > 1;
 const hasNextPage = totalPages > currentPage;
-const range = 2;
-const hasFirstPage = currentPage >= range + 2;
-const hasLastPage = currentPage + range + 2 <= totalPages;
+const ellipsis = "…";
+
+// https://gist.github.com/kottenator/9d936eb3e4e3c3e02598
+const pagination = (_current: number, last: number) => {
+  let current = _current;
+  if (_current < 3) current = 3;
+  if (_current > totalPages - 2) current = totalPages - 2;
+  const delta = 2;
+  const left = current - delta;
+  const right = current + delta + 1;
+  const range = [];
+  const rangeWithDots = [];
+  let l;
+
+  for (let i = 1; i <= last; i++) {
+    if (i == 1 || i == last || (i >= left && i < right)) {
+      range.push(i);
+    }
+  }
+
+  for (let i of range) {
+    if (l) {
+      if (i - l === 2) {
+        rangeWithDots.push(l + 1);
+      } else if (i - l !== 1) {
+        rangeWithDots.push("…");
+      }
+    }
+    rangeWithDots.push(i);
+    l = i;
+  }
+
+  return rangeWithDots;
+};
+
+const pageNumbers = pagination(currentPage, totalPages);
+const pageNumbersLength = pageNumbers.length;
+
+/**
+ * sm の場合表示する要素数を5つにする
+ */
+const smDisplayPage = () => {
+  const displayPages = pageNumbers.concat();
+  if (pageNumbers[1] === ellipsis) {
+    displayPages.splice(0, 2);
+  }
+  if (pageNumbers[pageNumbersLength - 2] === ellipsis) {
+    displayPages.splice(displayPages.length - 2, 2);
+  }
+  if (displayPages.length > 5) {
+    if (displayPages.indexOf(currentPage) < 3) {
+      displayPages.splice(5, displayPages.length - 5);
+    } else {
+      displayPages.splice(0, displayPages.length - 5);
+    }
+  }
+  return displayPages;
+};
+
+const displayPages = smDisplayPage();
 ---
 
 {
   totalPages > 1 && (
     <nav
-      class="mb-4 flex flex-wrap justify-between sm:justify-center sm:space-x-2"
+      class="mb-4 flex flex-wrap justify-center sm:space-x-2"
       aria-label="Pagination"
     >
       {/* previous */}
@@ -42,79 +99,41 @@ const hasLastPage = currentPage + range + 2 <= totalPages;
         </a>
       )}
 
-      {hasFirstPage && (
-        <a
-          href={`${section ? "/" + section : "/"}`}
-          aria-current="page"
-          class={`hidden rounded text-text transition-all duration-200 hover:bg-primary hover:text-body sm:inline-block sm:px-4 sm:py-2`}
-        >
-          1
-        </a>
-      )}
-
-      {hasFirstPage && currentPage != range + 2 && (
-        <span
-          class={`hidden rounded text-text transition-all duration-200 sm:inline-block sm:py-2`}
-        >
-          …
-        </span>
-      )}
-
       {/* page index */}
-      {Array.from({ length: totalPages }, (_, i) => {
-        if (currentPage < range + 2) {
-          // current が range より小さい時 1 `2` 3 4 5 6 7 で表示する
-          if (i > range * 2) return;
-        } else if (currentPage + range + 2 > totalPages) {
-          // current が numPages を超える時 10 11 12 13 `14` 15 16 で表示する
-          if (i + range * 2 + 1 < totalPages) return;
-        } else {
-          if (i < currentPage - range - 1 || i > currentPage + range - 1)
-            return;
-        }
-        if (i + 1 === currentPage) {
+      {pageNumbers.map((v) => {
+        const hidden = displayPages.includes(v) ? "" : "hidden";
+        if (v === currentPage) {
           return (
             <span
               aria-current="page"
               class={`rounded bg-primary px-3 py-1 text-white sm:px-4 sm:py-2`}
             >
-              {i + 1}
+              {v}
             </span>
           );
         }
-
+        if (v === ellipsis) {
+          return (
+            <span
+              class={`hidden rounded text-text transition-all sm:inline-block sm:py-2`}
+            >
+              {ellipsis}
+            </span>
+          );
+        }
         return (
           <a
             href={
-              i === 0
+              v === 1
                 ? `${section ? "/" + section : "/"}`
-                : `${section ? "/" + section : ""}/page/${i + 1}`
+                : `${section ? "/" + section : ""}/page/${v}`
             }
-            aria-current="page"
-            class={`rounded px-3 py-1 text-text transition-all duration-200 hover:bg-primary hover:text-body sm:px-4 sm:py-2`}
+            class={`${hidden} rounded px-3 py-1 text-text transition-all duration-200 hover:bg-primary hover:text-body sm:inline-block sm:px-4 sm:py-2`}
           >
-            {i + 1}
+            {v}
           </a>
         );
       })}
-
-      {hasLastPage && (
-        <span
-          class={`hidden rounded text-text transition-all duration-200 sm:inline-block sm:py-2`}
-        >
-          …
-        </span>
-      )}
-
-      {hasLastPage && (
-        <a
-          href={`${section ? "/" + section : ""}/page/${totalPages}`}
-          aria-current="page"
-          class={`hidden rounded text-text transition-all duration-200 hover:bg-primary hover:text-body sm:inline-block sm:px-4 sm:py-2`}
-        >
-          {totalPages}
-        </a>
-      )}
 
       {/* next page */}
       {hasNextPage && (
