@@ -1,11 +1,11 @@
 ---
 import dateFormat from "@lib/utils/dateFormat";
-import { humanize, plainify, slugify } from "@lib/utils/textConverter";
+import { humanize, slugify } from "@lib/utils/textConverter";
 const { post } = Astro.props;
 ---
 
 <div
-  class="card mb-12 border-b border-border pb-[30px] break-words"
+  class="card mb-12 break-words border-b border-border pb-[30px]"
   itemscope="itemscope"
   itemtype="https://schema.org/BlogPosting"
   itemprop="blogPost"
@@ -31,8 +31,6 @@ const { post } = Astro.props;
             <li class="mr-2 inline-block">
               <a
                 href={`/categories/${slugify(category)}`}
-                {
-                /* class="mr-3 hover:text-primary hover:underline"*/ }
                 class="rounded-lg bg-primary bg-opacity-20 px-2.5 py-0.5 text-primary transition hover:bg-primary hover:text-white"
               >
                 {humanize(category)}

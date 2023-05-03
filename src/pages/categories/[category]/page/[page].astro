@@ -3,6 +3,7 @@ import config from "@config/config.json";
 import Base from "@layouts/Base.astro";
 import Pagination from "@layouts/components/Pagination.astro";
 import Post from "@layouts/partials/Post.astro";
+import PostList from "@layouts/PostList.astro";
 import taxonomyFilter from "@lib/utils/taxonomyFilter";
 import { getSinglePage } from "@lib/contentParser.astro";
 import { sortByDate } from "@lib/utils/sortFunctions";
@@ -30,29 +31,15 @@ const { category } = Astro.params;
 <Base
   title={`${category} の記事一覧 | Page ${page.currentPage} of ${page.lastPage}`}
 >
-  <div class="section">
-    <div class="container">
-      <div class="row px-3">
-        <div class="mx-auto lg:col-10 md:px-0">
-          <div
-            class="rounded py-10 md:p-[60px]"
-            role="main"
-            itemprop="mainEntityOfPage"
-            itemscope="itemscope"
-            itemtype="https://schema.org/Blog"
-          >
-            <h1 class="h2 pb-10">
-              Posts related to <span class="text-primary">{category}</span> category
-            </h1>
-            {page.data.map((post: any) => <Post post={post} />)}
-            <Pagination
-              section={`categories/${category}`}
-              currentPage={page.currentPage}
-              totalPages={page.lastPage}
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <PostList>
+    <h1 class="h2 pb-10">
+      Posts related to <span class="text-primary">{category}</span> category
+    </h1>
+    {page.data.map((post: any) => <Post post={post} />)}
+    <Pagination
+      section={`categories/${category}`}
+      currentPage={page.currentPage}
+      totalPages={page.lastPage}
+    />
+  </PostList>
 </Base>

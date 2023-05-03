@@ -3,6 +3,7 @@ import config from "@config/config.json";
 import Base from "@layouts/Base.astro";
 import Pagination from "@layouts/components/Pagination.astro";
 import Post from "@layouts/partials/Post.astro";
+import PostList from "@layouts/PostList.astro";
 import { getSinglePage } from "@lib/contentParser.astro";
 import { getTaxonomy } from "@lib/taxonomyParser.astro";
 import { sortByDate } from "@lib/utils/sortFunctions";
@@ -27,33 +28,15 @@ const totalPages = Math.ceil(filterByTags.length / pagination);
 ---
 
 <Base title={`${category} の記事一覧`}>
-  <div class="section">
-    <div class="container">
-      <div class="row px-3">
-        <div class="mx-auto lg:col-10 md:px-0">
-          <div
-            class="rounded py-10 md:p-[60px]"
-            role="main"
-            itemprop="mainEntityOfPage"
-            itemscope="itemscope"
-            itemtype="https://schema.org/Blog"
-          >
-            <h1 class="h2 pb-10">
-              Posts related to <span class="text-primary">{category}</span> category
-            </h1>
-            {
-              filterByTags
-                .slice(0, pagination)
-                .map((post) => <Post post={post} />)
-            }
-            <Pagination
-              section={`categories/${category}`}
-              currentPage={1}
-              totalPages={totalPages}
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <PostList>
+    <h1 class="h2 pb-10">
+      Posts related to <span class="text-primary">{category}</span> category
+    </h1>
+    {filterByTags.slice(0, pagination).map((post) => <Post post={post} />)}
+    <Pagination
+      section={`categories/${category}`}
+      currentPage={1}
+      totalPages={totalPages}
+    />
+  </PostList>
 </Base>

@@ -3,6 +3,7 @@ import config from "@config/config.json";
 import Base from "@layouts/Base.astro";
 import Pagination from "@layouts/components/Pagination.astro";
 import Post from "@layouts/partials/Post.astro";
+import PostList from "@layouts/PostList.astro";
 import Categories from "@layouts/components/Categories.astro";
 import { getSinglePage } from "@lib/contentParser.astro";
 import { sortByDate } from "@lib/utils/sortFunctions";
@@ -20,27 +21,10 @@ const { page } = Astro.props;
 ---
 
 <Base title={`Page ${page.currentPage} of ${page.lastPage}`}>
-  <div class="section">
-    <div class="container">
-      <div class="row px-3">
-        <div class="mx-auto lg:col-10 md:px-0">
-          <div
-            class="rounded py-10 md:p-[60px]"
-            role="main"
-            itemprop="mainEntityOfPage"
-            itemscope="itemscope"
-            itemtype="https://schema.org/Blog"
-          >
-            {page.data.map((post: any) => <Post post={post} />)}
-            <Pagination
-              currentPage={page.currentPage}
-              totalPages={page.lastPage}
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <PostList>
+    {page.data.map((post: any) => <Post post={post} />)}
+    <Pagination currentPage={page.currentPage} totalPages={page.lastPage} />
+  </PostList>
   <section class="mb-14">
     <Categories />
   </section>
