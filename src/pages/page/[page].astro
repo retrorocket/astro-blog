@@ -23,8 +23,14 @@ const { page } = Astro.props;
   <div class="section">
     <div class="container">
       <div class="row px-3">
-        <div class="mx-auto px-0 lg:col-10">
-          <div class="rounded px-9 py-12 md:p-[60px]">
+        <div class="mx-auto lg:col-10 md:px-0">
+          <div
+            class="rounded py-10 md:p-[60px]"
+            role="main"
+            itemprop="mainEntityOfPage"
+            itemscope="itemscope"
+            itemtype="https://schema.org/Blog"
+          >
             {page.data.map((post: any) => <Post post={post} />)}
             <Pagination
               currentPage={page.currentPage}

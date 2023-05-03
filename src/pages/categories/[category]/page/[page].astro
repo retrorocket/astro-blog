@@ -33,8 +33,14 @@ const { category } = Astro.params;
   <div class="section">
     <div class="container">
       <div class="row px-3">
-        <div class="mx-auto px-0 lg:col-10">
-          <div class="rounded px-9 py-8 md:p-[60px]">
+        <div class="mx-auto lg:col-10 md:px-0">
+          <div
+            class="rounded py-10 md:p-[60px]"
+            role="main"
+            itemprop="mainEntityOfPage"
+            itemscope="itemscope"
+            itemtype="https://schema.org/Blog"
+          >
             <h1 class="h2 pb-10">
               Posts related to <span class="text-primary">{category}</span> category
             </h1>
