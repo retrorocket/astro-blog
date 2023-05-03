@@ -29,7 +29,7 @@ const pagination = (_current: number, last: number) => {
       if (i - l === 2) {
         rangeWithDots.push(l + 1);
       } else if (i - l !== 1) {
-        rangeWithDots.push("…");
+        rangeWithDots.push(ellipsis);
       }
     }
     rangeWithDots.push(i);
@@ -40,7 +40,6 @@ const pagination = (_current: number, last: number) => {
 };
 
 const pageNumbers = pagination(currentPage, totalPages);
-const pageNumbersLength = pageNumbers.length;
 
 /**
  * sm の場合表示する要素数を5つにする
@@ -50,7 +49,7 @@ const smDisplayPage = () => {
   if (pageNumbers[1] === ellipsis) {
     displayPages.splice(0, 2);
   }
-  if (pageNumbers[pageNumbersLength - 2] === ellipsis) {
+  if (pageNumbers[pageNumbers.length - 2] === ellipsis) {
     displayPages.splice(displayPages.length - 2, 2);
   }
   if (displayPages.length > 5) {
