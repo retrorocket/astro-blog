@@ -49,19 +49,4 @@ jobs:
           remote_port: ${{secrets.SSH_PORT}}
           remote_user: ${{secrets.SSH_USERNAME}}
           remote_key: ${{secrets.SSH_PRIVATE_KEY}}
-      - name: Commit files
-        run: |
-          git add -N .
-          if ! git diff --exit-code --quiet
-          then
-            git config --local user.email "1858830+retrorocket@users.noreply.github.com"
-            git config --local user.name "github-actions[bot]"
-            git add .
-            git commit -m "Add changes from actions"
-          fi
-      - name: Push changes
-        continue-on-error: true
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.ref }}
+
