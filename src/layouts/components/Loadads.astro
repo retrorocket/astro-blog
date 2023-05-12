@@ -2,22 +2,14 @@
 ---
 
 <script>
-  let lazyloadads = false;
-  const onScrollLoadAds = () => {
-    if (!lazyloadads) {
-      const url =
-        "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9043961430295462";
-      const ad = document.createElement("script");
-      ad.async = true;
-      ad.setAttribute("crossorigin", "anonymous");
-      ad.src = url;
-      document.body.appendChild(ad);
-      lazyloadads = true;
-      window.removeEventListener("scroll", onScrollLoadAds);
-      window.removeEventListener("pointermove", onScrollLoadAds);
-    }
+  const onEventLoadAds = () => {
+    const url =
+      "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9043961430295462";
+    const ad = document.createElement("script");
+    ad.async = true;
+    ad.setAttribute("crossorigin", "anonymous");
+    ad.src = url;
+    document.body.appendChild(ad);
   };
-  // {once: true} を指定すると他のリスナーを削除できないので手動でremoveする
-  window.addEventListener("scroll", onScrollLoadAds);
-  window.addEventListener("pointermove", onScrollLoadAds);
+  window.addEventListener("pointermove", onEventLoadAds, { once: true });
 </script>
