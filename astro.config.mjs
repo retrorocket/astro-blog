@@ -35,8 +35,6 @@ export default defineConfig({
         "@shortcodes/Button",
         "@shortcodes/Accordion",
         "@shortcodes/Notice",
-        "@shortcodes/Video",
-        "@shortcodes/Youtube",
       ],
     }),
     mdx(),
