@@ -18,4 +18,6 @@ description: "retrorocket.biz へのカンパのお願い。"
 
 #### BTC アドレス
 
+BTC も受け付けています。
+
 16hYrAUnDx7sBh4uKDmydzZZdhijSaSTuk

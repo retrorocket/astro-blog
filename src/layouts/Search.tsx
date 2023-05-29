@@ -13,6 +13,7 @@ import {
 } from "react-instantsearch-hooks-web";
 import type { SearchClient, Hit as AlgoliaHit } from "instantsearch.js";
 import { plainify } from "@lib/utils/textConverter";
+import React from "react";
 
 type HitProps = {
   hit: AlgoliaHit<{
