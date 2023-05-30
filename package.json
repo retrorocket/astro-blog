@@ -26,7 +26,6 @@
     "marked": "^4.2.12",
     "react-icons": "^4.8.0",
     "react-instantsearch-hooks-web": "^6.42.2",
-    "react-lite-youtube-embed": "^2.3.52",
     "rehype-slug": "^5.1.0",
     "rehype-toc": "^3.0.2",
     "remark-collapse": "^0.1.2",
