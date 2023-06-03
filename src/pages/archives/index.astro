@@ -1,0 +1,62 @@
+---
+import { settings } from "@config/config.json";
+import Base from "@layouts/Base.astro";
+import { getSinglePage } from "@lib/contentParser.astro";
+import { sortByDate } from "@lib/utils/sortFunctions";
+import { DateTime } from "luxon";
+const posts = await getSinglePage(settings.blog_folder);
+const sortPostByDate = sortByDate(posts);
+
+const splitedPosts = [];
+
+for (let year = new Date().getFullYear(); year >= 2013; year--) {
+  splitedPosts.push(
+    sortPostByDate.filter(
+      (post) =>
+        DateTime.fromISO(post.data.date.toISOString()).setZone("Asia/Tokyo")
+          .year === year
+    )
+  );
+}
+---
+
+<Base title="記事一覧">
+  <section class="section">
+    <div class="container">
+      <div class="row px-3">
+        <div class="mx-auto lg:col-10">
+          <div class="content toc-hidden py-4 md:py-12">
+            <h1 class="h2 mb-8">記事一覧</h1>
+            {
+              splitedPosts.map((post) => {
+                return (
+                  <div>
+                    <h2>
+                      {
+                        DateTime.fromISO(
+                          post[0].data.date.toISOString()
+                        ).setZone("Asia/Tokyo").year
+                      }
+                    </h2>
+                    {post.map((detail) => {
+                      return (
+                        <p>
+                          <a href={`/archives/${detail.data.postid}`}>
+                            {detail.data.title}
+                          </a>{" "}
+                          {DateTime.fromISO(
+                            detail.data.date.toISOString()
+                          ).toISODate()}
+                        </p>
+                      );
+                    })}
+                  </div>
+                );
+              })
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

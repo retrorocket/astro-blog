@@ -79,7 +79,7 @@ const HitCompoment = ({ hit }: HitProps) => {
 
 const AlgoliaSearchBox = () => {
   return (
-    <div className="min-h-[45vh]">
+    <div>
       <InstantSearch searchClient={searchClient} indexName="blog_retrorocket">
         <SearchBox
           placeholder="Search"
@@ -101,7 +101,7 @@ const AlgoliaSearchBox = () => {
         />
         <Hits hitComponent={HitCompoment} />
         <div className="flex flex-row justify-end">
-          <PoweredBy className="w-[150px] pt-3" />
+          <PoweredBy className="w-[150px] pb-2" />
         </div>
       </InstantSearch>
     </div>
