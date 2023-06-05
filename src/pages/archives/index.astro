@@ -8,13 +8,11 @@ const posts = await getSinglePage(settings.blog_folder);
 const sortPostByDate = sortByDate(posts);
 
 const splitedPosts = [];
-
+const timezone = { zone: "Asia/Tokyo" };
 for (let year = new Date().getFullYear(); year >= 2013; year--) {
   splitedPosts.push(
     sortPostByDate.filter(
-      (post) =>
-        DateTime.fromISO(post.data.date.toISOString()).setZone("Asia/Tokyo")
-          .year === year
+      (post) => DateTime.fromJSDate(post.data.date, timezone).year === year
     )
   );
 }
@@ -32,11 +30,7 @@ for (let year = new Date().getFullYear(); year >= 2013; year--) {
                 return (
                   <div>
                     <h2>
-                      {
-                        DateTime.fromISO(
-                          post[0].data.date.toISOString()
-                        ).setZone("Asia/Tokyo").year
-                      }
+                      {DateTime.fromJSDate(post[0].data.date, timezone).year}
                     </h2>
                     {post.map((detail) => {
                       return (
@@ -44,8 +38,9 @@ for (let year = new Date().getFullYear(); year >= 2013; year--) {
                           <a href={`/archives/${detail.data.postid}`}>
                             {detail.data.title}
                           </a>{" "}
-                          {DateTime.fromISO(
-                            detail.data.date.toISOString()
+                          {DateTime.fromJSDate(
+                            detail.data.date,
+                            timezone
                           ).toISODate()}
                         </p>
                       );

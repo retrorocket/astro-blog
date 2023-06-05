@@ -23,7 +23,7 @@ const { title, meta_title, excerpt, image, postid } = post.data;
   title={title}
   meta_title={meta_title}
   excerpt={excerpt}
-  image={`/og-images/${postid}.png`}
+  image={image ? image : `/og-images/${postid}.png`}
   canonical={`archives/${postid}`}
 >
   <PostSingle post={post} />
