@@ -11,7 +11,8 @@
   "settings": {
     "blog_folder": "posts",
     "pagination": 5,
-    "summary_length": 140
+    "summary_length": 140,
+    "timezone": "Asia/Tokyo"
   },
 
   "params": {

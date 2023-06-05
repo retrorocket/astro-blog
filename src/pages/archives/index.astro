@@ -3,16 +3,15 @@ import { settings } from "@config/config.json";
 import Base from "@layouts/Base.astro";
 import { getSinglePage } from "@lib/contentParser.astro";
 import { sortByDate } from "@lib/utils/sortFunctions";
-import { DateTime } from "luxon";
+import dateFormat from "@lib/utils/dateFormat";
 const posts = await getSinglePage(settings.blog_folder);
 const sortPostByDate = sortByDate(posts);
 
 const splitedPosts = [];
-const timezone = { zone: "Asia/Tokyo" };
 for (let year = new Date().getFullYear(); year >= 2013; year--) {
   splitedPosts.push(
     sortPostByDate.filter(
-      (post) => DateTime.fromJSDate(post.data.date, timezone).year === year
+      (post) => Number(dateFormat(post.data.date, "yyyy")) === year
     )
   );
 }
@@ -29,19 +28,14 @@ for (let year = new Date().getFullYear(); year >= 2013; year--) {
               splitedPosts.map((post) => {
                 return (
                   <div>
-                    <h2>
-                      {DateTime.fromJSDate(post[0].data.date, timezone).year}
-                    </h2>
+                    <h2>{dateFormat(post[0].data.date, "yyyy")}</h2>
                     {post.map((detail) => {
                       return (
                         <p>
                           <a href={`/archives/${detail.data.postid}`}>
                             {detail.data.title}
                           </a>{" "}
-                          {DateTime.fromJSDate(
-                            detail.data.date,
-                            timezone
-                          ).toISODate()}
+                          {dateFormat(detail.data.date, "yyyy-LL-dd")}
                         </p>
                       );
                     })}
