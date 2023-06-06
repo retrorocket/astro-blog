@@ -1,11 +1,14 @@
 {
-  "name": "northendlab-light-astro",
+  "name": "astro-rambler",
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
     "dev": "astro dev",
+    "start": "astro dev",
     "build": "astro build",
-    "format": "prettier -w ."
+    "preview": "astro preview",
+    "format": "prettier -w .",
+    "astro": "astro"
   },
   "dependencies": {
     "@astrojs/image": "^0.16.1",

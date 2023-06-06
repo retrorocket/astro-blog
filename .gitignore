@@ -25,6 +25,7 @@ package-lock.json
 # ignore .astro directory
 .astro
 
+# ignore this project temp files
 .temp
 src/content/posts
 public/images
