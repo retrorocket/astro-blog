@@ -123,7 +123,7 @@
 //toc, h2
 .blog-article {
   h2 {
-    @apply bg-gradient-to-r from-gray-600 via-gray-400 to-gray-300 bg-[length:100%_1px] bg-bottom bg-no-repeat pb-1;
+    @apply bg-gradient-to-r from-gray-600 via-gray-400 to-gray-300 bg-[length:100%_1px] bg-bottom bg-no-repeat py-1;
   }
   nav.toc {
     @apply before:text-xl before:text-text before:content-['目次'];
