@@ -18,13 +18,16 @@ export const getStaticPaths = async ({ paginate }: GetStaticPathsOptions) => {
     pageSize: config.settings.pagination,
   });
 };
-type Props = { page: Page };
+interface PostPage extends Page {
+  data: CollectionEntry<"posts">[];
+}
+type Props = { page: PostPage };
 const { page } = Astro.props;
 ---
 
 <Base title={`Page ${page.currentPage} of ${page.lastPage}`}>
   <PostList>
-    {page.data.map((post: CollectionEntry<"posts">) => <Post post={post} />)}
+    {page.data.map((post) => <Post post={post} />)}
     <Pagination currentPage={page.currentPage} totalPages={page.lastPage} />
   </PostList>
   <section class="mb-14">
