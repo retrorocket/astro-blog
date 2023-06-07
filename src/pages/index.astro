@@ -7,8 +7,10 @@ import PostList from "@layouts/PostList.astro";
 import Categories from "@layouts/components/Categories.astro";
 import { getSinglePage } from "@lib/contentParser.astro";
 import { sortByDate } from "@lib/utils/sortFunctions";
+import type { CollectionEntry } from "astro:content";
+
 const posts = await getSinglePage(settings.blog_folder);
-const sortPostByDate = sortByDate(posts);
+const sortPostByDate: CollectionEntry<"posts">[] = sortByDate(posts);
 const { pagination } = settings;
 const totalPages = Math.ceil(posts.length / pagination);
 ---

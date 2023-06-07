@@ -3,9 +3,12 @@ import Base from "@layouts/Base.astro";
 import PostSingle from "@layouts/PostSingle.astro";
 import { getSinglePage } from "@lib/contentParser.astro";
 import config from "@config/config.json";
+import type { CollectionEntry } from "astro:content";
 
 export const getStaticPaths = async () => {
-  const posts = await getSinglePage(config.settings.blog_folder);
+  const posts: CollectionEntry<"posts">[] = await getSinglePage(
+    config.settings.blog_folder
+  );
   const paths = posts.map((post) => ({
     params: {
       single: post.data.postid,
@@ -15,6 +18,7 @@ export const getStaticPaths = async () => {
   return paths;
 };
 
+type Props = { post: CollectionEntry<"posts"> };
 const { post } = Astro.props;
 const { title, meta_title, excerpt, image, postid } = post.data;
 ---

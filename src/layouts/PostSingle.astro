@@ -1,6 +1,9 @@
 ---
 import dateFormat from "@lib/utils/dateFormat";
 import { humanize, markdownify, slugify } from "@lib/utils/textConverter";
+import type { CollectionEntry } from "astro:content";
+
+type Props = { post: CollectionEntry<"posts"> };
 const { post } = Astro.props;
 const { Content } = await post.render();
 const { title, categories, date } = post.data;

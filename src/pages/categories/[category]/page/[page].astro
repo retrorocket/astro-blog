@@ -8,7 +8,8 @@ import taxonomyFilter from "@lib/utils/taxonomyFilter";
 import { getSinglePage } from "@lib/contentParser.astro";
 import { sortByDate } from "@lib/utils/sortFunctions";
 import { getTaxonomy } from "@lib/taxonomyParser.astro";
-import type { GetStaticPathsOptions } from "astro";
+import type { GetStaticPathsOptions, Page } from "astro";
+import type { CollectionEntry } from "astro:content";
 
 export const getStaticPaths = async ({ paginate }: GetStaticPathsOptions) => {
   const { blog_folder, pagination } = config.settings;
@@ -24,6 +25,8 @@ export const getStaticPaths = async ({ paginate }: GetStaticPathsOptions) => {
     });
   });
 };
+
+type Props = { page: Page };
 const { page } = Astro.props;
 const { category } = Astro.params;
 ---
@@ -35,7 +38,7 @@ const { category } = Astro.params;
     <h1 class="h2 pb-10">
       Posts related to <span class="text-primary">{category}</span> category
     </h1>
-    {page.data.map((post: any) => <Post post={post} />)}
+    {page.data.map((post: CollectionEntry<"posts">) => <Post post={post} />)}
     <Pagination
       section={`categories/${category}`}
       currentPage={page.currentPage}

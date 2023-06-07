@@ -8,6 +8,8 @@ import { getSinglePage } from "@lib/contentParser.astro";
 import { getTaxonomy } from "@lib/taxonomyParser.astro";
 import { sortByDate } from "@lib/utils/sortFunctions";
 import taxonomyFilter from "@lib/utils/taxonomyFilter";
+import type { CollectionEntry } from "astro:content";
+
 const { blog_folder, pagination } = config.settings;
 
 export const getStaticPaths = async () => {
@@ -23,7 +25,11 @@ export const getStaticPaths = async () => {
 const { category } = Astro.params;
 const allPosts = await getSinglePage(blog_folder);
 const sortByDatePosts = sortByDate(allPosts);
-const filterByTags = taxonomyFilter(sortByDatePosts, "categories", category);
+const filterByTags: CollectionEntry<"posts">[] = taxonomyFilter(
+  sortByDatePosts,
+  "categories",
+  category
+);
 const totalPages = Math.ceil(filterByTags.length / pagination);
 ---
 

@@ -2,6 +2,7 @@
 import Base from "@layouts/Base.astro";
 import Default from "@layouts/Default.astro";
 import { getSinglePage } from "@lib/contentParser.astro";
+import type { CollectionEntry } from "astro:content";
 
 export const getStaticPaths = async () => {
   const pages = await getSinglePage("pages");
@@ -15,15 +16,16 @@ export const getStaticPaths = async () => {
   return paths;
 };
 
+type Props = { page: CollectionEntry<"pages"> };
 const { page } = Astro.props;
 const { regular } = Astro.params;
-const { title, meta_title, excerpt, image } = page.data;
+const { title, meta_title, description, image } = page.data;
 ---
 
 <Base
   title={title}
   meta_title={meta_title}
-  excerpt={excerpt}
+  excerpt={description}
   image={image}
   canonical={regular}
 >
