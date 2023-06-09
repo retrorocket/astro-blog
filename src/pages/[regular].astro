@@ -26,7 +26,7 @@ const { title, meta_title, description, image } = page.data;
   title={title}
   meta_title={meta_title}
   excerpt={description}
-  image={image}
+  image={image ? image : `/og-images/${regular}.png`}
   canonical={regular}
 >
   <Default data={page} />

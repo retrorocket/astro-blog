@@ -75,19 +75,26 @@ export default (): AstroIntegration => ({
   name: "build-ogimages",
   hooks: {
     "astro:build:done": async ({ dir }) => {
-      const filenames = globSync("./src/content/posts/**/*.md*");
-      const data: any = filenames.map((filename) => {
-        try {
-          const markdownWithMeta = readFileSync(filename);
-          const { data: frontmatter } = grayMatter(markdownWithMeta);
-          return {
-            postid: frontmatter.postid,
-            title: frontmatter.title,
-          };
-        } catch (e: any) {
-          console.log(e.message);
-        }
-      });
+      const filenames = globSync([
+        "./src/content/posts/**/*.md*",
+        "./src/content/pages/*.md*",
+      ]);
+      const data: any = filenames
+        .map((filename) => {
+          try {
+            const markdownWithMeta = readFileSync(filename);
+            const { data: frontmatter } = grayMatter(markdownWithMeta);
+            if (frontmatter.draft) return;
+            return {
+              postid:
+                frontmatter.postid || filename.split(/[.\/]/).slice(-2)[0],
+              title: frontmatter.title,
+            };
+          } catch (e: any) {
+            console.log(e.message);
+          }
+        })
+        .filter((v) => v);
 
       const background = readFileSync(
         path.resolve("./public/assets/images/og-image.png"),
