@@ -36,7 +36,25 @@ const plainifyTitle = plainify(
 <html lang="ja">
   <head>
     <!-- favicon -->
-    <link rel="shortcut icon" href={config.site.favicon} />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link
+      rel="icon"
+      type="image/png"
+      href={config.site.favicon}
+      sizes="32x32"
+    />
+    <link
+      rel="apple-touch-icon"
+      href={config.site.apple_touch_icon}
+      sizes="180x180"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href={config.site.android_touch_icon}
+      sizes="192x192"
+    />
+
     <!-- theme meta -->
     <meta name="theme-name" content="Northendlab | Blog Template" />
     <meta name="msapplication-TileColor" content="#000000" />

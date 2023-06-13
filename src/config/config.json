@@ -5,6 +5,8 @@
     "base_path": "/",
     "trailing_slash": false,
     "favicon": "/assets/images/favicon.png",
+    "apple_touch_icon": "/assets/images/apple-touch-icon.png",
+    "android_touch_icon": "/assets/images/android-touch-icon.png",
     "logo_text": "return $lock;"
   },
 
