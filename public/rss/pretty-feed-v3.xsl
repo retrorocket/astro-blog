@@ -6,7 +6,7 @@
 Styles an RSS/Atom feed, making it friendly for humans viewers, and adds a link
 to aboutfeeds.com for new user onboarding. See it in action:
 
-   https://interconnected.org/home/feed
+   https://interconnected.org/home/feedtest
 
 
 ## How to use
