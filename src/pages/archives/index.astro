@@ -1,12 +1,11 @@
 ---
-import { settings } from "@config/config.json";
 import Base from "@layouts/Base.astro";
-import { getSinglePage } from "@lib/contentParser.astro";
+import { getCollection } from "astro:content";
 import { sortByDate } from "@lib/utils/sortFunctions";
 import dateFormat from "@lib/utils/dateFormat";
 import type { CollectionEntry } from "astro:content";
 
-const posts = await getSinglePage(settings.blog_folder);
+const posts = await getCollection("posts");
 const sortPostByDate: CollectionEntry<"posts">[] = sortByDate(posts);
 
 const splitedPosts = [];

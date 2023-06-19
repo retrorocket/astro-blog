@@ -1,11 +1,14 @@
 ---
-import { getSinglePage } from "./contentParser.astro";
+import type { CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
 import { slugify } from "./utils/textConverter";
 
 // get all taxonomies from frontmatter
-export const getTaxonomy = async (collection: string, name: string) => {
-  const singlePages = await getSinglePage(collection);
-  const taxonomyPages = singlePages.map((page) => page.data[name]);
+export const getTaxonomy = async (
+  name: keyof CollectionEntry<"posts">["data"]
+) => {
+  const singlePages = await getCollection("posts");
+  const taxonomyPages = singlePages.map((page) => page.data[name] as string[]);
   let taxonomies = [];
   for (let i = 0; i < taxonomyPages.length; i++) {
     const categoryArray = taxonomyPages[i];

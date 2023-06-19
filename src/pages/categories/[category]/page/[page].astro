@@ -5,20 +5,23 @@ import Pagination from "@layouts/components/Pagination.astro";
 import Post from "@layouts/partials/Post.astro";
 import PostList from "@layouts/PostList.astro";
 import taxonomyFilter from "@lib/utils/taxonomyFilter";
-import { getSinglePage } from "@lib/contentParser.astro";
+import { getCollection } from "astro:content";
 import { sortByDate } from "@lib/utils/sortFunctions";
 import { getTaxonomy } from "@lib/taxonomyParser.astro";
 import type { GetStaticPathsOptions, Page } from "astro";
 import type { CollectionEntry } from "astro:content";
 
 export const getStaticPaths = async ({ paginate }: GetStaticPathsOptions) => {
-  const { blog_folder, pagination } = config.settings;
-  const pages = await getSinglePage(blog_folder);
-  const posts = sortByDate(pages);
+  const { pagination } = config.settings;
+  const sortByDatePosts = sortByDate(await getCollection("posts"));
 
-  const categories = await getTaxonomy(blog_folder, "categories");
+  const categories = await getTaxonomy("categories");
   return categories.map((category) => {
-    const filterByTags = taxonomyFilter(posts, "categories", category);
+    const filterByTags: CollectionEntry<"posts">[] = taxonomyFilter(
+      sortByDatePosts,
+      "categories",
+      category
+    );
     return paginate(filterByTags, {
       params: { category: category || "" },
       pageSize: pagination,

@@ -4,17 +4,16 @@ import Base from "@layouts/Base.astro";
 import Pagination from "@layouts/components/Pagination.astro";
 import Post from "@layouts/partials/Post.astro";
 import PostList from "@layouts/PostList.astro";
-import { getSinglePage } from "@lib/contentParser.astro";
+import { getCollection } from "astro:content";
 import { getTaxonomy } from "@lib/taxonomyParser.astro";
 import { sortByDate } from "@lib/utils/sortFunctions";
 import taxonomyFilter from "@lib/utils/taxonomyFilter";
 import type { CollectionEntry } from "astro:content";
 
-const { blog_folder, pagination } = config.settings;
+const { pagination } = config.settings;
 
 export const getStaticPaths = async () => {
-  const { blog_folder } = config.settings;
-  const categories = await getTaxonomy(blog_folder, "categories");
+  const categories = await getTaxonomy("categories");
   return categories.map((category) => {
     return {
       params: { category },
@@ -23,8 +22,7 @@ export const getStaticPaths = async () => {
 };
 
 const { category } = Astro.params;
-const allPosts = await getSinglePage(blog_folder);
-const sortByDatePosts = sortByDate(allPosts);
+const sortByDatePosts = sortByDate(await getCollection("posts"));
 const filterByTags: CollectionEntry<"posts">[] = taxonomyFilter(
   sortByDatePosts,
   "categories",

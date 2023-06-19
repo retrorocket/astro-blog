@@ -1,8 +1,6 @@
 ---
-import { settings } from "@config/config.json";
-const { blog_folder } = settings;
 import { getTaxonomy } from "@lib/taxonomyParser.astro";
-const categories = await getTaxonomy(blog_folder, "categories");
+const categories = await getTaxonomy("categories");
 import { humanize } from "@lib/utils/textConverter";
 ---
 

@@ -1,13 +1,11 @@
 import rss from "@astrojs/rss";
 import config from "@config/config.json";
-const postImportResult = import.meta.glob("../content/posts/**/*.md", {
-  eager: true,
-});
-const posts = Object.values(postImportResult).sort(
-  (a: any, b: any) =>
-    new Date(b.frontmatter.date && b.frontmatter.date).getTime() -
-    new Date(a.frontmatter.date && a.frontmatter.date).getTime()
-);
+import { sortByDate } from "@lib/utils/sortFunctions";
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+
+const posts = await getCollection("posts");
+const sortPostByDate: CollectionEntry<"posts">[] = sortByDate(posts);
 
 export const get = () =>
   rss({
@@ -15,10 +13,10 @@ export const get = () =>
     description: config.metadata.meta_description,
     site: config.site.base_url,
     stylesheet: "/rss/pretty-feed-v3.xsl",
-    items: posts.map((post: any) => ({
-      link: `${config.site.base_url}/archives/${post.frontmatter.postid}`,
-      title: post.frontmatter.title,
-      pubDate: post.frontmatter.date,
-      description: post.frontmatter.excerpt,
+    items: sortPostByDate.map((post) => ({
+      link: `${config.site.base_url}/archives/${post.data.postid}`,
+      title: post.data.title,
+      pubDate: post.data.date,
+      description: post.data.excerpt,
     })),
   });
