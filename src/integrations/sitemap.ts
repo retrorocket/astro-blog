@@ -19,7 +19,7 @@ export default (): AstroIntegration => {
         const outputFileName = "sitemap.xml";
         const excludePattern = /(?:^|\/)page\/|^404$|^privacy-policy$/;
         const sitemapRoutes = pages
-          .map(({ pathname }: any) => {
+          .map(({ pathname }) => {
             if (!excludePattern.test(pathname)) return pathname;
           })
           .filter((v) => v);
