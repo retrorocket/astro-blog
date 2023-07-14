@@ -112,9 +112,16 @@ const plainifyTitle = plainify(
       content={excerpt ? excerpt : config.metadata.meta_description}
     />
     <meta property="og:type" content="website" />
+    {
+      /* トレイリングスラッシュが正しく削除されないバグがあるため自分で削除する
+    https://github.com/withastro/astro/issues/5630 */
+    }
     <meta
       property="og:url"
-      content={`${config.site.base_url}/${Astro.url.pathname.replace("/", "")}`}
+      content={`${config.site.base_url}/${Astro.url.pathname.replace(
+        /(?:\/$|^\/)/g,
+        ""
+      )}`}
     />
 
     <!-- twitter-title -->
