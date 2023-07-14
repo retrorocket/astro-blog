@@ -31,7 +31,7 @@ const filterByTags: CollectionEntry<"posts">[] = taxonomyFilter(
 const totalPages = Math.ceil(filterByTags.length / pagination);
 ---
 
-<Base title={`${category} の記事一覧`}>
+<Base title={`${category} の記事一覧`} canonical={`categories/${category}`}>
   <PostList>
     <h1 class="h2 pb-10">
       Posts related to <span class="text-primary">{category}</span> category
