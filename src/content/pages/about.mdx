@@ -4,10 +4,10 @@ description: "このブログの筆者について。"
 draft: false
 ---
 
-import { Image } from "@astrojs/image/components";
-import icon from "src/assets/images/retrorocket_ico.gif";
+import { Image } from "astro:assets";
+import icon from "src/assets/page_images/retrorocket_ico.gif";
 
-<Image src={icon} alt="著者近影" />
+<Image src={icon} alt="著者近影" quality="100" format="GIF" />
 
 りゅー / retrorocket
 

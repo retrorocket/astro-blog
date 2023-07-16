@@ -11,7 +11,6 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/image": "^0.16.1",
     "@astrojs/mdx": "^0.18.1",
     "@astrojs/rss": "^2.3.0",
     "@microflash/remark-figure-caption": "^1.0.0",

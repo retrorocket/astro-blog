@@ -28,4 +28,4 @@ package-lock.json
 # ignore this project temp files
 .temp
 src/content/posts
-public/images
+src/assets/images

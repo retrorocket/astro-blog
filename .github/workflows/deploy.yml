@@ -24,7 +24,7 @@ jobs:
           path: src/content/posts
           token: ${{ secrets.PERSONAL_TOKEN }}
       - name: rename images
-        run: mv src/content/posts/_images public/images
+        run: mv src/content/posts/_images src/assets/images
       - uses: actions/cache@v3
         with:
           path: "node_modules"

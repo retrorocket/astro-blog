@@ -1,9 +1,8 @@
-import image from "@astrojs/image";
 import mdx from "@astrojs/mdx";
 import react from "@astrojs/react";
 import tailwind from "@astrojs/tailwind";
 import AutoImport from "astro-auto-import";
-import { defineConfig } from "astro/config";
+import { defineConfig, sharpImageService } from "astro/config";
 import remarkFigureCaption from "@microflash/remark-figure-caption";
 import remarkCollapse from "remark-collapse";
 import remarkToc from "remark-toc";
@@ -17,6 +16,12 @@ export default defineConfig({
   site: config.site.base_url ? config.site.base_url : "https://retrorocket.biz",
   base: config.site.base_path ? config.site.base_path : "/",
   trailingSlash: config.site.trailing_slash ? "always" : "never",
+  experimental: {
+    assets: true,
+  },
+  image: {
+    service: sharpImageService(),
+  },
   integrations: [
     createOgImage(),
     algoliaQueries(),
@@ -26,9 +31,6 @@ export default defineConfig({
       config: {
         applyBaseStyles: false,
       },
-    }),
-    image({
-      serviceEntryPoint: "@astrojs/image/sharp",
     }),
     AutoImport({
       imports: [
