@@ -130,7 +130,7 @@
     @apply after:block after:w-full after:text-center after:text-lg after:content-['📖'];
   }
   img {
-    @apply max-h-[500px];
+    @apply max-h-[500px] object-scale-down object-left;
   }
   figcaption {
     @apply font-bold;
