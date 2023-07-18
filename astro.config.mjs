@@ -6,6 +6,8 @@ import { defineConfig, sharpImageService } from "astro/config";
 import remarkFigureCaption from "@microflash/remark-figure-caption";
 import remarkCollapse from "remark-collapse";
 import remarkToc from "remark-toc";
+import rehypeSlug from "rehype-slug";
+import rehypeToc from "rehype-toc";
 import config from "./src/config/config.json";
 import sitemap from "./src/integrations/sitemap";
 import createOgImage from "./src/integrations/og-image";
@@ -53,9 +55,9 @@ export default defineConfig({
       ],
     ],
     rehypePlugins: [
-      "rehype-slug",
+      rehypeSlug,
       [
-        "rehype-toc",
+        rehypeToc,
         {
           customizeTOC: (toc) => {
             if (!toc.children.some((child) => child.children.length > 0)) {
