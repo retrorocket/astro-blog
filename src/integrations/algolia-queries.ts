@@ -18,7 +18,12 @@ export default (): AstroIntegration => ({
             objectID: frontmatter.postid,
             slug: `/archives/${frontmatter.postid}`,
             title: frontmatter.title,
-            content: removeMarkdown(content).replace(/\n/g, ""),
+            content:
+              filename.split(".").pop() === "mdx"
+                ? removeMarkdown(content)
+                    .replace(/^import.+from.+;$/gm, "")
+                    .replace(/\n/g, "")
+                : removeMarkdown(content).replace(/\n/g, ""),
           };
         } catch (e: any) {
           console.log(e.message);
