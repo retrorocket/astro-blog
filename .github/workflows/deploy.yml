@@ -31,10 +31,6 @@ jobs:
           key: ${{ runner.os }}-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Install packages
         run: npm install
-      - name: ls1
-        run: ls -al node_modules/.astro/assets/
-      - name: ls2
-        run: ls -al node_modules
       - name: Run build
         run: npm run build
         env:
