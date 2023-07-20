@@ -26,11 +26,16 @@ jobs:
       - name: rename images
         run: mv src/content/posts/_images src/assets/images
       - uses: actions/cache@v3
+        id: node_modules_cache_id
+        env:
+          cache-name: cache-node-modules
         with:
-          path: "node_modules"
-          key: ${{ runner.os }}-modules-${{ hashFiles('package-lock.json') }}
-      - name: Install packages
+          path: "**/node_modules"
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+      - run: echo '${{ toJSON(steps.node_modules_cache_id.outputs) }}'
+      - if: ${{ steps.node_modules_cache_id.outputs.cache-hit != 'true' }}
         run: npm install
+      - run: npm ls --depth=0
       - name: Run build
         run: npm run build
         env:
@@ -47,4 +52,3 @@ jobs:
           remote_port: ${{secrets.SSH_PORT}}
           remote_user: ${{secrets.SSH_USERNAME}}
           remote_key: ${{secrets.SSH_PRIVATE_KEY}}
-
