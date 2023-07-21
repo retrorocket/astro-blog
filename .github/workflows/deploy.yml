@@ -25,7 +25,9 @@ jobs:
           token: ${{ secrets.PERSONAL_TOKEN }}
       - name: rename images
         run: mv src/content/posts/_images src/assets/images
-      - uses: actions/cache@v3
+      - name: restore cache
+        uses: actions/cache/restore@v3
+        id: restore-cache
         with:
           path: "node_modules"
           key: ${{ runner.os }}-modules-${{ hashFiles('**/package-lock.json') }}
@@ -47,3 +49,9 @@ jobs:
           remote_port: ${{secrets.SSH_PORT}}
           remote_user: ${{secrets.SSH_USERNAME}}
           remote_key: ${{secrets.SSH_PRIVATE_KEY}}
+      - name: save cache
+        uses: actions/cache/save@v3
+        id: cache
+        with:
+          path: "node_modules"
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/package-lock.json') }}
