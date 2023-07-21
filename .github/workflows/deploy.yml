@@ -30,7 +30,7 @@ jobs:
         id: restore-cache
         with:
           path: "node_modules"
-          key: ${{ runner.os }}-modules
+          key: ${{ runner.os }}-modules-${{ hashFiles('node_modules/.package-lock.json', 'node_modules/.astro/assets/**') }}
       - name: Install packages
         run: npm install
       - name: Run build
@@ -54,4 +54,4 @@ jobs:
         id: cache
         with:
           path: "node_modules"
-          key: ${{ runner.os }}-modules
+          key: ${{ runner.os }}-modules-${{ hashFiles('node_modules/.package-lock.json', 'node_modules/.astro/assets/**') }}
