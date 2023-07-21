@@ -30,7 +30,7 @@ jobs:
         id: restore-cache
         with:
           path: "node_modules"
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-modules
       - name: Install packages
         run: npm install
       - name: Run build
@@ -54,4 +54,4 @@ jobs:
         id: cache
         with:
           path: "node_modules"
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-modules
