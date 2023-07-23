@@ -7,4 +7,4 @@ Disallow: /
 User-agent: ia_archiver
 Disallow: /
 
-Sitemap: https://retrorocket.biz/sitemap.xml
+Sitemap: https://retrorocket.biz/sitemap-index.xml

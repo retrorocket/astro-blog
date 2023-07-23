@@ -9,7 +9,7 @@ import remarkToc from "remark-toc";
 import rehypeSlug from "rehype-slug";
 import rehypeToc from "rehype-toc";
 import config from "./src/config/config.json";
-import sitemap from "./src/integrations/sitemap";
+import sitemap from "@astrojs/sitemap";
 import createOgImage from "./src/integrations/og-image";
 import algoliaQueries from "./src/integrations/algolia-queries";
 
@@ -28,7 +28,10 @@ export default defineConfig({
     createOgImage(),
     algoliaQueries(),
     react(),
-    sitemap(),
+    sitemap({
+      filter: (page) =>
+        page.search(/(?:^|\/)page\/|^404$|^privacy-policy$/) === -1,
+    }),
     tailwind({
       config: {
         applyBaseStyles: false,
