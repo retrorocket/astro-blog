@@ -29,8 +29,7 @@ export default defineConfig({
     algoliaQueries(),
     react(),
     sitemap({
-      filter: (page) =>
-        page.search(/(?:^|\/)page\/|^404$|^privacy-policy$/) === -1,
+      filter: (page) => page.search(/\/page\/|\/privacy-policy$/) === -1,
     }),
     tailwind({
       config: {
