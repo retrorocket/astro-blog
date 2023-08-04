@@ -29,10 +29,10 @@ for (let year = new Date().getFullYear(); year >= 2013; year--) {
               {
                 splitedPosts.map((post) => {
                   const yearid = dateFormat(post[0].data.date, "yyyy");
+                  // prettier-ignore
+                  // https://github.com/withastro/astro/issues/6011#issuecomment-1409046168
                   return (
-                    <a href={`#year-${yearid}`} class="pr-3">
-                      {yearid}
-                    </a>
+                    <a href={`#year-${yearid}`} class="pr-3">{yearid}</a>
                   );
                 })
               }
@@ -44,11 +44,11 @@ for (let year = new Date().getFullYear(); year >= 2013; year--) {
                   <div>
                     <h2 id={`year-${yearid}`}>{yearid}</h2>
                     {post.map((detail) => {
+                      // prettier-ignore
                       return (
                         <p>
-                          <a href={`/archives/${detail.data.postid}`}>
-                            {detail.data.title}
-                          </a>{" "}
+                          <a href={`/archives/${detail.data.postid}`}>{detail.data.title}</a>
+                          {" "}
                           {dateFormat(detail.data.date, "yyyy-LL-dd")}
                         </p>
                       );
