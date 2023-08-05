@@ -25,7 +25,7 @@ for (let year = new Date().getFullYear(); year >= 2013; year--) {
         <div class="mx-auto lg:col-10">
           <div class="content py-4 md:py-12">
             <h1 class="h2 mb-8">記事一覧</h1>
-            <div class="border-b-2 py-2">
+            <div class="flex flex-wrap border-b-2 py-2">
               {
                 splitedPosts.map((post) => {
                   const yearid = dateFormat(post[0].data.date, "yyyy");
