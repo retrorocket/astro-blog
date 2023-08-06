@@ -109,7 +109,7 @@
   ol {
     @apply prose-li:text-text;
   }
-  ul {
+  ul:not(.normal-ul) {
     @apply prose-li:relative prose-li:text-text prose-li:before:absolute prose-li:before:-left-6 prose-li:before:top-2 prose-li:before:h-[22px] prose-li:before:w-6 prose-li:before:bg-[url('/assets/images/pointing-right.svg')] prose-li:before:bg-[length:20px_16px] prose-li:before:bg-no-repeat prose-li:before:content-[''];
   }
   // syntaxhighlightの1行目が横にずれているのを打ち消す

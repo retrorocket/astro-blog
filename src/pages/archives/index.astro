@@ -25,17 +25,19 @@ for (let year = new Date().getFullYear(); year >= 2013; year--) {
         <div class="mx-auto lg:col-10">
           <div class="content py-4 md:py-12">
             <h1 class="h2 mb-8">記事一覧</h1>
-            <div class="flex flex-wrap border-b-2 py-2">
-              {
-                splitedPosts.map((post) => {
-                  const yearid = dateFormat(post[0].data.date, "yyyy");
-                  // prettier-ignore
-                  // https://github.com/withastro/astro/issues/6011#issuecomment-1409046168
-                  return (
-                    <a href={`#year-${yearid}`} class="pr-3">{yearid}</a>
-                  );
-                })
-              }
+            <div class="border-b-2">
+              <ul class="normal-ul px-0">
+                {
+                  splitedPosts.map((post) => {
+                    const yearid = dateFormat(post[0].data.date, "yyyy");
+                    return (
+                      <li class="inline-block pr-3">
+                        <a href={`#year-${yearid}`}>{yearid}</a>
+                      </li>
+                    );
+                  })
+                }
+              </ul>
             </div>
             {
               splitedPosts.map((post) => {
@@ -43,16 +45,18 @@ for (let year = new Date().getFullYear(); year >= 2013; year--) {
                 return (
                   <div>
                     <h2 id={`year-${yearid}`}>{yearid}</h2>
-                    {post.map((detail) => {
-                      // prettier-ignore
-                      return (
-                        <p>
-                          <a href={`/archives/${detail.data.postid}`}>{detail.data.title}</a>
-                          {" "}
-                          {dateFormat(detail.data.date, "yyyy-LL-dd")}
-                        </p>
-                      );
-                    })}
+                    <ul class="normal-ul px-0">
+                      {post.map((detail) => {
+                        // prettier-ignore
+                        return (
+                          <li class="py-1">
+                            <a href={`/archives/${detail.data.postid}`}>{detail.data.title}</a>
+                            {" "}
+                            {dateFormat(detail.data.date, "yyyy-LL-dd")}
+                          </li>
+                        );
+                      })}
+                    </ul>
                   </div>
                 );
               })
