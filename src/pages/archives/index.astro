@@ -25,25 +25,24 @@ for (let year = new Date().getFullYear(); year >= 2013; year--) {
         <div class="mx-auto lg:col-10">
           <div class="content py-4 md:py-12">
             <h1 class="h2 mb-8">記事一覧</h1>
-            <div class="border-b-2">
-              <ul class="normal-ul px-0">
-                {
-                  splitedPosts.map((post) => {
-                    const yearid = dateFormat(post[0].data.date, "yyyy");
-                    return (
-                      <li class="inline-block pr-3">
-                        <a href={`#year-${yearid}`}>{yearid}</a>
-                      </li>
-                    );
-                  })
-                }
-              </ul>
-            </div>
+            <ul class="normal-ul px-0">
+              {
+                splitedPosts.map((post) => {
+                  const yearid = dateFormat(post[0].data.date, "yyyy");
+                  // prettier-ignore
+                  return (
+                    <li class="inline-block">
+                      <a href={`#year-${yearid}`} class="rounded-lg bg-primary bg-opacity-20 px-2.5 py-0.5 text-primary transition hover:bg-primary hover:text-white">{yearid}</a>
+                    </li>
+                  );
+                })
+              }
+            </ul>
             {
               splitedPosts.map((post) => {
                 const yearid = dateFormat(post[0].data.date, "yyyy");
                 return (
-                  <div>
+                  <>
                     <h2 id={`year-${yearid}`}>{yearid}</h2>
                     <ul class="normal-ul px-0">
                       {post.map((detail) => {
@@ -57,7 +56,7 @@ for (let year = new Date().getFullYear(); year >= 2013; year--) {
                         );
                       })}
                     </ul>
-                  </div>
+                  </>
                 );
               })
             }
