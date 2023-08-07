@@ -32,12 +32,8 @@ const { post } = Astro.props;
         {
           post.data.categories.map((category: string) => (
             <li class="mr-2 inline-block">
-              <a
-                href={`/categories/${slugify(category)}`}
-                class="rounded-lg bg-primary bg-opacity-20 px-2.5 py-0.5 text-primary transition hover:bg-primary hover:text-white"
-              >
-                {humanize(category)}
-              </a>
+              {/* prettier-ignore */}
+              <a href={`/categories/${slugify(category)}`} class="category">{humanize(category)}</a>
             </li>
           ))
         }

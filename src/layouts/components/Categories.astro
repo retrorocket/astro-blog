@@ -14,15 +14,11 @@ import { humanize } from "@lib/utils/textConverter";
             {
               categories.sort().map((category) => (
                 <li class="inline-block">
-                  <a
-                    href={`/categories/${category}`}
-                    class="rounded-lg bg-primary bg-opacity-20 px-4 py-2 text-primary transition hover:bg-primary hover:text-white"
-                  >
-                    #{" "}
+                  {/* prettier-ignore */}
+                  <a href={`/categories/${category}`} class="category-tag">#{" "}
                     {category === "javascript"
                       ? "JavaScript"
-                      : humanize(category || "")}
-                  </a>
+                      : humanize(category || "")}</a>
                 </li>
               ))
             }

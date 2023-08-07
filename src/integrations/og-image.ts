@@ -1,6 +1,6 @@
 import satori from "satori";
 import sharp from "sharp";
-import { readFileSync, writeFileSync, mkdir } from "fs";
+import { readFileSync, writeFileSync, mkdir, existsSync } from "fs";
 import type { AstroIntegration } from "astro";
 import { globSync } from "glob";
 import grayMatter from "gray-matter";
@@ -85,9 +85,15 @@ export default (): AstroIntegration => ({
             const markdownWithMeta = readFileSync(filename);
             const { data: frontmatter } = grayMatter(markdownWithMeta);
             if (frontmatter.draft) return;
+            const postid =
+              frontmatter.postid || filename.split(/[.\/]/).slice(-2)[0];
+            const imgpath = fileURLToPath(dir) + "og-images/" + postid + ".png";
+            if (existsSync(imgpath)) {
+              console.log(imgpath + " exists");
+              return;
+            }
             return {
-              postid:
-                frontmatter.postid || filename.split(/[.\/]/).slice(-2)[0],
+              postid: postid,
               title: frontmatter.title,
             };
           } catch (e: any) {
@@ -103,10 +109,11 @@ export default (): AstroIntegration => ({
       const font = readFileSync(
         path.resolve("./public/assets/fonts/NotoSansJP-Bold.ttf")
       );
-      mkdir(fileURLToPath(dir) + "og-images/", (e) => {
-        if (e) console.log(e);
-      });
-
+      if (!existsSync(fileURLToPath(dir) + "og-images/")) {
+        mkdir(fileURLToPath(dir) + "og-images/", (e) => {
+          if (e) console.log(e);
+        });
+      }
       for (const attr of data) {
         const buffer = await generate(attr.title, {
           background: `data:image/png;base64,${background}`,

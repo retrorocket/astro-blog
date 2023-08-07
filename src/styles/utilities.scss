@@ -9,3 +9,11 @@ code {
 .shadow {
   box-shadow: 0 10px 30px rgba(68, 74, 102, 0.1);
 }
+
+.category {
+  @apply rounded-lg bg-primary bg-opacity-20 px-2.5 py-0.5 text-primary transition hover:bg-primary hover:text-white;
+}
+
+.category-tag {
+  @apply rounded-lg bg-primary bg-opacity-20 px-4 py-2 text-primary transition hover:bg-primary hover:text-white;
+}

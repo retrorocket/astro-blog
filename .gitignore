@@ -29,3 +29,5 @@ package-lock.json
 .temp
 src/content/posts
 src/assets/images
+public/og-images
+

@@ -33,6 +33,14 @@ jobs:
           key: ${{ runner.os }}-modules-${{ hashFiles('node_modules/.package-lock.json', 'node_modules/.astro/assets/**') }}
           restore-keys: |
             ${{ runner.os }}-modules-
+      - name: restore image cache
+        uses: actions/cache/restore@v3
+        id: restore-image-cache
+        with:
+          path: "public/og-images"
+          key: ${{ runner.os }}-ogp-${{ hashFiles('public/og-images/**') }}
+          restore-keys: |
+            ${{ runner.os }}-ogp-
       - name: Install packages
         run: npm install
       - name: Run build
@@ -42,7 +50,7 @@ jobs:
           PUBLIC_ALGOLIA_APIKEY: ${{ secrets.PUBLIC_ALGOLIA_APIKEY }}
           PRIVATE_ALGOLIA_WRITE_KEY: ${{ secrets.PRIVATE_ALGOLIA_WRITE_KEY }}
       - name: rsync deployments
-        uses: burnett01/rsync-deployments@4.1
+        uses: burnett01/rsync-deployments@6.0.0
         with:
           switches: -avzr --delete --exclude "/.well-known"
           path: dist/
@@ -57,3 +65,9 @@ jobs:
         with:
           path: "node_modules"
           key: ${{ runner.os }}-modules-${{ hashFiles('node_modules/.package-lock.json', 'node_modules/.astro/assets/**') }}
+      - name: save og-images cache
+        uses: actions/cache/save@v3
+        id: save-image-cache
+        with:
+          path: "public/og-images"
+          key: ${{ runner.os }}-ogp-${{ hashFiles('public/og-images/**') }}
