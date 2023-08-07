@@ -75,6 +75,7 @@ export default (): AstroIntegration => ({
   name: "build-ogimages",
   hooks: {
     "astro:build:done": async ({ dir }) => {
+      const outputdir = fileURLToPath(dir) + "og-images/";
       const filenames = globSync([
         "./src/content/posts/**/*.md*",
         "./src/content/pages/*.md*",
@@ -87,7 +88,7 @@ export default (): AstroIntegration => ({
             if (frontmatter.draft) return;
             const postid =
               frontmatter.postid || filename.split(/[.\/]/).slice(-2)[0];
-            const imgpath = fileURLToPath(dir) + "og-images/" + postid + ".png";
+            const imgpath = outputdir + postid + ".png";
             if (existsSync(imgpath)) {
               console.log(imgpath + " exists");
               return;
@@ -109,8 +110,9 @@ export default (): AstroIntegration => ({
       const font = readFileSync(
         path.resolve("./public/assets/fonts/NotoSansJP-Bold.ttf")
       );
-      if (!existsSync(fileURLToPath(dir) + "og-images/")) {
-        mkdir(fileURLToPath(dir) + "og-images/", (e) => {
+
+      if (!existsSync(outputdir)) {
+        mkdir(outputdir, (e) => {
           if (e) console.log(e);
         });
       }
@@ -119,8 +121,7 @@ export default (): AstroIntegration => ({
           background: `data:image/png;base64,${background}`,
           font,
         });
-        const filename =
-          fileURLToPath(dir) + "og-images/" + attr.postid + ".png";
+        const filename = outputdir + attr.postid + ".png";
 
         writeFileSync(filename, buffer);
       }
