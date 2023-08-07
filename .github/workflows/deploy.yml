@@ -65,6 +65,8 @@ jobs:
         with:
           path: "node_modules"
           key: ${{ runner.os }}-modules-${{ hashFiles('node_modules/.package-lock.json', 'node_modules/.astro/assets/**') }}
+      - name: rename og-images
+        run: mv dist/og-images public/og-images
       - name: save og-images cache
         uses: actions/cache/save@v3
         id: save-image-cache
