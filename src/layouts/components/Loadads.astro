@@ -1,15 +1,15 @@
 ---
 ---
 
-<script>
-  const onEventLoadAds = () => {
-    const url =
-      "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9043961430295462";
-    const ad = document.createElement("script");
-    ad.async = true;
-    ad.setAttribute("crossorigin", "anonymous");
-    ad.src = url;
-    document.body.appendChild(ad);
-  };
-  window.addEventListener("pointermove", onEventLoadAds, { once: true });
+<script is:inline>
+const onEventLoadAds = () => {
+  const url =
+    "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9043961430295462";
+  const ad = document.createElement("script");
+  ad.async = true;
+  ad.setAttribute("crossorigin", "anonymous");
+  ad.src = url;
+  document.body.appendChild(ad);
+};
+window.addEventListener("pointermove", onEventLoadAds, { once: true });
 </script>
