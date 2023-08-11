@@ -8,6 +8,7 @@ import { getCollection } from "astro:content";
 import { getTaxonomy } from "@lib/taxonomyParser.astro";
 import { sortByDate } from "@lib/utils/sortFunctions";
 import taxonomyFilter from "@lib/utils/taxonomyFilter";
+import { humanize } from "@lib/utils/textConverter";
 import type { CollectionEntry } from "astro:content";
 
 const { pagination } = config.settings;
@@ -22,6 +23,8 @@ export const getStaticPaths = async () => {
 };
 
 const { category } = Astro.params;
+const humanizedCategory =
+  category === "javascript" ? "JavaScript" : humanize(category || "");
 const sortByDatePosts = sortByDate(await getCollection("posts"));
 const filterByTags: CollectionEntry<"posts">[] = taxonomyFilter(
   sortByDatePosts,
@@ -31,11 +34,12 @@ const filterByTags: CollectionEntry<"posts">[] = taxonomyFilter(
 const totalPages = Math.ceil(filterByTags.length / pagination);
 ---
 
-<Base title={`${category} の記事一覧`} canonical={`categories/${category}`}>
+<Base
+  title={`${humanizedCategory} の記事一覧`}
+  canonical={`categories/${category}`}
+>
   <PostList>
-    <h1 class="h2 pb-10">
-      Posts related to <span class="text-primary">{category}</span> category
-    </h1>
+    <h1 class="h2 pb-10">Posts related to <span class="text-primary">{humanizedCategory}</span> category</h1>
     {filterByTags.slice(0, pagination).map((post) => <Post post={post} />)}
     <Pagination
       section={`categories/${category}`}
