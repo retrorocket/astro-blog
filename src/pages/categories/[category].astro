@@ -23,8 +23,7 @@ export const getStaticPaths = async () => {
 };
 
 const { category } = Astro.params;
-const humanizedCategory =
-  category === "javascript" ? "JavaScript" : humanize(category || "");
+const humanizedCategory = humanize(category || "");
 const sortByDatePosts = sortByDate(await getCollection("posts"));
 const filterByTags: CollectionEntry<"posts">[] = taxonomyFilter(
   sortByDatePosts,

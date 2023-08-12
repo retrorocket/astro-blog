@@ -19,7 +19,7 @@ export const markdownify = (content: string) => {
 // humanize
 export const humanize = (content: string) => {
   if (!content) return null;
-
+  if (content === "javascript") return "JavaScript";
   return content
     .replace(/^[\s_]+|[\s_]+$/g, "")
     .replace(/[_\s]+/g, " ")

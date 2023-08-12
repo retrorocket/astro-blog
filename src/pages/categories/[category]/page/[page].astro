@@ -36,8 +36,7 @@ interface PostPage extends Page {
 type Props = { page: PostPage };
 const { page } = Astro.props;
 const { category } = Astro.params;
-const humanizedCategory =
-  category === "javascript" ? "JavaScript" : humanize(category || "");
+const humanizedCategory = humanize(category || "");
 ---
 
 <Base
