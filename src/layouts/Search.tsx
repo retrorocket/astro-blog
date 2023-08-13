@@ -3,15 +3,10 @@ const { summary_length } = config.settings;
 import type {
   MultipleQueriesQuery,
   MultipleQueriesResponse,
+  Hit as AlgoliaHit,
 } from "@algolia/client-search";
-import algoliasearch from "algoliasearch/lite";
-import {
-  InstantSearch,
-  SearchBox,
-  PoweredBy,
-  Hits,
-} from "react-instantsearch-hooks-web";
-import type { SearchClient, Hit as AlgoliaHit } from "instantsearch.js";
+import algoliasearch, { SearchClient } from "algoliasearch/lite";
+import { InstantSearch, SearchBox, PoweredBy, Hits } from "react-instantsearch";
 import { plainify } from "@lib/utils/textConverter";
 import React from "react";
 
