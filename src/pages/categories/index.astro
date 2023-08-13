@@ -1,0 +1,62 @@
+---
+import Base from "@layouts/Base.astro";
+import { getCollection } from "astro:content";
+import { sortByDate } from "@lib/utils/sortFunctions";
+import dateFormat from "@lib/utils/dateFormat";
+import taxonomyFilter from "@lib/utils/taxonomyFilter";
+import { getTaxonomy } from "@lib/taxonomyParser.astro";
+import { humanize } from "@lib/utils/textConverter";
+
+const sortByDatePosts = sortByDate(await getCollection("posts"));
+const categories = await getTaxonomy("categories");
+---
+
+<Base title="すべてのカテゴリーの記事一覧" canonical="categories">
+  <section class="section">
+    <div class="container">
+      <div class="row px-3">
+        <div class="mx-auto lg:col-10">
+          <div class="content py-4 md:py-12">
+            <h1 class="h2 mb-8">すべてのカテゴリーの記事一覧</h1>
+            <ul class="normal-ul px-0">
+              {
+                categories.sort().map((category) => (
+                  <li class="inline-block">
+                    {/* prettier-ignore */}
+                    <a href={`#${category}`} class="category-tag">#{" "}{humanize(category || "")}</a>
+                  </li>
+                ))
+              }
+            </ul>
+            {
+              categories.sort().map((category) => {
+                const filterByTags = taxonomyFilter(
+                  sortByDatePosts,
+                  "categories",
+                  category
+                );
+                return (
+                  <>
+                    <h2 id={`${category}`}>{humanize(category || "")}</h2>
+                    <ul class="normal-ul px-0">
+                      {filterByTags.map((detail) => {
+                        // prettier-ignore
+                        return (
+                          <li class="py-1">
+                            <a href={`/archives/${detail.data.postid}`}>{detail.data.title}</a>
+                            {" "}
+                            {dateFormat(detail.data.date, "yyyy-LL-dd")}
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </>
+                );
+              })
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
