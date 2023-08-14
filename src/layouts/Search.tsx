@@ -1,14 +1,19 @@
 import config from "@config/config.json";
-const { summary_length } = config.settings;
+import algoliasearch, { SearchClient } from "algoliasearch/lite";
+import {
+  InstantSearch,
+  SearchBox,
+  PoweredBy,
+  Hits,
+  UseSearchBoxProps,
+} from "react-instantsearch";
+import { plainify } from "@lib/utils/textConverter";
+import React, { useRef } from "react";
 import type {
   MultipleQueriesQuery,
   MultipleQueriesResponse,
   Hit as AlgoliaHit,
 } from "@algolia/client-search";
-import algoliasearch, { SearchClient } from "algoliasearch/lite";
-import { InstantSearch, SearchBox, PoweredBy, Hits } from "react-instantsearch";
-import { plainify } from "@lib/utils/textConverter";
-import React from "react";
 
 type HitProps = {
   hit: AlgoliaHit<{
@@ -17,6 +22,8 @@ type HitProps = {
     title: string;
   }>;
 };
+
+const { summary_length } = config.settings;
 
 const algoliaClient = algoliasearch(
   import.meta.env.PUBLIC_ALGOLIA_APPID,
@@ -73,10 +80,20 @@ const HitCompoment = ({ hit }: HitProps) => {
 };
 
 const AlgoliaSearchBox = () => {
+  // 参考： https://swfz.hatenablog.com/entry/2022/08/08/194100
+  const timerId = useRef<ReturnType<typeof setTimeout>>();
+  const queryHook: UseSearchBoxProps["queryHook"] = (query, search) => {
+    if (timerId.current) {
+      clearTimeout(timerId.current);
+    }
+    timerId.current = setTimeout(() => search(query), 300);
+  };
+
   return (
     <div>
       <InstantSearch searchClient={searchClient} indexName="blog_retrorocket">
         <SearchBox
+          queryHook={queryHook}
           placeholder="Search"
           autoFocus
           classNames={{
