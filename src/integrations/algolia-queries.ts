@@ -1,9 +1,13 @@
 import algoliasearch from "algoliasearch";
 import grayMatter from "gray-matter";
+import { marked } from "marked";
+import { JSDOM } from "jsdom";
 import { readFileSync } from "fs";
 import { globSync } from "glob";
-import removeMarkdown from "remove-markdown";
 import type { AstroIntegration } from "astro";
+
+const jsdom = new JSDOM();
+const parser = new jsdom.window.DOMParser();
 
 export default (): AstroIntegration => ({
   name: "algolia-queries",
@@ -14,16 +18,21 @@ export default (): AstroIntegration => ({
         try {
           const markdownWithMeta = readFileSync(filename);
           const { data: frontmatter, content } = grayMatter(markdownWithMeta);
+          const parsedContent =
+            parser.parseFromString(marked(content) || "", "text/html")
+              .documentElement.textContent || "";
+
           return {
             objectID: frontmatter.postid,
             slug: `/archives/${frontmatter.postid}`,
             title: frontmatter.title,
             content:
               filename.split(".").pop() === "mdx"
-                ? removeMarkdown(content)
+                ? parsedContent
                     .replace(/^import.+from.+;$/gm, "")
-                    .replace(/\n/g, "")
-                : removeMarkdown(content).replace(/\n/g, " "),
+                    .replace(/\n/g, " ")
+                    .replace(/ +/g, " ")
+                : parsedContent.replace(/\n/g, " ").replace(/ +/g, " "),
           };
         } catch (e: any) {
           console.log(e.message);
