@@ -19,8 +19,8 @@ export default (): AstroIntegration => ({
           const markdownWithMeta = readFileSync(filename);
           const { data: frontmatter, content } = grayMatter(markdownWithMeta);
           const parsedContent =
-            parser.parseFromString(marked(content) || "", "text/html")
-              .documentElement.textContent || "";
+            parser.parseFromString(marked(content), "text/html").documentElement
+              .textContent || "";
 
           return {
             objectID: frontmatter.postid,
