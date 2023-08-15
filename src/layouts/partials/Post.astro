@@ -1,10 +1,14 @@
 ---
 import dateFormat from "@lib/utils/dateFormat";
 import { humanize, slugify } from "@lib/utils/textConverter";
+import { JSDOM } from "jsdom";
 import type { CollectionEntry } from "astro:content";
 
 type Props = { post: CollectionEntry<"posts"> };
 const { post } = Astro.props;
+
+const jsdom = new JSDOM();
+const parser = new jsdom.window.DOMParser();
 ---
 
 <div
@@ -39,7 +43,7 @@ const { post } = Astro.props;
       </ul>
     </li>
   </ul>
-  <p class="text-lg text-text" itemprop="description">{post.data.excerpt}</p>
+  <p class="text-lg text-text" itemprop="description">{parser.parseFromString(post.data.excerpt || "", "text/html").documentElement.textContent}</p>
   <a
     class="mt-3 inline-block border-b border-primary py-1 text-[15px] leading-[22px] text-primary"
     href={`/archives/${post.data.postid}`}>Read More</a

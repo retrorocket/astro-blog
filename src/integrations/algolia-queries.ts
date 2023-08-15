@@ -23,7 +23,7 @@ export default (): AstroIntegration => ({
                 ? removeMarkdown(content)
                     .replace(/^import.+from.+;$/gm, "")
                     .replace(/\n/g, "")
-                : removeMarkdown(content).replace(/\n/g, ""),
+                : removeMarkdown(content).replace(/\n/g, " "),
           };
         } catch (e: any) {
           console.log(e.message);

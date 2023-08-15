@@ -1,4 +1,5 @@
 ---
+import { JSDOM } from "jsdom";
 import TwSizeIndicator from "@components/TwSizeIndicator.astro";
 import config from "@config/config.json";
 import { plainify } from "@lib/utils/textConverter";
@@ -30,6 +31,12 @@ const plainifyTitle = plainify(
     ? title + " - " + config.site.title
     : config.site.title
 );
+
+const jsdom = new JSDOM();
+const parser = new jsdom.window.DOMParser();
+const excerptContent = excerpt
+  ? parser.parseFromString(excerpt, "text/html").documentElement.textContent
+  : config.metadata.meta_description;
 ---
 
 <!DOCTYPE html>
@@ -97,10 +104,7 @@ const plainifyTitle = plainify(
     <meta name="robots" content="noarchive" />
 
     <!-- meta-description -->
-    <meta
-      name="description"
-      content={excerpt ? excerpt : config.metadata.meta_description}
-    />
+    <meta name="description" content={excerptContent} />
 
     <!-- author from config.json -->
     <meta name="author" content={config.metadata.meta_author} />
@@ -109,10 +113,7 @@ const plainifyTitle = plainify(
     <meta property="og:title" content={plainifyTitle} />
 
     <!-- og-description -->
-    <meta
-      property="og:description"
-      content={excerpt ? excerpt : config.metadata.meta_description}
-    />
+    <meta property="og:description" content={excerptContent} />
     <meta property="og:type" content="website" />
     {
       /* トレイリングスラッシュが正しく削除されないバグがあるため自分で削除する
@@ -130,10 +131,7 @@ const plainifyTitle = plainify(
     <meta name="twitter:title" content={plainifyTitle} />
 
     <!-- twitter-description -->
-    <meta
-      name="twitter:description"
-      content={excerpt ? excerpt : config.metadata.meta_description}
-    />
+    <meta name="twitter:description" content={excerptContent} />
 
     <!-- og-image -->
     <meta

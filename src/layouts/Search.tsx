@@ -7,7 +7,6 @@ import {
   Hits,
   UseSearchBoxProps,
 } from "react-instantsearch";
-import { plainify } from "@lib/utils/textConverter";
 import React, { useRef } from "react";
 import type {
   MultipleQueriesQuery,
@@ -56,6 +55,7 @@ const searchClient: SearchClient = {
 };
 
 const HitCompoment = ({ hit }: HitProps) => {
+  const parser = new DOMParser();
   return (
     <div className="card mb-12 break-words border-b border-border pb-[30px]">
       <h3 className="h4 pb-[10px]">
@@ -67,7 +67,10 @@ const HitCompoment = ({ hit }: HitProps) => {
         </a>
       </h3>
       <p className="text-lg text-text">
-        {plainify(hit.content?.slice(0, Number(summary_length)))}
+        {parser.parseFromString(
+          hit.content?.slice(0, Number(summary_length)),
+          "text/html"
+        ).documentElement.textContent + " ... "}
       </p>
       <a
         className="mt-3 inline-block border-b border-primary py-1 text-[15px] leading-[22px] text-primary"
