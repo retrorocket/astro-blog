@@ -85,6 +85,9 @@
 .form-textarea {
   @apply border-border focus:border-primary focus:ring-transparent;
 }
+.form-input:has(input:focus) {
+  @apply border-border border-primary;
+}
 
 // content style
 .content {

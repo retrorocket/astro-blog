@@ -93,15 +93,15 @@ const AlgoliaSearchBox = () => {
   };
 
   return (
-    <div>
-      <InstantSearch searchClient={searchClient} indexName="blog_retrorocket">
+    <InstantSearch searchClient={searchClient} indexName="blog_retrorocket">
+      <div className="form-input mb-[30px] flex items-center justify-between">
         <SearchBox
           queryHook={queryHook}
           placeholder="Search"
           autoFocus
           classNames={{
-            root: "pb-[30px]",
-            input: "form-input w-full",
+            root: "w-full",
+            input: "w-full border-none focus:ring-transparent",
             submit: "hidden",
             reset: "hidden",
             loadingIndicator: "hidden",
@@ -114,12 +114,16 @@ const AlgoliaSearchBox = () => {
             resetButtonTitle: "",
           }}
         />
+        <PoweredBy
+          classNames={{
+            root: "w-[150px] mx-3",
+          }}
+        />
+      </div>
+      <div>
         <Hits hitComponent={HitCompoment} />
-        <div className="flex flex-row justify-end">
-          <PoweredBy className="w-[150px] pb-2" />
-        </div>
-      </InstantSearch>
-    </div>
+      </div>
+    </InstantSearch>
   );
 };
 
