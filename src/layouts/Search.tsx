@@ -22,8 +22,6 @@ type HitProps = {
   }>;
 };
 
-const { summary_length } = config.settings;
-
 const algoliaClient = algoliasearch(
   import.meta.env.PUBLIC_ALGOLIA_APPID,
   import.meta.env.PUBLIC_ALGOLIA_APIKEY
@@ -54,15 +52,22 @@ const searchClient: SearchClient = {
   },
 };
 
+const { summary_length } = config.settings;
+const tagLength = 6;
+const sliceLength = 30;
+
 const HitCompoment = ({ hit }: HitProps) => {
   const parser = new DOMParser();
 
   // ヒットしたキーワードの周辺の文字列を切り出す
   const contentStr = hit._highlightResult?.content?.value ?? "";
   const searchResult = contentStr.search(/<mark>/);
-  const slicedStr = contentStr
-    .substring(searchResult - 30)
-    .slice(0, Number(summary_length));
+  // FIXME markタグを途中でsliceしてしまった場合は<以降を削除する。要リファクタリング
+  const tempSlicedStr = contentStr
+    .substring(searchResult - sliceLength)
+    .slice(0, Number(summary_length) + tagLength);
+  const removeTagStr = tempSlicedStr.slice(-1 * tagLength).replace(/<.*/, "");
+  const slicedStr = tempSlicedStr.slice(0, -1 * tagLength) + removeTagStr;
 
   return (
     <div className="card mb-12 break-words border-b border-border pb-[30px]">
