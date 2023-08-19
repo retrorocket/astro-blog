@@ -105,20 +105,10 @@ const HitCompoment = ({ hit }: HitProps) => {
 };
 
 const AlgoliaSearchBox = () => {
-  // 参考： https://swfz.hatenablog.com/entry/2022/08/08/194100
-  const timerId = useRef<ReturnType<typeof setTimeout>>();
-  const queryHook: UseSearchBoxProps["queryHook"] = (query, search) => {
-    if (timerId.current) {
-      clearTimeout(timerId.current);
-    }
-    timerId.current = setTimeout(() => search(query), 300);
-  };
-
   return (
     <InstantSearch searchClient={searchClient} indexName="blog_retrorocket">
       <div className="form-input mb-[30px] flex items-center justify-between">
         <SearchBox
-          queryHook={queryHook}
           placeholder="Search"
           autoFocus
           classNames={{
