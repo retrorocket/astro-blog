@@ -1,13 +1,7 @@
 import config from "@config/config.json";
 import algoliasearch, { SearchClient } from "algoliasearch/lite";
-import {
-  InstantSearch,
-  SearchBox,
-  PoweredBy,
-  Hits,
-  UseSearchBoxProps,
-} from "react-instantsearch";
-import React, { useRef } from "react";
+import { InstantSearch, SearchBox, PoweredBy, Hits } from "react-instantsearch";
+import React from "react";
 import type {
   MultipleQueriesQuery,
   MultipleQueriesResponse,
@@ -76,7 +70,20 @@ const HitCompoment = ({ hit }: HitProps) => {
           href={`${hit.slug}`}
           className="block font-normal text-primary hover:underline"
         >
-          {hit.title}
+          {[
+            ...parser.parseFromString(
+              hit._highlightResult?.title?.value ?? "",
+              "text/html"
+            ).body.childNodes,
+          ].map((child, i) => {
+            if (child.nodeName.toLowerCase() === "mark")
+              return (
+                <mark className="bg-primary bg-opacity-20 text-primary" key={i}>
+                  {child.textContent}
+                </mark>
+              );
+            return <React.Fragment key={i}>{child.textContent}</React.Fragment>;
+          })}
         </a>
       </h3>
       <p className="text-lg text-text">
