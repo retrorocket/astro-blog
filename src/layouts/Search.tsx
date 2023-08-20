@@ -1,6 +1,12 @@
 import config from "@config/config.json";
 import algoliasearch, { SearchClient } from "algoliasearch/lite";
-import { InstantSearch, SearchBox, PoweredBy, Hits } from "react-instantsearch";
+import {
+  InstantSearch,
+  SearchBox,
+  PoweredBy,
+  Hits,
+  SearchBoxProps,
+} from "react-instantsearch";
 import React from "react";
 import type {
   MultipleQueriesQuery,
@@ -111,11 +117,22 @@ const HitCompoment = ({ hit }: HitProps) => {
   );
 };
 
+// https://www.algolia.com/doc/guides/building-search-ui/going-further/improve-performance/react/#turn-off-search-as-you-type
+// https://www.algolia.com/doc/api-reference/widgets/search-box/react/#widget-param-queryhook
+let timerId: NodeJS.Timeout | null;
+const queryHook: SearchBoxProps["queryHook"] = (query, search) => {
+  if (timerId) {
+    clearTimeout(timerId);
+  }
+  timerId = setTimeout(() => search(query), 500);
+};
+
 const AlgoliaSearchBox = () => {
   return (
     <InstantSearch searchClient={searchClient} indexName="blog_retrorocket">
       <div className="form-input mb-[30px] flex items-center justify-between">
         <SearchBox
+          queryHook={queryHook}
           placeholder="Search"
           autoFocus
           classNames={{
