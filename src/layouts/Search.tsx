@@ -129,7 +129,11 @@ const queryHook: SearchBoxProps["queryHook"] = (query, search) => {
 
 const AlgoliaSearchBox = () => {
   return (
-    <InstantSearch searchClient={searchClient} indexName="blog_retrorocket">
+    <InstantSearch
+      searchClient={searchClient}
+      indexName="blog_retrorocket"
+      stalledSearchDelay={10}
+    >
       <div className="form-input mb-[30px] flex items-center justify-between">
         <SearchBox
           queryHook={queryHook}
