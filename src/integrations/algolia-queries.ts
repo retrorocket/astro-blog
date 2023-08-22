@@ -20,7 +20,9 @@ export default (): AstroIntegration => ({
           const { data: frontmatter, content } = grayMatter(markdownWithMeta);
           const parsedContent =
             parser.parseFromString(
-              marked(content).replace(/<br>/g, "\n"),
+              marked(content)
+                .replace(/<br>/g, "\n")
+                .replace(/__ais-highlight__/g, ""),
               "text/html"
             ).documentElement.textContent || "";
           return {
