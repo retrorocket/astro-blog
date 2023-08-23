@@ -124,7 +124,7 @@ const queryHook: SearchBoxProps["queryHook"] = (query, search) => {
   if (timerId) {
     clearTimeout(timerId);
   }
-  timerId = setTimeout(() => search(query), 500);
+  timerId = setTimeout(() => search(query), 100);
 };
 
 const AlgoliaSearchBox = () => {
