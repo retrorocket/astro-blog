@@ -119,12 +119,13 @@ const HitCompoment = ({ hit }: HitProps) => {
 
 // https://www.algolia.com/doc/guides/building-search-ui/going-further/improve-performance/react/#turn-off-search-as-you-type
 // https://www.algolia.com/doc/api-reference/widgets/search-box/react/#widget-param-queryhook
-let timerId: NodeJS.Timeout | null;
+let timerId: number;
+
 const queryHook: SearchBoxProps["queryHook"] = (query, search) => {
   if (timerId) {
-    clearTimeout(timerId);
+    window.clearTimeout(timerId);
   }
-  timerId = setTimeout(() => search(query), 500);
+  timerId = window.setTimeout(() => search(query), 500);
 };
 
 const AlgoliaSearchBox = () => {
