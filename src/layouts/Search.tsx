@@ -135,20 +135,20 @@ const AlgoliaSearchBox = () => {
       indexName="blog_retrorocket"
       stalledSearchDelay={10}
     >
-      <div className="form-input mb-[30px] flex items-center justify-between">
+      <div className="form-input mb-[30px] flex items-center justify-between align-middle">
         <SearchBox
           queryHook={queryHook}
           placeholder="Search"
           autoFocus
           classNames={{
-            root: "w-full",
-            input: "w-full border-none focus:ring-transparent",
+            root: "w-full items-center align-middle justify-between",
+            input: "w-[calc(100%-30px)] border-none focus:ring-transparent",
             submit: "hidden",
             reset: "hidden",
-            loadingIndicator: "hidden",
             submitIcon: "hidden",
             resetIcon: "hidden",
-            loadingIcon: "hidden",
+            loadingIndicator: "w-[30px]",
+            loadingIcon: "inline-block mx-1 mb-1 w-[20px] h-[20px]",
           }}
           translations={{
             submitButtonTitle: "",
