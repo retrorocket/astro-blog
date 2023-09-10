@@ -3,7 +3,7 @@ import react from "@astrojs/react";
 import tailwind from "@astrojs/tailwind";
 import AutoImport from "astro-auto-import";
 import { defineConfig } from "astro/config";
-import remarkFigureCaption from "@microflash/remark-figure-caption";
+import rehypeFigure from "@microflash/rehype-figure";
 import remarkCollapse from "remark-collapse";
 import remarkToc from "remark-toc";
 import rehypeSlug from "rehype-slug";
@@ -41,7 +41,6 @@ export default defineConfig({
   ],
   markdown: {
     remarkPlugins: [
-      remarkFigureCaption,
       remarkToc,
       [
         remarkCollapse,
@@ -52,6 +51,7 @@ export default defineConfig({
     ],
     rehypePlugins: [
       rehypeSlug,
+      rehypeFigure,
       [
         rehypeToc,
         {
