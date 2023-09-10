@@ -17,7 +17,7 @@ export const getStaticPaths = async ({ paginate }: GetStaticPathsOptions) => {
   const sortByDatePosts = sortByDate(await getCollection("posts"));
 
   const categories = await getTaxonomy("categories");
-  return categories.map((category) => {
+  return categories.flatMap((category) => {
     const filterByTags: CollectionEntry<"posts">[] = taxonomyFilter(
       sortByDatePosts,
       "categories",
@@ -43,7 +43,9 @@ const humanizedCategory = humanize(category || "");
   title={`${humanizedCategory} の記事一覧 | Page ${page.currentPage} of ${page.lastPage}`}
 >
   <PostList>
-    <h1 class="h2 pb-10">Posts related to <span class="text-primary">{humanizedCategory}</span> category</h1>
+    <h1 class="h2 pb-10">
+      Posts related to <span class="text-primary">{humanizedCategory}</span> category
+    </h1>
     {page.data.map((post) => <Post post={post} />)}
     <Pagination
       section={`categories/${category}`}

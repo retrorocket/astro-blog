@@ -18,12 +18,6 @@ export default defineConfig({
   site: config.site.base_url ? config.site.base_url : "https://retrorocket.biz",
   base: config.site.base_path ? config.site.base_path : "/",
   trailingSlash: config.site.trailing_slash ? "always" : "never",
-  experimental: {
-    assets: true,
-  },
-  image: {
-    service: sharpImageService(),
-  },
   integrations: [
     createOgImage(),
     algoliaQueries(),

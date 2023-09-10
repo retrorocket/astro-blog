@@ -1,11 +1,11 @@
 import config from "@config/config.json";
-import algoliasearch, { SearchClient } from "algoliasearch/lite";
+import algoliasearch, { type SearchClient } from "algoliasearch/lite";
 import {
   InstantSearch,
   SearchBox,
   PoweredBy,
   Hits,
-  SearchBoxProps,
+  type SearchBoxProps,
 } from "react-instantsearch";
 import React from "react";
 import type {
@@ -24,7 +24,7 @@ type HitProps = {
 
 const algoliaClient = algoliasearch(
   import.meta.env.PUBLIC_ALGOLIA_APPID,
-  import.meta.env.PUBLIC_ALGOLIA_APIKEY
+  import.meta.env.PUBLIC_ALGOLIA_APIKEY,
 );
 
 const searchClient: SearchClient = {
@@ -79,7 +79,7 @@ const HitCompoment = ({ hit }: HitProps) => {
           {[
             ...parser.parseFromString(
               hit._highlightResult?.title?.value ?? "",
-              "text/html"
+              "text/html",
             ).body.childNodes,
           ].map((child, i) => {
             if (child.nodeName.toLowerCase() === "mark")
