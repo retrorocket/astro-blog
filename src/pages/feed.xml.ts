@@ -11,7 +11,7 @@ const sortPostByDate: CollectionEntry<"posts">[] = sortByDate(posts);
 const jsdom = new JSDOM();
 const parser = new jsdom.window.DOMParser();
 
-export const get = () =>
+export const GET = () =>
   rss({
     title: `${config.site.title} Blog Feed`,
     description: config.metadata.meta_description,
