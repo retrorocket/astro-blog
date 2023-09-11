@@ -16,7 +16,7 @@ const generate = async (
   }: {
     background: string;
     font: Buffer;
-  }
+  },
 ): Promise<Buffer> => {
   const svg = await satori(
     {
@@ -64,7 +64,7 @@ const generate = async (
           style: "normal",
         },
       ],
-    }
+    },
   );
 
   const png = await sharp(Buffer.from(svg)).png().toBuffer();
@@ -85,7 +85,6 @@ export default (): AstroIntegration => ({
           try {
             const markdownWithMeta = readFileSync(filename);
             const { data: frontmatter } = grayMatter(markdownWithMeta);
-            if (frontmatter.draft) return;
             const postid =
               frontmatter.postid || filename.split(/[.\/]/).slice(-2)[0];
             const imgpath = outputdir + postid + ".png";
@@ -105,10 +104,10 @@ export default (): AstroIntegration => ({
 
       const background = readFileSync(
         path.resolve("./public/assets/images/og-image.png"),
-        "base64"
+        "base64",
       );
       const font = readFileSync(
-        path.resolve("./public/assets/fonts/NotoSansJP-Bold.ttf")
+        path.resolve("./public/assets/fonts/NotoSansJP-Bold.ttf"),
       );
 
       if (!existsSync(outputdir)) {
