@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { clsx } from "clsx";
 
 const Accordion = ({
   title,
@@ -12,16 +13,23 @@ const Accordion = ({
   const [show, setShow] = useState(false);
 
   return (
-    <div className={`border border-border ${className}`}>
+    <div className={clsx("border", "border-border", className)}>
       <button
         className="relative block w-full bg-theme-light px-4 py-3 text-left text-dark"
         onClick={() => setShow(!show)}
       >
         {title}
         <svg
-          className={`absolute right-4 top-1/2 m-0 h-4 w-4 -translate-y-1/2 ${
-            show && "rotate-180"
-          }`}
+          className={clsx(
+            "absolute",
+            "right-4",
+            "top-1/2",
+            "m-0",
+            "h-4",
+            "w-4",
+            "-translate-y-1/2",
+            show && "rotate-180",
+          )}
           x="0px"
           y="0px"
           viewBox="0 0 512.011 512.011"
@@ -33,7 +41,7 @@ const Accordion = ({
           />
         </svg>
       </button>
-      <div className={`px-4 py-3 ${!show && "hidden"}`}>{children}</div>
+      <div className={clsx("px-4", "py-3", !show && "hidden")}>{children}</div>
     </div>
   );
 };
