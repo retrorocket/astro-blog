@@ -1,5 +1,3 @@
-import React from "react";
-
 const Notice = ({ type, children }: { type: string; children: any }) => {
   return (
     <div className={`notice ${type} relative mb-8`}>
