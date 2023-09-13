@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",

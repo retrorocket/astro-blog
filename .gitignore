@@ -11,9 +11,11 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+
+# lock
 yarn.lock
 package-lock.json
-
+pnpm-lock.yaml
 
 # environment variables
 .env
@@ -30,4 +32,3 @@ package-lock.json
 src/content/posts
 src/assets/images
 public/og-images
-

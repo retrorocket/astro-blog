@@ -15,6 +15,9 @@ jobs:
     name: build
     runs-on: ubuntu-latest
     steps:
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
       - name: Checkout
         uses: actions/checkout@v3
       - name: Checkout other repo
@@ -30,7 +33,7 @@ jobs:
         id: restore-cache
         with:
           path: "node_modules"
-          key: ${{ runner.os }}-modules-${{ hashFiles('node_modules/.package-lock.json', 'node_modules/.astro/assets/**') }}
+          key: ${{ runner.os }}-modules-${{ hashFiles('node_modules/.modules.yaml', 'node_modules/.astro/assets/**') }}
           restore-keys: |
             ${{ runner.os }}-modules-
       - name: restore image cache
@@ -42,9 +45,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-ogp-
       - name: Install packages
-        run: npm install
+        run: pnpm install
       - name: Run build
-        run: npm run build
+        run: pnpm run build
         env:
           PUBLIC_ALGOLIA_APPID: ${{ secrets.PUBLIC_ALGOLIA_APPID }}
           PUBLIC_ALGOLIA_APIKEY: ${{ secrets.PUBLIC_ALGOLIA_APIKEY }}
@@ -64,7 +67,7 @@ jobs:
         id: cache
         with:
           path: "node_modules"
-          key: ${{ runner.os }}-modules-${{ hashFiles('node_modules/.package-lock.json', 'node_modules/.astro/assets/**') }}
+          key: ${{ runner.os }}-modules-${{ hashFiles('node_modules/.modules.yaml', 'node_modules/.astro/assets/**') }}
       - name: rename og-images
         run: |
           rm -rf public/og-images
