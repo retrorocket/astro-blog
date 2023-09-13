@@ -1,9 +1,8 @@
 ---
 import Base from "@layouts/Base.astro";
-import { getCollection } from "astro:content";
+import { getCollection, type CollectionEntry } from "astro:content";
 import { sortByDate } from "@lib/utils/sortFunctions";
 import dateFormat from "@lib/utils/dateFormat";
-import type { CollectionEntry } from "astro:content";
 
 const posts = await getCollection("posts");
 const sortPostByDate: CollectionEntry<"posts">[] = sortByDate(posts);

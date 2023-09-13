@@ -5,10 +5,9 @@ import Pagination from "@layouts/components/Pagination.astro";
 import Post from "@layouts/partials/Post.astro";
 import PostList from "@layouts/PostList.astro";
 import Categories from "@layouts/components/Categories.astro";
-import { getCollection } from "astro:content";
+import { getCollection, type CollectionEntry } from "astro:content";
 import { sortByDate } from "@lib/utils/sortFunctions";
 import type { GetStaticPathsOptions, Page } from "astro";
-import type { CollectionEntry } from "astro:content";
 
 export const getStaticPaths = async ({ paginate }: GetStaticPathsOptions) => {
   const posts = await getCollection("posts");

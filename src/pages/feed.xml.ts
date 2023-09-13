@@ -2,8 +2,7 @@ import rss from "@astrojs/rss";
 import config from "@config/config.json";
 import { JSDOM } from "jsdom";
 import { sortByDate } from "@lib/utils/sortFunctions";
-import { getCollection } from "astro:content";
-import type { CollectionEntry } from "astro:content";
+import { getCollection, type CollectionEntry } from "astro:content";
 
 const posts = await getCollection("posts");
 const sortPostByDate: CollectionEntry<"posts">[] = sortByDate(posts);

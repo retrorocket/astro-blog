@@ -1,8 +1,7 @@
 ---
 import Base from "@layouts/Base.astro";
 import Default from "@layouts/Default.astro";
-import { getCollection } from "astro:content";
-import type { CollectionEntry } from "astro:content";
+import { getCollection, type CollectionEntry } from "astro:content";
 
 export const getStaticPaths = async () => {
   const pages = await getCollection("pages");
