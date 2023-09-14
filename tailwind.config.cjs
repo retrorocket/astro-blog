@@ -66,6 +66,27 @@ module.exports = {
         primary: [fontPrimary, fontPrimaryType],
         secondary: [fontSecondary, fontSecondaryType],
       },
+      typography: (theme) => ({
+        DEFAULT: {
+          css: {
+            code: {
+              backgroundColor: theme("colors.slate.200"),
+              borderRadius: theme("borderRadius.DEFAULT"),
+              paddingTop: theme("spacing.[0.5]"),
+              paddingBottom: theme("spacing.[0.5]"),
+              paddingLeft: theme("spacing.[1.5]"),
+              paddingRight: theme("spacing.[1.5]"),
+              fontWeight: "normal",
+            },
+            "code::before": {
+              content: "none",
+            },
+            "code::after": {
+              content: "none",
+            },
+          },
+        },
+      }),
     },
   },
   plugins: [

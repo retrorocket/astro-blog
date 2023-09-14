@@ -98,8 +98,7 @@
   @apply prose-h3:text-h3-sm md:prose-h3:text-h3;
   @apply prose-hr:border-border;
   @apply prose-p:text-base prose-p:text-text;
-  @apply prose-blockquote:border-primary prose-blockquote:bg-slate-200 prose-blockquote:bg-opacity-80 prose-blockquote:px-4 prose-blockquote:py-1;
-  @apply prose-code:rounded-sm prose-code:bg-primary prose-code:bg-opacity-10 prose-code:px-1.5 prose-code:py-0.5 prose-code:font-normal prose-code:before:content-none prose-code:after:content-none;
+  @apply prose-blockquote:border-primary prose-blockquote:bg-stone-200 prose-blockquote:bg-opacity-40 prose-blockquote:px-4 prose-blockquote:py-1;
   @apply prose-strong:text-dark;
   @apply prose-a:text-primary prose-a:no-underline hover:prose-a:underline;
   @apply prose-table:overflow-hidden prose-table:border prose-table:border-border;
@@ -107,10 +106,6 @@
   @apply prose-tr:border-border;
   @apply prose-td:px-3 prose-td:py-4;
   @apply prose-li:text-text;
-  // syntaxhighlight部分のprose-code設定を打ち消す
-  pre code {
-    @apply rounded-none bg-transparent px-0 py-0;
-  }
 }
 
 //toc, h2
