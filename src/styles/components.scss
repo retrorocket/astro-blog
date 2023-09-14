@@ -98,7 +98,7 @@
   @apply prose-h3:text-h3-sm md:prose-h3:text-h3;
   @apply prose-hr:border-border;
   @apply prose-p:text-base prose-p:text-text;
-  @apply prose-blockquote:border-primary prose-blockquote:bg-stone-200 prose-blockquote:bg-opacity-40 prose-blockquote:px-4 prose-blockquote:py-1;
+  @apply prose-blockquote:border-primary prose-blockquote:bg-stone-200 prose-blockquote:bg-opacity-40	prose-blockquote:bg-[url('/assets/images/quote.svg')] prose-blockquote:bg-[right_0.5rem_bottom_0.5rem] prose-blockquote:bg-no-repeat prose-blockquote:px-4 prose-blockquote:py-1;
   @apply prose-strong:text-dark;
   @apply prose-a:text-primary prose-a:no-underline hover:prose-a:underline;
   @apply prose-table:overflow-hidden prose-table:border prose-table:border-border;
