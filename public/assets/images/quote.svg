@@ -1,11 +1,13 @@
+<!-- flowbite-icons/LICENSE https://github.com/themesberg/flowbite-icons/blob/main/LICENSE -->
 <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 14">
   <style>
     path {
-      fill: #ccc; <!-- ライトモード時のカラー -->
+      fill: #ccc;
     }
+
     @media (prefers-color-scheme: dark) {
       path {
-        fill: #000; <!-- ダークモード時のカラー -->
+        fill: #000;
         opacity: 0.3;
       }
     }
