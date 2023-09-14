@@ -98,28 +98,18 @@
   @apply prose-h3:text-h3-sm md:prose-h3:text-h3;
   @apply prose-hr:border-border;
   @apply prose-p:text-base prose-p:text-text;
-  @apply prose-blockquote:border-primary prose-blockquote:bg-theme-light prose-blockquote:px-4 prose-blockquote:py-1;
-  @apply prose-code:px-1 prose-code:text-primary;
-  @apply prose-pre:rounded-none;
+  @apply prose-blockquote:border-primary prose-blockquote:bg-slate-200 prose-blockquote:bg-opacity-80 prose-blockquote:px-4 prose-blockquote:py-1;
+  @apply prose-code:rounded-sm prose-code:bg-primary prose-code:bg-opacity-10 prose-code:px-1.5 prose-code:py-0.5 prose-code:font-normal prose-code:before:content-none prose-code:after:content-none;
   @apply prose-strong:text-dark;
   @apply prose-a:text-primary prose-a:no-underline hover:prose-a:underline;
   @apply prose-table:overflow-hidden prose-table:border prose-table:border-border;
   @apply prose-thead:border-border prose-thead:bg-theme-light prose-th:px-4 prose-th:py-4 prose-th:text-dark;
   @apply prose-tr:border-border;
-  @apply prose-ul:list-none;
-  @apply prose-ol:list-decimal;
   @apply prose-td:px-3 prose-td:py-4;
-  ol {
-    @apply prose-li:text-text;
-  }
-  ul:not(.normal-ul) {
-    @apply prose-li:relative prose-li:text-text prose-li:before:absolute prose-li:before:-left-6 prose-li:before:top-2 prose-li:before:h-[22px] prose-li:before:w-6 prose-li:before:bg-[url('/assets/images/pointing-right.svg')] prose-li:before:bg-[length:20px_16px] prose-li:before:bg-no-repeat prose-li:before:content-[''];
-  }
-  // syntaxhighlightの1行目が横にずれているのを打ち消す
-  .astro-code {
-    code {
-      @apply px-0;
-    }
+  @apply prose-li:text-text;
+  // syntaxhighlight部分のprose-code設定を打ち消す
+  pre code {
+    @apply rounded-none bg-transparent px-0 py-0;
   }
 }
 

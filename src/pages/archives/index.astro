@@ -11,8 +11,8 @@ const splitedPosts = [];
 for (let year = new Date().getFullYear(); year >= 2013; year--) {
   splitedPosts.push(
     sortPostByDate.filter(
-      (post) => Number(dateFormat(post.data.date, "yyyy")) === year
-    )
+      (post) => Number(dateFormat(post.data.date, "yyyy")) === year,
+    ),
   );
 }
 ---
@@ -24,7 +24,7 @@ for (let year = new Date().getFullYear(); year >= 2013; year--) {
         <div class="mx-auto lg:col-10">
           <div class="content py-4 md:py-12">
             <h1 class="h2 mb-8">記事一覧</h1>
-            <ul class="normal-ul px-0">
+            <ul class="list-none px-0">
               {
                 splitedPosts.map((post) => {
                   const yearid = dateFormat(post[0].data.date, "yyyy");
@@ -43,7 +43,7 @@ for (let year = new Date().getFullYear(); year >= 2013; year--) {
                 return (
                   <>
                     <h2 id={`year-${yearid}`}>{yearid}</h2>
-                    <ul class="normal-ul px-0">
+                    <ul class="list-none px-0">
                       {post.map((detail) => {
                         // prettier-ignore
                         return (

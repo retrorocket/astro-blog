@@ -18,7 +18,7 @@ const categories = await getTaxonomy("categories");
         <div class="mx-auto lg:col-10">
           <div class="content py-4 md:py-12">
             <h1 class="h2 mb-8">すべてのカテゴリーの記事一覧</h1>
-            <ul class="normal-ul px-0">
+            <ul class="list-none px-0">
               {
                 categories.sort().map((category) => (
                   <li class="inline-block">
@@ -33,12 +33,12 @@ const categories = await getTaxonomy("categories");
                 const filterByTags = taxonomyFilter(
                   sortByDatePosts,
                   "categories",
-                  category
+                  category,
                 );
                 return (
                   <>
                     <h2 id={`${category}`}>{humanize(category || "")}</h2>
-                    <ul class="normal-ul px-0">
+                    <ul class="list-none px-0">
                       {filterByTags.map((detail) => {
                         // prettier-ignore
                         return (
