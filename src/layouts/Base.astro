@@ -29,7 +29,7 @@ const plainifyTitle = plainify(
     ? meta_title
     : title
     ? title + " - " + config.site.title
-    : config.site.title
+    : config.site.title,
 );
 
 const jsdom = new JSDOM();
@@ -39,7 +39,7 @@ const excerptContent = excerpt
   : config.metadata.meta_description;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
   <head>
     <!-- favicon -->
@@ -60,6 +60,64 @@ const excerptContent = excerpt
       type="image/png"
       href={config.site.android_touch_icon}
       sizes="192x192"
+    />
+
+    <!-- preload font -->
+    <link
+      rel="preload"
+      href="/assets/fonts/mulish-v12-latin-regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      href="/assets/fonts/mulish-v12-latin-italic.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      href="/assets/fonts/mulish-v12-latin-500.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      href="/assets/fonts/mulish-v12-latin-500italic.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      href="/assets/fonts/mulish-v12-latin-600.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      href="/assets/fonts/mulish-v12-latin-600italic.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      href="/assets/fonts/mulish-v12-latin-700.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      href="/assets/fonts/mulish-v12-latin-700italic.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
     />
 
     <!-- theme meta -->
@@ -123,7 +181,7 @@ const excerptContent = excerpt
       property="og:url"
       content={`${config.site.base_url}/${Astro.url.pathname.replace(
         /(?:\/$|^\/)/g,
-        ""
+        "",
       )}`}
     />
 
