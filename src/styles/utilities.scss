@@ -11,9 +11,9 @@ code {
 }
 
 .category {
-  @apply rounded-lg bg-primary bg-opacity-20 px-2.5 py-0.5 text-primary transition hover:bg-primary hover:text-white;
+  @apply rounded-lg bg-primary bg-opacity-10 px-2.5 py-0.5 text-primary transition hover:bg-primary hover:text-white;
 }
 
 .category-tag {
-  @apply rounded-lg bg-primary bg-opacity-20 px-4 py-2 text-primary transition hover:bg-primary hover:text-white;
+  @apply rounded-lg bg-primary bg-opacity-10 px-4 py-2 text-primary transition hover:bg-primary hover:text-white;
 }
