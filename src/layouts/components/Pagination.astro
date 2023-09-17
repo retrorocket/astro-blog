@@ -68,10 +68,10 @@ const displayPages = smDisplayPage();
 {
   totalPages > 1 && (
     <nav
-      class="mb-4 flex flex-wrap justify-center space-x-2"
+      class="nav-pagination mb-4 flex flex-wrap justify-center space-x-2"
       aria-label="Pagination"
     >
-      {/* previous */}
+      {/* < previous */}
       {hasPrevPage && (
         <a
           href={
@@ -79,7 +79,7 @@ const displayPages = smDisplayPage();
               ? `${section ? "/" + section : "/"}`
               : `${section ? "/" + section : ""}/page/${currentPage - 1}`
           }
-          class="rounded px-2 py-1 text-text transition-all duration-200 hover:bg-primary hover:bg-opacity-90 hover:text-body sm:py-2"
+          class="nav-arrow"
         >
           <span class="sr-only">Previous</span>
           <svg
@@ -101,25 +101,19 @@ const displayPages = smDisplayPage();
       {/* page index */}
       {pageNumbers.map((v) => {
         const hidden = displayPages.includes(v) ? "" : "hidden";
+        // current
         if (v === currentPage) {
           return (
-            <span
-              aria-current="page"
-              class={`rounded bg-primary bg-opacity-90 px-3 py-1 text-white sm:px-4 sm:py-2`}
-            >
+            <span aria-current="page" class="nav-current">
               {v}
             </span>
           );
         }
+        // ellipsis
         if (v === ellipsis) {
-          return (
-            <span
-              class={`hidden rounded text-text transition-all sm:inline-block sm:py-2`}
-            >
-              {ellipsis}
-            </span>
-          );
+          return <span class="nav-ellipsis">{ellipsis}</span>;
         }
+        // pagination index
         return (
           <a
             href={
@@ -127,18 +121,18 @@ const displayPages = smDisplayPage();
                 ? `${section ? "/" + section : "/"}`
                 : `${section ? "/" + section : ""}/page/${v}`
             }
-            class={`${hidden} rounded px-3 py-1 text-text transition-all duration-200 hover:bg-primary hover:bg-opacity-90 hover:text-body sm:inline-block sm:px-4 sm:py-2`}
+            class={`${hidden} nav-pageindex`}
           >
             {v}
           </a>
         );
       })}
 
-      {/* next page */}
+      {/* > next page */}
       {hasNextPage && (
         <a
           href={`${section ? "/" + section : ""}/page/${currentPage + 1}`}
-          class="rounded px-2 py-1 text-text transition-all duration-200 hover:bg-primary hover:bg-opacity-90 hover:text-body sm:py-2"
+          class="nav-arrow"
         >
           <span class="sr-only">Next</span>
           <svg

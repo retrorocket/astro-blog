@@ -75,3 +75,18 @@ input#nav-toggle:checked ~ #nav-menu {
     @apply visible opacity-100;
   }
 }
+
+.nav-pagination {
+  .nav-arrow {
+    @apply rounded px-2 py-1 text-text transition-all duration-200 hover:bg-primary hover:bg-opacity-90 hover:text-body sm:py-2;
+  }
+  .nav-ellipsis {
+    @apply hidden rounded text-text transition-all sm:inline-block sm:py-2;
+  }
+  .nav-current {
+    @apply rounded bg-primary bg-opacity-90 px-3 py-1 text-white sm:px-4 sm:py-2;
+  }
+  .nav-pageindex {
+    @apply rounded px-3 py-1 text-text transition-all duration-200 hover:bg-primary hover:bg-opacity-90 hover:text-body sm:inline-block sm:px-4 sm:py-2;
+  }
+}
