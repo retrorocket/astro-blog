@@ -45,8 +45,9 @@ export default defineConfig({
         rehypeToc,
         {
           customizeTOC: (toc) => {
+            // 見出しが一つもない場合はTOCを生成しない
             if (!toc.children.some((child) => child.children.length > 0)) {
-              toc.properties.className = `${toc.properties.className} hidden`;
+              return null;
             }
             return toc;
           },
