@@ -89,7 +89,7 @@ export default (): AstroIntegration => ({
               frontmatter.postid || filename.split(/[.\/]/).slice(-2)[0];
             const imgpath = outputdir + postid + ".png";
             if (existsSync(imgpath)) {
-              console.log(imgpath + " exists");
+              console.log("\x1b[90m", imgpath + " :skip");
               return;
             }
             return {
