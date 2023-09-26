@@ -8,7 +8,7 @@
     "6Fv0cGNfc_bw8",
     "/",
     host,
-    "/choice.js"
+    "/choice.js",
   );
   var uspTries = 0;
   var uspTriesLimit = 3;
@@ -106,7 +106,7 @@
               event.source.postMessage(returnMsg, "*");
             }
           },
-          payload.parameter
+          payload.parameter,
         );
       }
     }
