@@ -20,10 +20,10 @@ export const getStaticPaths = async ({ paginate }: GetStaticPathsOptions) => {
     const filterByTags: CollectionEntry<"posts">[] = taxonomyFilter(
       sortByDatePosts,
       "categories",
-      category
+      category,
     );
     return paginate(filterByTags, {
-      params: { category: category || "" },
+      params: { category: category ?? "" },
       pageSize: pagination,
     });
   });
@@ -35,7 +35,7 @@ interface PostPage extends Page {
 type Props = { page: PostPage };
 const { page } = Astro.props;
 const { category } = Astro.params;
-const humanizedCategory = humanize(category || "");
+const humanizedCategory = humanize(category ?? "");
 ---
 
 <Base
@@ -43,7 +43,8 @@ const humanizedCategory = humanize(category || "");
 >
   <PostList>
     <h1 class="h2 pb-10">
-      Posts related to <span class="text-primary">{humanizedCategory}</span> category
+      Posts related to <span class="text-primary">{humanizedCategory}</span>
+       category
     </h1>
     {page.data.map((post) => <Post post={post} />)}
     <Pagination

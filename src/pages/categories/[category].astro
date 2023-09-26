@@ -22,12 +22,12 @@ export const getStaticPaths = async () => {
 };
 
 const { category } = Astro.params;
-const humanizedCategory = humanize(category || "");
+const humanizedCategory = humanize(category ?? "");
 const sortByDatePosts = sortByDate(await getCollection("posts"));
 const filterByTags: CollectionEntry<"posts">[] = taxonomyFilter(
   sortByDatePosts,
   "categories",
-  category
+  category,
 );
 const totalPages = Math.ceil(filterByTags.length / pagination);
 ---
@@ -37,7 +37,10 @@ const totalPages = Math.ceil(filterByTags.length / pagination);
   canonical={`categories/${category}`}
 >
   <PostList>
-    <h1 class="h2 pb-10">Posts related to <span class="text-primary">{humanizedCategory}</span> category</h1>
+    <h1 class="h2 pb-10">
+      Posts related to <span class="text-primary">{humanizedCategory}</span>
+       category
+    </h1>
     {filterByTags.slice(0, pagination).map((post) => <Post post={post} />)}
     <Pagination
       section={`categories/${category}`}

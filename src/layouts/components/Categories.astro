@@ -15,7 +15,7 @@ import { humanize } from "@lib/utils/textConverter";
               categories.sort().map((category) => (
                 <li class="inline-block">
                   {/* prettier-ignore */}
-                  <a href={`/categories/${category}`} class="category-tag">#{" "}{humanize(category || "")}</a>
+                  <a href={`/categories/${category}`} class="category-tag">#{" "}{humanize(category ?? "")}</a>
                 </li>
               ))
             }

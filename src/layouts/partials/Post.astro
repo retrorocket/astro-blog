@@ -43,7 +43,12 @@ const parser = new jsdom.window.DOMParser();
       </ul>
     </li>
   </ul>
-  <p class="text-lg text-text" itemprop="description">{parser.parseFromString(post.data.excerpt || "", "text/html").documentElement.textContent}</p>
+  <p class="text-lg text-text" itemprop="description">
+    {
+      parser.parseFromString(post.data.excerpt ?? "", "text/html")
+        .documentElement.textContent
+    }
+  </p>
   <a
     class="mt-3 inline-block border-b border-primary py-1 text-[15px] leading-[22px] text-primary"
     href={`/archives/${post.data.postid}`}>Read More</a

@@ -23,7 +23,7 @@ const categories = await getTaxonomy("categories");
                 categories.sort().map((category) => (
                   <li class="inline-block">
                     {/* prettier-ignore */}
-                    <a href={`#${category}`} class="category-tag">#{" "}{humanize(category || "")}</a>
+                    <a href={`#${category}`} class="category-tag">#{" "}{humanize(category ?? "")}</a>
                   </li>
                 ))
               }
@@ -37,7 +37,7 @@ const categories = await getTaxonomy("categories");
                 );
                 return (
                   <>
-                    <h2 id={`${category}`}>{humanize(category || "")}</h2>
+                    <h2 id={`${category}`}>{humanize(category ?? "")}</h2>
                     <ul class="list-none px-0">
                       {filterByTags.map((detail) => {
                         // prettier-ignore

@@ -13,6 +13,7 @@ export default (): AstroIntegration => ({
   name: "algolia-queries",
   hooks: {
     "astro:build:done": async () => {
+      if (!process.env.PRIVATE_ALGOLIA_WRITE_KEY) return;
       const filenames = globSync("./src/content/posts/**/*.md*");
       const data = filenames.map((filename) => {
         try {
@@ -23,8 +24,8 @@ export default (): AstroIntegration => ({
               marked(content)
                 .replace(/<br>/g, "\n")
                 .replace(/__ais-highlight__/g, ""),
-              "text/html"
-            ).documentElement.textContent || "";
+              "text/html",
+            ).documentElement.textContent ?? "";
           return {
             objectID: frontmatter.postid,
             slug: `/archives/${frontmatter.postid}`,
@@ -43,8 +44,8 @@ export default (): AstroIntegration => ({
       });
 
       const client = algoliasearch(
-        process.env.PUBLIC_ALGOLIA_APPID?.toString() || "",
-        process.env.PRIVATE_ALGOLIA_WRITE_KEY?.toString() || ""
+        process.env.PUBLIC_ALGOLIA_APPID ?? "",
+        process.env.PRIVATE_ALGOLIA_WRITE_KEY ?? "",
       );
       const index = client.initIndex("blog_retrorocket");
       await index.saveObjects(JSON.parse(JSON.stringify(data)), {

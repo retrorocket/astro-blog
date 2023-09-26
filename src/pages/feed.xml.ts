@@ -21,7 +21,7 @@ export const GET = () =>
       title: post.data.title,
       pubDate: post.data.date,
       description:
-        parser.parseFromString(post.data.excerpt || "", "text/html")
-          .documentElement.textContent || "",
+        parser.parseFromString(post.data.excerpt ?? "", "text/html")
+          .documentElement.textContent ?? "",
     })),
   });
