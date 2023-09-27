@@ -6,6 +6,9 @@ import { globSync } from "glob";
 import grayMatter from "gray-matter";
 import path from "path";
 import { fileURLToPath } from "url";
+import { loadDefaultJapaneseParser } from "budoux";
+
+const parser = loadDefaultJapaneseParser();
 
 // 参考: https://zenn.dev/ikuma/scraps/2bd2b9dc3605d7
 const generate = async (
@@ -18,41 +21,42 @@ const generate = async (
     font: Buffer;
   },
 ): Promise<Buffer> => {
+  const words = parser.parse(title);
   const svg = await satori(
-    {
-      type: "div",
-      props: {
-        style: {
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        textAlign: "center",
+        width: 1200,
+        height: 630,
+        backgroundImage: `url(${background})`,
+        backgroundSize: "1200px 630px",
+      }}
+    >
+      <div
+        style={{
+          paddingBottom: "80px",
+          paddingLeft: "30px",
+          paddingRight: "30px",
           display: "flex",
           justifyContent: "center",
+          width: 1040,
+          height: 390,
+          fontSize: "50px",
+          color: "#fff",
+          flexWrap: "wrap",
+          textOverflow: "ellipsis",
+          alignContent: "center",
           alignItems: "center",
-          textAlign: "center",
-          width: 1200,
-          height: 630,
-          backgroundImage: `url(${background})`,
-          backgroundSize: "1200px 630px",
-        },
-        children: {
-          type: "div",
-          props: {
-            style: {
-              paddingBottom: "80px",
-              paddingLeft: "30px",
-              paddingRight: "30px",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              width: 1040,
-              height: 390,
-              fontSize: "50px",
-              color: "#fff",
-              textOverflow: "ellipsis",
-            },
-            children: title,
-          },
-        },
-      },
-    } as any,
+        }}
+      >
+        {words.map((word) => {
+          return <span style={{ display: "block" }}>{word}</span>;
+        })}
+      </div>
+    </div>,
     {
       width: 1200,
       height: 630,
@@ -66,7 +70,6 @@ const generate = async (
       ],
     },
   );
-
   const png = await sharp(Buffer.from(svg)).png().toBuffer();
   return png;
 };
@@ -86,7 +89,7 @@ export default (): AstroIntegration => ({
             const markdownWithMeta = readFileSync(filename);
             const { data: frontmatter } = grayMatter(markdownWithMeta);
             const postid =
-              frontmatter.postid || filename.split(/[.\/]/).slice(-2)[0];
+              frontmatter.postid ?? filename.split(/[.\/]/).slice(-2)[0];
             const imgpath = outputdir + postid + ".png";
             if (existsSync(imgpath)) {
               console.log("\x1b[90m", imgpath + " :skip");
