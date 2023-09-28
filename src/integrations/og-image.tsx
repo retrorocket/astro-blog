@@ -21,7 +21,10 @@ const generate = async (
     font: Buffer;
   },
 ): Promise<Buffer> => {
-  const words = parser.parse(title);
+  const words = parser.parse(title).map((word) => {
+    // 分かち書きされない文字を分割する
+    return word.split(/(?<=(?:・|,|スマートフォンで|】))/g);
+  });
   const svg = await satori(
     <div
       style={{
@@ -52,7 +55,7 @@ const generate = async (
           alignItems: "center",
         }}
       >
-        {words.map((word) => {
+        {words.flat().map((word) => {
           return <span style={{ display: "block" }}>{word}</span>;
         })}
       </div>
