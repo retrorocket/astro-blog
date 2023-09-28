@@ -23,7 +23,7 @@ const generate = async (
 ): Promise<Buffer> => {
   const words = parser.parse(title).map((word) => {
     // 分かち書きされない文字を分割する
-    return word.split(/(?<=(?:・|,|スマートフォンで|】))/g);
+    return word.split(/(?<=(?:・|,|スマートフォンで|】|::DateManip|))/g);
   });
   const svg = await satori(
     <div
