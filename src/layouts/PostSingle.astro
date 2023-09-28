@@ -27,7 +27,7 @@ const { title, categories, date } = post.data;
           >
             <h1 itemprop="headline" set:html={markdownify(title)} />
             <ul
-              class="mb-8 mt-4 flex flex-wrap items-center space-x-3 text-text"
+              class="mb-8 mt-4 inline-flex flex-wrap items-center gap-x-3 gap-y-2 text-text"
             >
               <li>
                 <time datetime={dateFormat(date)} itemprop="datePublished"
