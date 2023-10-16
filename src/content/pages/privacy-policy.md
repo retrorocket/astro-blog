@@ -2,6 +2,7 @@
 title: "プライバシーポリシー"
 description: "return $lock; のプライバシーポリシーです。"
 draft: false
+show_toc: true
 ---
 
 ## 個人情報の利用目的

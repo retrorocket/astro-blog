@@ -1,8 +1,9 @@
 ---
 import { markdownify } from "@lib/utils/textConverter";
+import { clsx } from "clsx";
 
 const { data } = Astro.props;
-const { title } = data.data;
+const { title, show_toc } = data.data;
 const { Content } = await data.render();
 ---
 
@@ -10,7 +11,9 @@ const { Content } = await data.render();
   <div class="container">
     <div class="sub-container">
       <div class="mx-auto lg:col-10">
-        <div class="content toc-hidden py-4 md:py-12">
+        <div
+          class={clsx("content", "py-4", "md:py-12", !show_toc && "toc-hidden")}
+        >
           <h1 set:html={markdownify(title)} class="h2 mb-8" />
           <Content />
         </div>

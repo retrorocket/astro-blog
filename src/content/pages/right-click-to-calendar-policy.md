@@ -2,6 +2,7 @@
 title: "Right-Click to Calendarについて"
 description: "Right-Click to Calendar アプリケーション・プライバシーポリシーです。"
 draft: false
+show_toc: true
 ---
 
 ### 第 1 条（定義）
@@ -14,7 +15,7 @@ Calendar（以下、本アプリケーションといいます）における利
 
 本アプリケーションのご利用に関して、以下の利用者情報を本アプリケーション内で取得いたします。利用範囲についても以下に記載します。
 
-<span style="font-weight: bold;">Google Calendar のカレンダー名と、それに対応する Calendar ID</span>
+- <span style="font-weight: bold;">Google Calendar のカレンダー名と、それに対応する Calendar ID</span>
 
 <ins>利用目的</ins>
 
@@ -55,7 +56,7 @@ Calendar API 経由で Google Calendar にのみ送信、保存されます。
 ### 第 5 条（問い合わせ窓口）
 
 本アプリケーションにおけるご利用者情報の取扱いに関するお問い合わせ、ご相談は以下でお受けいたします。
-https://retrorocket.biz/contact
+<https://retrorocket.biz/contact>
 
 ### 第 6 条（変更）
 
