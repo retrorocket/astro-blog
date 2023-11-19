@@ -25,7 +25,7 @@ if (theme.fonts.font_family.secondary) {
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
-  darkMode: "class",
+  darkMode: "media",
   theme: {
     screens: {
       xs: "375px",
@@ -48,8 +48,11 @@ module.exports = {
         secondary: theme.colors.default.theme_color.secondary,
         body: theme.colors.default.theme_color.body,
         border: theme.colors.default.theme_color.border,
+        "border-dark": theme.colors.default.theme_color.border_dark,
         "theme-light": theme.colors.default.theme_color.theme_light,
         "theme-dark": theme.colors.default.theme_color.theme_dark,
+        "text-dark": theme.colors.default.text_color.text_dark,
+        "primary-dark": theme.colors.default.theme_color.primary_dark,
       },
       fontSize: {
         base: font_base + "px",
@@ -84,6 +87,13 @@ module.exports = {
             },
             "code::after": {
               content: "none",
+            },
+          },
+        },
+        invert: {
+          css: {
+            ":not(pre) > code": {
+              backgroundColor: theme("colors.zinc.700"),
             },
           },
         },

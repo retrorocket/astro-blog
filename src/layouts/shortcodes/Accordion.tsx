@@ -13,9 +13,16 @@ const Accordion = ({
   const [show, setShow] = useState(false);
 
   return (
-    <div className={clsx("border", "border-border", className)}>
+    <div
+      className={clsx(
+        "border",
+        "border-border",
+        "dark:border-border-dark",
+        className,
+      )}
+    >
       <button
-        className="relative block w-full bg-theme-light px-4 py-3 text-left text-dark"
+        className="relative block w-full bg-theme-light px-4 py-3 text-left text-dark dark:bg-theme-dark dark:text-light"
         onClick={() => setShow(!show)}
       >
         {title}

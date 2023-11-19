@@ -25,7 +25,7 @@ input#nav-toggle:checked ~ #nav-menu {
 }
 
 .navbar-brand {
-  @apply text-xl font-semibold text-gray-600;
+  @apply text-xl font-semibold text-gray-600 dark:text-[#ADB8C8];
   image {
     @apply max-h-full max-w-full;
   }
@@ -40,7 +40,7 @@ input#nav-toggle:checked ~ #nav-menu {
 }
 
 .nav-link {
-  @apply p-3 font-normal text-gray-600 transition hover:text-primary;
+  @apply p-3 font-normal text-gray-600 transition hover:text-primary dark:text-[#ADB8C8] dark:hover:text-primary-dark;
 }
 
 .nav-dropdown {
@@ -78,15 +78,15 @@ input#nav-toggle:checked ~ #nav-menu {
 
 .nav-pagination {
   .nav-arrow {
-    @apply rounded px-2 py-1 text-text transition-all duration-200 hover:bg-primary hover:bg-opacity-90 hover:text-body sm:py-2;
+    @apply rounded px-2 py-1 text-text transition-all duration-200 hover:bg-primary hover:bg-opacity-90 hover:text-body dark:bg-opacity-50 dark:text-text-dark dark:hover:bg-primary-dark dark:hover:bg-opacity-50 dark:hover:text-text-dark sm:py-2;
   }
   .nav-ellipsis {
-    @apply hidden rounded text-text transition-all sm:inline-block sm:py-2;
+    @apply hidden rounded text-text transition-all dark:text-text-dark sm:inline-block sm:py-2;
   }
   .nav-current {
-    @apply rounded bg-primary bg-opacity-90 px-3 py-1 text-white sm:px-4 sm:py-2;
+    @apply rounded bg-primary bg-opacity-90 px-3 py-1 text-white dark:bg-primary-dark dark:bg-opacity-50 dark:text-text-dark sm:px-4 sm:py-2;
   }
   .nav-pageindex {
-    @apply rounded px-3 py-1 text-text transition-all duration-200 hover:bg-primary hover:bg-opacity-90 hover:text-body sm:inline-block sm:px-4 sm:py-2;
+    @apply rounded px-3 py-1 text-text transition-all duration-200 hover:bg-primary hover:bg-opacity-90 hover:text-body dark:bg-opacity-50 dark:text-text-dark dark:hover:bg-primary-dark dark:hover:bg-opacity-50 dark:hover:text-text-dark sm:inline-block sm:px-4 sm:py-2;
   }
 }

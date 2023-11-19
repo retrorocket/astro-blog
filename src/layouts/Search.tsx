@@ -70,11 +70,11 @@ const HitCompoment = ({ hit }: HitProps) => {
   const slicedStr = tempSlicedStr.slice(0, -1 * tagLength) + removeTagStr;
 
   return (
-    <div className="card mb-12 break-words border-b border-border pb-[30px]">
+    <div className="card mb-12 break-words border-b border-border pb-[30px] dark:border-border-dark">
       <h3 className="h4 pb-[10px]">
         <a
           href={`${hit.slug}`}
-          className="block font-normal text-primary hover:underline"
+          className="block font-normal text-primary hover:underline dark:text-primary-dark"
         >
           {[
             ...parser.parseFromString(
@@ -84,7 +84,10 @@ const HitCompoment = ({ hit }: HitProps) => {
           ].map((child, i) => {
             if (child.nodeName.toLowerCase() === "mark")
               return (
-                <mark className="bg-primary bg-opacity-20 text-primary" key={i}>
+                <mark
+                  className="bg-primary bg-opacity-20 text-primary dark:text-primary-dark"
+                  key={i}
+                >
                   {child.textContent}
                 </mark>
               );
@@ -92,14 +95,17 @@ const HitCompoment = ({ hit }: HitProps) => {
           })}
         </a>
       </h3>
-      <p className="text-lg text-text">
+      <p className="text-lg text-text dark:text-text-dark">
         {searchResult >= 1 && <>... </>}
         {[
           ...parser.parseFromString(slicedStr, "text/html").body.childNodes,
         ].map((child, i) => {
           if (child.nodeName.toLowerCase() === "mark")
             return (
-              <mark className="bg-primary bg-opacity-20 text-text" key={i}>
+              <mark
+                className="bg-primary bg-opacity-20 text-text dark:text-text-dark"
+                key={i}
+              >
                 {child.textContent}
               </mark>
             );
@@ -108,7 +114,7 @@ const HitCompoment = ({ hit }: HitProps) => {
         <> ...</>
       </p>
       <a
-        className="mt-3 inline-block border-b border-primary py-1 text-[15px] leading-[22px] text-primary"
+        className="dark:border-primay-dark mt-3 inline-block border-b border-primary py-1 text-[15px] leading-[22px] text-primary dark:border-primary-dark dark:text-primary-dark"
         href={`${hit.slug}`}
       >
         Read More
@@ -142,7 +148,8 @@ const AlgoliaSearchBox = () => {
           autoFocus
           classNames={{
             root: "w-full items-center align-middle justify-between",
-            input: "w-[calc(100%-30px)] border-none focus:ring-transparent",
+            input:
+              "w-[calc(100%-30px)] border-none focus:ring-transparent dark:bg-black",
             submit: "hidden",
             reset: "hidden",
             submitIcon: "hidden",
