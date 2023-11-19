@@ -1,6 +1,7 @@
 html {
   @apply text-base;
   @apply scroll-pt-20;
+  @apply [color-scheme:light_dark];
 }
 
 body {
