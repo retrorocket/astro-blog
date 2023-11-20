@@ -114,7 +114,7 @@ const HitCompoment = ({ hit }: HitProps) => {
         <> ...</>
       </p>
       <a
-        className="dark:border-primay-dark mt-3 inline-block border-b border-primary py-1 text-[15px] leading-[22px] text-primary dark:border-primary-dark dark:text-primary-dark"
+        className="mt-3 inline-block border-b border-primary py-1 text-[15px] leading-[22px] text-primary dark:border-primary-dark dark:text-primary-dark"
         href={`${hit.slug}`}
       >
         Read More
