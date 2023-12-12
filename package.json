@@ -54,5 +54,10 @@
     "sass": "^1.69.5",
     "tailwind-bootstrap-grid": "^5.1.0",
     "typescript": "^5.3.3"
+  },
+  "pnpm": {
+    "overrides": {
+      "sharp": "^0.33.0"
+    }
   }
 }
