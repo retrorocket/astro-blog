@@ -95,7 +95,7 @@ export default (): AstroIntegration => ({
               frontmatter.postid ?? filename.split(/[.\/]/).slice(-2)[0];
             const imgpath = outputdir + postid + ".png";
             if (existsSync(imgpath)) {
-              console.log("\x1b[90m", imgpath + " :skip");
+              console.log("\x1b[90m", imgpath + ": skip");
               return;
             }
             return {
@@ -113,7 +113,7 @@ export default (): AstroIntegration => ({
         "base64",
       );
       const font = readFileSync(
-        path.resolve("./public/assets/fonts/NotoSansJP-Bold.ttf"),
+        path.resolve("./src/assets/fonts/NotoSansJP-Bold.ttf"),
       );
 
       if (!existsSync(outputdir)) {
