@@ -26,7 +26,7 @@ jobs:
           repository: retrorocket/blog-contents
           path: src/content/posts
           token: ${{ secrets.PERSONAL_TOKEN }}
-      - name: restore cache
+      - name: restore node_modules cache
         uses: actions/cache/restore@v3
         id: restore-cache
         with:
@@ -60,7 +60,7 @@ jobs:
           remote_port: ${{secrets.SSH_PORT}}
           remote_user: ${{secrets.SSH_USERNAME}}
           remote_key: ${{secrets.SSH_PRIVATE_KEY}}
-      - name: save cache
+      - name: save node_modules cache
         uses: actions/cache/save@v3
         id: cache
         with:
