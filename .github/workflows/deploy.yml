@@ -1,5 +1,5 @@
 # This is a basic workflow to help you get started with Actions
-name: deploy-webhook-triger
+name: deploy
 
 on:
   workflow_dispatch:
@@ -26,8 +26,6 @@ jobs:
           repository: retrorocket/blog-contents
           path: src/content/posts
           token: ${{ secrets.PERSONAL_TOKEN }}
-      - name: rename images
-        run: mv src/content/posts/_images src/assets/images
       - name: restore cache
         uses: actions/cache/restore@v3
         id: restore-cache
@@ -36,7 +34,7 @@ jobs:
           key: ${{ runner.os }}-modules-${{ hashFiles('node_modules/.modules.yaml', 'node_modules/.astro/assets/**') }}
           restore-keys: |
             ${{ runner.os }}-modules-
-      - name: restore image cache
+      - name: restore ogp image cache
         uses: actions/cache/restore@v3
         id: restore-image-cache
         with:
@@ -68,13 +66,9 @@ jobs:
         with:
           path: "node_modules"
           key: ${{ runner.os }}-modules-${{ hashFiles('node_modules/.modules.yaml', 'node_modules/.astro/assets/**') }}
-      - name: rename og-images
-        run: |
-          rm -rf public/og-images
-          mv dist/og-images public
       - name: save og-images cache
         uses: actions/cache/save@v3
         id: save-image-cache
         with:
-          path: "public/og-images"
-          key: ${{ runner.os }}-ogp-${{ hashFiles('public/og-images/**') }}
+          path: "dist/og-images"
+          key: ${{ runner.os }}-ogp-${{ hashFiles('dist/og-images/**') }}
