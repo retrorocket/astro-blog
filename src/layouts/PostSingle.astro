@@ -46,7 +46,7 @@ const { title, categories, date, modified_date } = post.data;
                   ></path></svg
                 >
                 <time datetime={dateFormat(date)} itemprop="datePublished"
-                  >{dateFormat(date, "DDD")}</time
+                  >{dateFormat(date, "yyyy-MM-dd")}</time
                 >
               </li>
               {
@@ -68,7 +68,7 @@ const { title, categories, date, modified_date } = post.data;
                       datetime={dateFormat(modified_date)}
                       itemprop="dateModified"
                     >
-                      {dateFormat(modified_date, "DDD")}
+                      {dateFormat(modified_date, "yyyy-MM-dd")}
                     </time>
                   </li>
                 )
