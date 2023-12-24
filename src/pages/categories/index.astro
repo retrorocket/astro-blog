@@ -45,7 +45,7 @@ const categories = await getTaxonomy("categories");
                           <li class="py-1">
                             <a href={`/archives/${detail.data.postid}`}>{detail.data.title}</a>
                             {" "}
-                            {dateFormat(detail.data.date, "yyyy-LL-dd")}
+                            {dateFormat(detail.data.date, "yyyy-MM-dd")}
                           </li>
                         );
                       })}
