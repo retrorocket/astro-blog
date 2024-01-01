@@ -7,14 +7,15 @@ import dateFormat from "@lib/utils/dateFormat";
 const posts = await getCollection("posts");
 const sortPostByDate: CollectionEntry<"posts">[] = sortByDate(posts);
 
-const splitedPosts = [];
+const tempSplitedPosts = [];
 for (let year = new Date().getFullYear(); year >= 2013; year--) {
-  splitedPosts.push(
+  tempSplitedPosts.push(
     sortPostByDate.filter(
       (post) => Number(dateFormat(post.data.date, "yyyy")) === year,
     ),
   );
 }
+const splitedPosts = tempSplitedPosts.filter((v) => v.length > 0);
 ---
 
 <Base title="記事一覧" canonical="archives">
