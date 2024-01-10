@@ -18,19 +18,20 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
-      - uses: pnpm/action-setup@v2
+          node-version: 21
+      - name: Use pnpm
+        uses: pnpm/action-setup@v2
         with:
           version: 8
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Checkout other repo
+      - name: Checkout src/content repo
         uses: actions/checkout@v4
         with:
           repository: retrorocket/blog-contents
           path: src/content/posts
           token: ${{ secrets.PERSONAL_TOKEN }}
-      - name: restore node_modules cache
+      - name: Restore node_modules cache
         uses: actions/cache/restore@v3
         id: restore-cache
         with:
@@ -38,7 +39,7 @@ jobs:
           key: ${{ runner.os }}-modules-${{ hashFiles('node_modules/.modules.yaml', 'node_modules/.astro/assets/**') }}
           restore-keys: |
             ${{ runner.os }}-modules-
-      - name: restore ogp image cache
+      - name: Restore ogp image cache
         uses: actions/cache/restore@v3
         id: restore-image-cache
         with:
@@ -64,13 +65,13 @@ jobs:
           remote_port: ${{secrets.SSH_PORT}}
           remote_user: ${{secrets.SSH_USERNAME}}
           remote_key: ${{secrets.SSH_PRIVATE_KEY}}
-      - name: save node_modules cache
+      - name: Save node_modules cache
         uses: actions/cache/save@v3
         id: cache
         with:
           path: "node_modules"
           key: ${{ runner.os }}-modules-${{ hashFiles('node_modules/.modules.yaml', 'node_modules/.astro/assets/**') }}
-      - name: save og-images cache
+      - name: Save og-images cache
         uses: actions/cache/save@v3
         id: save-image-cache
         with:
