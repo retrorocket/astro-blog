@@ -25,7 +25,8 @@ export default (): AstroIntegration => ({
                 .parse(content, { async: false })
                 .toString()
                 .replace(/<br>/g, "\n")
-                .replace(/__ais-highlight__/g, ""),
+                .replace(/__ais-highlight__/g, "")
+                .replace(/__\/ais-highlight__/g, ""),
               "text/html",
             ).documentElement.textContent ?? "";
           return {
