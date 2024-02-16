@@ -53,6 +53,7 @@ module.exports = {
         "theme-dark": theme.colors.default.theme_color.theme_dark,
         "text-dark": theme.colors.default.text_color.text_dark,
         "primary-dark": theme.colors.default.theme_color.primary_dark,
+        "secondary-dark": theme.colors.default.text_color.dark_secondary,
       },
       fontSize: {
         base: font_base + "px",
@@ -74,7 +75,7 @@ module.exports = {
         DEFAULT: {
           css: {
             code: {
-              backgroundColor: theme("colors.slate.200"),
+              backgroundColor: theme("colors.primary/15%"),
               borderRadius: theme("borderRadius.DEFAULT"),
               paddingTop: theme("spacing.[0.5]"),
               paddingBottom: theme("spacing.[0.5]"),
