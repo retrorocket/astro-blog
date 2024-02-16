@@ -25,7 +25,7 @@ input#nav-toggle:checked ~ #nav-menu {
 }
 
 .navbar-brand {
-  @apply text-xl font-semibold text-gray-600 dark:text-[#ADB8C8];
+  @apply text-xl font-semibold text-text dark:text-secondary-dark;
   image {
     @apply max-h-full max-w-full;
   }
@@ -40,7 +40,7 @@ input#nav-toggle:checked ~ #nav-menu {
 }
 
 .nav-link {
-  @apply p-3 font-normal text-gray-600 transition hover:text-primary dark:text-[#ADB8C8] dark:hover:text-primary-dark;
+  @apply p-3 font-normal text-text transition hover:text-primary dark:text-secondary-dark dark:hover:text-primary-dark;
 }
 
 .nav-dropdown {
@@ -56,12 +56,12 @@ input#nav-toggle:checked ~ #nav-menu {
 }
 
 .nav-dropdown-link {
-  @apply min-w-[150px] py-1 text-lg font-normal text-gray-600 transition hover:text-primary;
+  @apply min-w-[150px] py-1 text-lg font-normal text-text transition hover:text-primary;
 }
 
 // search style
 .search-icon {
-  @apply cursor-pointer p-2 text-xl text-gray-600 hover:text-primary;
+  @apply cursor-pointer p-2 text-xl text-text hover:text-primary;
 }
 .search-modal {
   @apply invisible absolute left-0 right-0 top-0 z-10 h-10 bg-white opacity-0 transition md:h-full;
