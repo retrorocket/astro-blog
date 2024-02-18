@@ -155,7 +155,7 @@
 .footer {
   &-copyright-text {
     a {
-      @apply text-primary hover:underline dark:text-primary-dark;
+      @apply text-primary underline dark:text-primary-dark;
     }
   }
 }
