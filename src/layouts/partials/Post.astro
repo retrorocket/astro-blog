@@ -37,7 +37,7 @@ const parser = new jsdom.window.DOMParser();
     <li>
       <ul>
         {
-          post.data.categories.map((category: string) => (
+          post.data.categories.sort().map((category: string) => (
             <li class="mr-2 inline-block">
               {/* prettier-ignore */}
               <a href={`/categories/${slugify(category)}`} class="category">{humanize(category)}</a>

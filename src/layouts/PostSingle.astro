@@ -52,7 +52,7 @@ const { title, categories, date, modified_date } = post.data;
               <li>
                 <ul>
                   {
-                    categories.map((category: string) => (
+                    categories.sort().map((category: string) => (
                       <li class="mr-2 inline-block">
                         {/* prettier-ignore */}
                         <a href={`/categories/${slugify(category)}`} class="category">{humanize(category)}</a>
