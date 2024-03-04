@@ -23,7 +23,7 @@
     "@types/react": "^18.2.61",
     "@types/react-dom": "^18.2.19",
     "algoliasearch": "^4.22.1",
-    "astro": "^4.4.8",
+    "astro": "^4.4.9",
     "astro-auto-import": "^0.4.2",
     "budoux": "^0.6.2",
     "clsx": "^2.1.0",
