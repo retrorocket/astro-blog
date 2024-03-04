@@ -30,4 +30,3 @@ pnpm-lock.yaml
 # ignore this project temp files
 .temp
 src/content/posts
-public/og-images
