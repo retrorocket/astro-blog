@@ -109,7 +109,7 @@ export default (): AstroIntegration => ({
         .filter((v) => v);
 
       const background = readFileSync(
-        path.resolve("./public/assets/images/og-image.png"),
+        path.resolve("./src/assets/images/og-image.png"),
         "base64",
       );
       const font = readFileSync(
