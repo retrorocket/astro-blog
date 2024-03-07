@@ -20,10 +20,10 @@
     "@astrojs/sitemap": "^3.1.1",
     "@astrojs/tailwind": "^5.1.0",
     "@microflash/rehype-figure": "^2.0.0",
-    "@types/react": "^18.2.63",
-    "@types/react-dom": "^18.2.19",
+    "@types/react": "^18.2.64",
+    "@types/react-dom": "^18.2.21",
     "algoliasearch": "^4.22.1",
-    "astro": "^4.4.11",
+    "astro": "^4.4.13",
     "astro-auto-import": "^0.4.2",
     "budoux": "^0.6.2",
     "clsx": "^2.1.0",
@@ -32,7 +32,7 @@
     "gray-matter": "^4.0.3",
     "jsdom": "^24.0.0",
     "luxon": "^3.4.4",
-    "marked": "^12.0.0",
+    "marked": "^12.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.0.1",
@@ -52,10 +52,10 @@
     "@types/luxon": "^3.4.2",
     "prettier": "^3.2.5",
     "prettier-plugin-astro": "^0.13.0",
-    "prettier-plugin-tailwindcss": "^0.5.11",
+    "prettier-plugin-tailwindcss": "^0.5.12",
     "sass": "^1.71.1",
     "tailwind-bootstrap-grid": "^5.1.0",
-    "typescript": "^5.3.3"
+    "typescript": "^5.4.2"
   },
   "pnpm": {
     "overrides": {
