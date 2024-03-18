@@ -47,7 +47,7 @@ export default defineConfig({
           customizeTOC: (toc) => {
             // 見出しが一つもない場合はTOCを生成しない
             if (!toc.children.some((child) => child.children.length > 0)) {
-              return null;
+              return false;
             }
             return toc;
           },
