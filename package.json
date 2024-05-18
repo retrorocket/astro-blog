@@ -13,22 +13,22 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/check": "^0.6.0",
+    "@astrojs/check": "^0.7.0",
     "@astrojs/mdx": "^3.0.0",
     "@astrojs/react": "^3.3.4",
-    "@astrojs/rss": "^4.0.5",
+    "@astrojs/rss": "^4.0.6",
     "@astrojs/sitemap": "^3.1.4",
     "@astrojs/tailwind": "^5.1.0",
     "@microflash/rehype-figure": "^2.1.0",
-    "@types/react": "^18.3.1",
+    "@types/react": "^18.3.2",
     "@types/react-dom": "^18.3.0",
     "algoliasearch": "^4.23.3",
-    "astro": "^4.8.2",
+    "astro": "^4.8.6",
     "astro-auto-import": "^0.4.2",
     "budoux": "^0.6.2",
     "clsx": "^2.1.1",
     "github-slugger": "^2.0.0",
-    "glob": "^10.3.14",
+    "glob": "^10.3.15",
     "gray-matter": "^4.0.3",
     "jsdom": "^24.0.0",
     "luxon": "^3.4.4",
@@ -36,16 +36,16 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-icons": "^5.2.1",
-    "react-instantsearch": "^7.8.0",
+    "react-instantsearch": "^7.8.1",
     "rehype-slug": "^6.0.0",
     "rehype-toc": "^3.0.2",
     "satori": "^0.10.13",
-    "sharp": "^0.33.3",
+    "sharp": "^0.33.4",
     "tailwindcss": "^3.4.3"
   },
   "devDependencies": {
     "@algolia/client-search": "^4.23.3",
-    "@astrojs/ts-plugin": "^1.7.0",
+    "@astrojs/ts-plugin": "^1.8.0",
     "@tailwindcss/forms": "^0.5.7",
     "@tailwindcss/typography": "^0.5.13",
     "@types/jsdom": "^21.1.6",
@@ -53,13 +53,8 @@
     "prettier": "^3.2.5",
     "prettier-plugin-astro": "^0.13.0",
     "prettier-plugin-tailwindcss": "^0.5.14",
-    "sass": "^1.77.1",
+    "sass": "^1.77.2",
     "tailwind-bootstrap-grid": "^5.1.0",
     "typescript": "^5.4.5"
-  },
-  "pnpm": {
-    "overrides": {
-      "sharp": "^0.33.3"
-    }
   }
 }
