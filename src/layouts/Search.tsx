@@ -117,7 +117,7 @@ const HitCompoment = ({ hit }: HitProps) => {
         className="mt-3 inline-block border-b border-primary py-1 text-[15px] leading-[22px] text-primary dark:border-primary-dark dark:text-primary-dark"
         href={`${hit.slug}`}
       >
-        <span className="sr-only">{hit.title}の</span>続きを読む
+        <span className="sr-only">この記事の</span>続きを読む
       </a>
     </div>
   );
