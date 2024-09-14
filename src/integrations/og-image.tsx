@@ -1,12 +1,13 @@
 import satori from "satori";
 import sharp from "sharp";
-import { readFileSync, writeFileSync, mkdir, existsSync } from "fs";
+import { readFileSync, mkdir, existsSync } from "fs";
 import type { AstroIntegration } from "astro";
 import { globSync } from "glob";
 import grayMatter from "gray-matter";
 import path from "path";
 import { fileURLToPath } from "url";
 import { loadDefaultJapaneseParser } from "budoux";
+import { Buffer } from "node:buffer";
 
 const parser = loadDefaultJapaneseParser();
 
@@ -20,7 +21,8 @@ const generate = async (
     background: string;
     font: Buffer;
   },
-): Promise<Buffer> => {
+  filename: string,
+): Promise<void> => {
   const words = parser.parse(title).map((word) => {
     // 分かち書きされない文字を分割する
     return word.split(/(?<=(?:・|,|スマートフォンで|】|::DateManip))/g);
@@ -73,8 +75,7 @@ const generate = async (
       ],
     },
   );
-  const png = await sharp(Buffer.from(svg)).png().toBuffer();
-  return png;
+  await sharp(Buffer.from(svg)).png().toFile(filename);
 };
 
 export default (): AstroIntegration => ({
@@ -122,13 +123,15 @@ export default (): AstroIntegration => ({
         });
       }
       for (const attr of data) {
-        const buffer = await generate(attr.title, {
-          background: `data:image/png;base64,${background}`,
-          font,
-        });
         const filename = outputdir + attr.postid + ".png";
-
-        writeFileSync(filename, buffer);
+        await generate(
+          attr.title,
+          {
+            background: `data:image/png;base64,${background}`,
+            font,
+          },
+          filename,
+        );
       }
     },
   },

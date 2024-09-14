@@ -28,8 +28,8 @@ const plainifyTitle = plainify(
   meta_title
     ? meta_title
     : title
-    ? title + " - " + config.site.title
-    : config.site.title,
+      ? title + " - " + config.site.title
+      : config.site.title
 );
 
 const jsdom = new JSDOM();
@@ -173,16 +173,9 @@ const excerptContent = excerpt
     <!-- og-description -->
     <meta property="og:description" content={excerptContent} />
     <meta property="og:type" content="website" />
-    {
-      /* トレイリングスラッシュが正しく削除されないバグがあるため自分で削除する
-    https://github.com/withastro/astro/issues/5630 */
-    }
     <meta
       property="og:url"
-      content={`${config.site.base_url}/${Astro.url.pathname.replace(
-        /(?:\/$|^\/)/g,
-        "",
-      )}`}
+      content={`${config.site.base_url}${Astro.url.pathname}`}
     />
 
     <!-- twitter-title -->
