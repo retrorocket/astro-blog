@@ -36,17 +36,21 @@ jobs:
         id: restore-cache
         with:
           path: "node_modules"
-          key: ${{ runner.os }}-modules-
+          key: ${{ runner.os }}-modules-${{ hashFiles('node_modules/.modules.yaml', 'node_modules/.astro/assets/**') }}
           restore-keys: |
             ${{ runner.os }}-modules-
       - name: Restore ogp image cache
         uses: actions/cache/restore@v4
         id: restore-image-cache
         with:
-          path: "public/og-images"
-          key: ${{ runner.os }}-ogp-
+          path: "dist/og-images"
+          key: ${{ runner.os }}-ogp-${{ hashFiles('dist/og-images/**') }}
           restore-keys: |
             ${{ runner.os }}-ogp-
+      - name: Move restored ogp image cache
+        if: steps.restore-image-cache.outputs.cache-hit != 'true'
+        run: mv dist/og-images/* public/og-images
+
       - name: Install packages
         run: pnpm install
       - name: Run build
