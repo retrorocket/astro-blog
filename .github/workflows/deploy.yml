@@ -20,7 +20,7 @@ jobs:
         with:
           node-version: 20
       - name: Use pnpm
-        uses: pnpm/action-setup@v2
+        uses: pnpm/action-setup@v4
         with:
           version: 8
       - name: Checkout
@@ -40,7 +40,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-modules-
       - name: Restore ogp image cache
-        uses: actions/cache/restore@v3
+        uses: actions/cache/restore@v4
         id: restore-image-cache
         with:
           path: "public/og-images"
@@ -66,13 +66,13 @@ jobs:
           remote_user: ${{secrets.SSH_USERNAME}}
           remote_key: ${{secrets.SSH_PRIVATE_KEY}}
       - name: Save node_modules cache
-        uses: actions/cache/save@v3
+        uses: actions/cache/save@v4
         id: cache
         with:
           path: "node_modules"
           key: ${{ runner.os }}-modules-${{ hashFiles('node_modules/.modules.yaml', 'node_modules/.astro/assets/**') }}
       - name: Save og-images cache
-        uses: actions/cache/save@v3
+        uses: actions/cache/save@v4
         id: save-image-cache
         with:
           path: "dist/og-images"
