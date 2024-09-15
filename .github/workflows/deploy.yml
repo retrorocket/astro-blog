@@ -36,7 +36,7 @@ jobs:
         id: restore-cache
         with:
           path: "node_modules"
-          key: ${{ runner.os }}-modules-${{ hashFiles('node_modules/.modules.yaml', 'node_modules/.astro/assets/**') }}
+          key: ${{ runner.os }}-modules-
           restore-keys: |
             ${{ runner.os }}-modules-
       - name: Restore ogp image cache
@@ -44,7 +44,7 @@ jobs:
         id: restore-image-cache
         with:
           path: "public/og-images"
-          key: ${{ runner.os }}-ogp-${{ hashFiles('public/og-images/**') }}
+          key: ${{ runner.os }}-ogp-
           restore-keys: |
             ${{ runner.os }}-ogp-
       - name: Install packages
