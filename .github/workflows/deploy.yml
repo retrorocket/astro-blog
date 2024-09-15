@@ -22,7 +22,7 @@ jobs:
       - name: Use pnpm
         uses: pnpm/action-setup@v4
         with:
-          version: 8
+          version: 9
       - name: Checkout
         uses: actions/checkout@v4
       - name: Checkout src/content repo
@@ -32,7 +32,7 @@ jobs:
           path: src/content/posts
           token: ${{ secrets.PERSONAL_TOKEN }}
       - name: Restore node_modules cache
-        uses: actions/cache/restore@v3
+        uses: actions/cache/restore@v4
         id: restore-cache
         with:
           path: "node_modules"
