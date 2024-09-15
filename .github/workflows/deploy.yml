@@ -49,7 +49,9 @@ jobs:
             ${{ runner.os }}-ogp-
       - name: Move restored ogp image cache
         if: steps.restore-image-cache.outputs.cache-hit != 'true'
-        run: mv dist/og-images/* public/og-images
+        run: |
+          mv dist/og-images/* public/og-images
+          rm -rf dist
 
       - name: Install packages
         run: pnpm install
