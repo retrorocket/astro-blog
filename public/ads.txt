@@ -2,7 +2,7 @@ google.com, pub-9043961430295462, DIRECT, f08c47fec0942fa0
 OWNERDOMAIN=retrorocket.biz
 MANAGERDOMAIN=themoneytizer.com
 themoneytizer.com,94879,DIRECT
-smartadserver.com, 1097, DIRECT
+smartadserver.com, 1097, DIRECT, 060d053dcf45cbf3
 adcolony.com, 496220845654deec, RESELLER, 1ad675c9de6b5176
 appads.in, 107606, RESELLER
 rubiconproject.com, 24600, RESELLER, 0bfd66d529a55807
