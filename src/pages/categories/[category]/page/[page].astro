@@ -44,7 +44,7 @@ const humanizedCategory = humanize(category ?? "");
   <PostList>
     <h1 class="h2 pb-10">
       Posts related to <span class="text-primary">{humanizedCategory}</span>
-       category
+      category
     </h1>
     {page.data.map((post) => <Post post={post} />)}
     <Pagination

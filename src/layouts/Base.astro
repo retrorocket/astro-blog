@@ -29,7 +29,7 @@ const plainifyTitle = plainify(
     ? meta_title
     : title
       ? title + " - " + config.site.title
-      : config.site.title
+      : config.site.title,
 );
 
 const jsdom = new JSDOM();

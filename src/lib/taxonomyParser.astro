@@ -4,7 +4,7 @@ import { slugify } from "./utils/textConverter";
 
 // get all taxonomies from frontmatter
 export const getTaxonomy = async (
-  name: keyof CollectionEntry<"posts">["data"]
+  name: keyof CollectionEntry<"posts">["data"],
 ) => {
   const singlePages = await getCollection("posts");
   const taxonomyPages = singlePages.map((page) => page.data[name] as string[]);

@@ -78,15 +78,15 @@ input#nav-toggle:checked ~ #nav-menu {
 
 .nav-pagination {
   .nav-arrow {
-    @apply rounded px-2 py-1 text-text transition-all duration-200 hover:bg-primary hover:bg-opacity-90 hover:text-body dark:bg-opacity-50 dark:text-text-dark dark:hover:bg-primary-dark dark:hover:bg-opacity-50 dark:hover:text-text-dark sm:py-2;
+    @apply rounded px-2 py-1 text-text transition-all duration-200 hover:bg-primary hover:bg-opacity-90 hover:text-body sm:py-2 dark:bg-opacity-50 dark:text-text-dark dark:hover:bg-primary-dark dark:hover:bg-opacity-50 dark:hover:text-text-dark;
   }
   .nav-ellipsis {
-    @apply hidden rounded text-text transition-all dark:text-text-dark sm:inline-block sm:py-2;
+    @apply hidden rounded text-text transition-all sm:inline-block sm:py-2 dark:text-text-dark;
   }
   .nav-current {
-    @apply rounded bg-primary bg-opacity-90 px-3 py-1 text-white dark:bg-primary-dark dark:bg-opacity-50 dark:text-text-dark sm:px-4 sm:py-2;
+    @apply rounded bg-primary bg-opacity-90 px-3 py-1 text-white sm:px-4 sm:py-2 dark:bg-primary-dark dark:bg-opacity-50 dark:text-text-dark;
   }
   .nav-pageindex {
-    @apply rounded px-3 py-1 text-text transition-all duration-200 hover:bg-primary hover:bg-opacity-90 hover:text-body dark:bg-opacity-50 dark:text-text-dark dark:hover:bg-primary-dark dark:hover:bg-opacity-50 dark:hover:text-text-dark sm:inline-block sm:px-4 sm:py-2;
+    @apply rounded px-3 py-1 text-text transition-all duration-200 hover:bg-primary hover:bg-opacity-90 hover:text-body sm:inline-block sm:px-4 sm:py-2 dark:bg-opacity-50 dark:text-text-dark dark:hover:bg-primary-dark dark:hover:bg-opacity-50 dark:hover:text-text-dark;
   }
 }

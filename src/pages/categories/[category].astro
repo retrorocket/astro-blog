@@ -39,7 +39,7 @@ const totalPages = Math.ceil(filterByTags.length / pagination);
   <PostList>
     <h1 class="h2 pb-10">
       Posts related to <span class="text-primary">{humanizedCategory}</span>
-       category
+      category
     </h1>
     {filterByTags.slice(0, pagination).map((post) => <Post post={post} />)}
     <Pagination
