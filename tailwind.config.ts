@@ -1,4 +1,5 @@
-const theme = require("./src/config/theme.json");
+import type { Config } from "tailwindcss";
+import theme from "./src/config/theme.json";
 
 let font_base = Number(theme.fonts.font_size.base.replace("px", ""));
 let font_scale = Number(theme.fonts.font_size.scale);
@@ -8,19 +9,11 @@ let h4 = h5 * font_scale;
 let h3 = h4 * font_scale;
 let h2 = h3 * font_scale;
 let h1 = h2 * font_scale;
-let fontPrimary, fontPrimaryType, fontSecondary, fontSecondaryType;
-if (theme.fonts.font_family.primary) {
-  fontPrimary = theme.fonts.font_family.primary
-    .replace(/\+/g, " ")
-    .replace(/:[ital,]*[ital@]*[wght@]*[0-9,;]+/gi, "");
-  fontPrimaryType = theme.fonts.font_family.primary_type;
-}
-if (theme.fonts.font_family.secondary) {
-  fontSecondary = theme.fonts.font_family.secondary
-    .replace(/\+/g, " ")
-    .replace(/:[ital,]*[ital@]*[wght@]*[0-9,;]+/gi, "");
-  fontSecondaryType = theme.fonts.font_family.secondary_type;
-}
+
+const fontPrimary = theme.fonts.font_family.primary
+  .replace(/\+/g, " ")
+  .replace(/:[ital,]*[ital@]*[wght@]*[0-9,;]+/gi, "");
+const fontPrimaryType = theme.fonts.font_family.primary_type;
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -69,9 +62,8 @@ module.exports = {
       },
       fontFamily: {
         primary: [fontPrimary, fontPrimaryType],
-        secondary: [fontSecondary, fontSecondaryType],
       },
-      typography: (theme) => ({
+      typography: (theme: any) => ({
         DEFAULT: {
           css: {
             code: {
@@ -106,4 +98,4 @@ module.exports = {
     require("@tailwindcss/forms"),
     require("tailwind-bootstrap-grid")({ generateContainer: false }),
   ],
-};
+} satisfies Config;
