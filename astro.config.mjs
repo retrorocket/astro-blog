@@ -60,4 +60,13 @@ export default defineConfig({
     },
     extendDefaultPlugins: true,
   },
+  vite: {
+    css: {
+      preprocessorOptions: {
+        scss: {
+          api: "modern-compiler",
+        },
+      },
+    },
+  },
 });
