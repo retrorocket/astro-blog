@@ -102,7 +102,7 @@
   @apply prose-hr:border-border;
   @apply prose-p:text-base prose-p:text-text dark:prose-p:text-text-dark;
   @apply prose-blockquote:border-primary prose-blockquote:bg-stone-200 prose-blockquote:bg-opacity-40 prose-blockquote:bg-[url('/assets/images/quote.svg')] prose-blockquote:bg-[right_0.5rem_bottom_0.5rem] prose-blockquote:bg-no-repeat prose-blockquote:px-4 prose-blockquote:py-1 dark:prose-blockquote:border-[#446189] dark:prose-blockquote:bg-[#262525];
-  @apply prose-strong:text-dark dark:prose-strong:text-light;
+  @apply dark:prose-strong:text-text-dark-light prose-strong:text-dark;
   @apply prose-a:text-primary prose-a:no-underline hover:prose-a:underline dark:prose-a:text-primary-dark;
   @apply prose-table:overflow-hidden prose-table:border prose-table:border-border dark:prose-table:border-border-dark;
   @apply prose-thead:border-border prose-thead:bg-theme-light prose-th:px-4 prose-th:py-4 prose-th:text-dark dark:prose-thead:border-border-dark dark:prose-thead:bg-theme-dark dark:prose-th:text-light;

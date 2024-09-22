@@ -47,6 +47,7 @@ module.exports = {
         "text-dark": theme.colors.default.text_color.text_dark,
         "primary-dark": theme.colors.default.theme_color.primary_dark,
         "secondary-dark": theme.colors.default.text_color.dark_secondary,
+        "text-dark-light": theme.colors.default.text_color.text_dark_light,
       },
       fontSize: {
         base: font_base + "px",
@@ -80,6 +81,7 @@ module.exports = {
             },
             "code::after": {
               content: "none",
+              border: "none",
             },
           },
         },

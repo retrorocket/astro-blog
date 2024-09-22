@@ -16,7 +16,8 @@
         "dark": "#222",
         "light": "#999",
         "text_dark": "#b5b5b5",
-        "dark_secondary": "#adb8c8"
+        "dark_secondary": "#adb8c8",
+        "text_dark_light": "#ddd"
       }
     }
   },
