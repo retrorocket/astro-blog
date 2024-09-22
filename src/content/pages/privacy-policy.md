@@ -22,7 +22,7 @@ show_toc: true
 ## 広告の配信について
 
 当サイトは第三者配信の広告サービス「Google Adsense
-グーグルアドセンス」を利用しています。
+グーグルアドセンス」、「The Moneytizer」を利用しています。
 広告配信事業者は、ユーザーの興味に応じた広告を表示するために Cookie（クッキー）を使用することがあります。
 Cookie（クッキー）を無効にする設定および Google アドセンスに関する詳細は
 [広告 – ポリシーと規約 – Google](https://policies.google.com/technologies/ads?hl=ja)
