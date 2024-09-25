@@ -1,18 +1,25 @@
-@use "sass:meta";
+@use "base";
+@use "components";
+@use "navigation";
+@use "buttons";
+@use "utilities";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-  @include meta.load-css("base");
+  @include base.modify;
+  @include base.headings;
 }
 
 @layer components {
-  @include meta.load-css("components");
-  @include meta.load-css("navigation");
-  @include meta.load-css("buttons");
+  @include components.parts;
+  @include components.article;
+  @include navigation.navigation;
+  @include buttons.modify;
 }
 
 @layer utilities {
-  @include meta.load-css("utilities");
+  @include utilities.modify;
 }

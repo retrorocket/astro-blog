@@ -1,92 +1,94 @@
-// navbar toggler
-input#nav-toggle:checked ~ label#show-button {
-  @apply hidden;
-}
-
-input#nav-toggle:checked ~ label#hide-button {
-  @apply flex md:hidden;
-}
-
-input#nav-toggle:checked ~ #nav-menu {
-  @apply block md:flex;
-}
-
-.header {
-  @apply left-0 top-0 z-40 w-full py-5 transition-all duration-300 md:py-3.5;
-
-  &-sticky {
-    @apply bg-body;
+@mixin navigation {
+  // navbar toggler
+  input#nav-toggle:checked ~ label#show-button {
+    @apply hidden;
   }
-}
 
-// navbar items
-.navbar {
-  @apply relative flex flex-wrap items-center justify-between;
-}
-
-.navbar-brand {
-  @apply text-xl font-semibold text-text dark:text-secondary-dark;
-  image {
-    @apply max-h-full max-w-full;
+  input#nav-toggle:checked ~ label#hide-button {
+    @apply flex md:hidden;
   }
-}
 
-.navbar-nav {
-  @apply text-center md:text-left;
-}
-
-.nav-item {
-  @apply mx-1;
-}
-
-.nav-link {
-  @apply p-3 font-normal text-text transition hover:text-primary dark:text-secondary-dark dark:hover:text-primary-dark;
-}
-
-.nav-dropdown {
-  @apply mr-0;
-}
-
-.nav-dropdown-list {
-  @apply z-10 rounded-lg bg-white p-4;
-}
-
-.nav-dropdown-item {
-  @apply mb-1;
-}
-
-.nav-dropdown-link {
-  @apply min-w-[150px] py-1 text-lg font-normal text-text transition hover:text-primary;
-}
-
-// search style
-.search-icon {
-  @apply cursor-pointer p-2 text-xl text-text hover:text-primary;
-}
-.search-modal {
-  @apply invisible absolute left-0 right-0 top-0 z-10 h-10 bg-white opacity-0 transition md:h-full;
-  .form-input {
-    @apply h-full w-full border-0 text-lg;
+  input#nav-toggle:checked ~ #nav-menu {
+    @apply block md:flex;
   }
-  .search-close {
-    @apply absolute right-2 top-1/2 -translate-y-1/2 p-3 text-h4;
-  }
-  &.open {
-    @apply visible opacity-100;
-  }
-}
 
-.nav-pagination {
-  .nav-arrow {
-    @apply rounded px-2 py-1 text-text transition-all duration-200 hover:bg-primary hover:bg-opacity-90 hover:text-body sm:py-2 dark:bg-opacity-50 dark:text-text-dark dark:hover:bg-primary-dark dark:hover:bg-opacity-50 dark:hover:text-text-dark;
+  .header {
+    @apply left-0 top-0 z-40 w-full py-5 transition-all duration-300 md:py-3.5;
+
+    &-sticky {
+      @apply bg-body;
+    }
   }
-  .nav-ellipsis {
-    @apply hidden rounded text-text transition-all sm:inline-block sm:py-2 dark:text-text-dark;
+
+  // navbar items
+  .navbar {
+    @apply relative flex flex-wrap items-center justify-between;
   }
-  .nav-current {
-    @apply rounded bg-primary bg-opacity-90 px-3 py-1 text-white sm:px-4 sm:py-2 dark:bg-primary-dark dark:bg-opacity-50 dark:text-text-dark;
+
+  .navbar-brand {
+    @apply text-xl font-semibold text-text dark:text-secondary-dark;
+    image {
+      @apply max-h-full max-w-full;
+    }
   }
-  .nav-pageindex {
-    @apply rounded px-3 py-1 text-text transition-all duration-200 hover:bg-primary hover:bg-opacity-90 hover:text-body sm:inline-block sm:px-4 sm:py-2 dark:bg-opacity-50 dark:text-text-dark dark:hover:bg-primary-dark dark:hover:bg-opacity-50 dark:hover:text-text-dark;
+
+  .navbar-nav {
+    @apply text-center md:text-left;
+  }
+
+  .nav-item {
+    @apply mx-1;
+  }
+
+  .nav-link {
+    @apply p-3 font-normal text-text transition hover:text-primary dark:text-secondary-dark dark:hover:text-primary-dark;
+  }
+
+  .nav-dropdown {
+    @apply mr-0;
+  }
+
+  .nav-dropdown-list {
+    @apply z-10 rounded-lg bg-white p-4;
+  }
+
+  .nav-dropdown-item {
+    @apply mb-1;
+  }
+
+  .nav-dropdown-link {
+    @apply min-w-[150px] py-1 text-lg font-normal text-text transition hover:text-primary;
+  }
+
+  // search style
+  .search-icon {
+    @apply cursor-pointer p-2 text-xl text-text hover:text-primary;
+  }
+  .search-modal {
+    @apply invisible absolute left-0 right-0 top-0 z-10 h-10 bg-white opacity-0 transition md:h-full;
+    .form-input {
+      @apply h-full w-full border-0 text-lg;
+    }
+    .search-close {
+      @apply absolute right-2 top-1/2 -translate-y-1/2 p-3 text-h4;
+    }
+    &.open {
+      @apply visible opacity-100;
+    }
+  }
+
+  .nav-pagination {
+    .nav-arrow {
+      @apply rounded px-2 py-1 text-text transition-all duration-200 hover:bg-primary hover:bg-opacity-90 hover:text-body sm:py-2 dark:bg-opacity-50 dark:text-text-dark dark:hover:bg-primary-dark dark:hover:bg-opacity-50 dark:hover:text-text-dark;
+    }
+    .nav-ellipsis {
+      @apply hidden rounded text-text transition-all sm:inline-block sm:py-2 dark:text-text-dark;
+    }
+    .nav-current {
+      @apply rounded bg-primary bg-opacity-90 px-3 py-1 text-white sm:px-4 sm:py-2 dark:bg-primary-dark dark:bg-opacity-50 dark:text-text-dark;
+    }
+    .nav-pageindex {
+      @apply rounded px-3 py-1 text-text transition-all duration-200 hover:bg-primary hover:bg-opacity-90 hover:text-body sm:inline-block sm:px-4 sm:py-2 dark:bg-opacity-50 dark:text-text-dark dark:hover:bg-primary-dark dark:hover:bg-opacity-50 dark:hover:text-text-dark;
+    }
   }
 }
