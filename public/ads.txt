@@ -1493,3 +1493,6 @@ e-planning.net,ea9874674191f1ff,reseller,c1ba615865ed87b2
 themediagrid.com,b8n9yh,reseller,35d5010d7789b49d
 33across.com,001pg00000lomyviaf,reseller,bbea06d9c4d2853c
 richaudience.com,x1vkpagd9i,reseller
+video.unrulymedia.com,2444764291,RESELLER
+krushmedia.com,AJxF6R572a9M6CaTvK,RESELLER
+motorik.io,100463,RESELLER
