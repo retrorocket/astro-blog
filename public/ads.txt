@@ -1461,7 +1461,7 @@ adyoulike.com,0993d3fa8116265a85dd6a6fd1d3fa75,direct
 lijit.com,465767,direct,fafdf38b16bf6b2b
 33across.com,001pg00000kznfjiav,direct,bbea06d9c4d2853c
 admanmedia.com,2212,direct
-﻿viously.com,1e13c189-44d7-5aaa-be2c-c33960bb6c1c,reseller
+viously.com,1e13c189-44d7-5aaa-be2c-c33960bb6c1c,reseller
 amxrtb.com,105199710,reseller
 improvedigital.com,2154,reseller
 smartadserver.com,4163,reseller
@@ -1478,7 +1478,7 @@ lijit.com,447882,reseller,fafdf38b16bf6b2b
 triplelift.com,9267,reseller,6c33edb13117fd86
 video.unrulymedia.com,3900851377692564083,reseller,a670c89d4a324e47
 appnexus.com,10450,reseller,f5ab79cb980f11d1
-﻿flashb.id,7ea636d8-701f-5b93-9d03-0e5cd43bc8fa,direct
+flashb.id,7ea636d8-701f-5b93-9d03-0e5cd43bc8fa,direct
 bliink.io,a8fba9ee-1468-11ef-898c-4a255a5c44b8,reseller
 richaudience.com,i4vbjkms0b,reseller
 risecodes.com,65b9125633dab2000102902c,reseller
