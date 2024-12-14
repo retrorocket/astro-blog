@@ -1,5 +1,5 @@
 import config from "@config/config.json";
-import algoliasearch, { type SearchClient } from "algoliasearch/lite";
+import { liteClient as algoliasearch } from "algoliasearch/lite";
 import {
   InstantSearch,
   SearchBox,
@@ -8,32 +8,17 @@ import {
   type SearchBoxProps,
 } from "react-instantsearch";
 import React from "react";
-import type {
-  MultipleQueriesQuery,
-  MultipleQueriesResponse,
-  Hit as AlgoliaHit,
-} from "@algolia/client-search";
-
-type HitProps = {
-  hit: AlgoliaHit<{
-    content: string;
-    slug: string;
-    title: string;
-  }>;
-};
 
 const algoliaClient = algoliasearch(
   import.meta.env.PUBLIC_ALGOLIA_APPID,
   import.meta.env.PUBLIC_ALGOLIA_APIKEY,
 );
 
-const searchClient: SearchClient = {
+const searchClient = {
   ...algoliaClient,
-  search: <SearchResponse,>(requests: Readonly<MultipleQueriesQuery[]>) => {
-    if (
-      requests.every(({ params }) => !params?.query || params?.query.length < 2)
-    ) {
-      return Promise.resolve<MultipleQueriesResponse<SearchResponse>>({
+  search(requests: any) {
+    if (requests.every(({ params }: any) => !params.query)) {
+      return Promise.resolve({
         results: requests.map(() => ({
           hits: [],
           nbHits: 0,
@@ -41,7 +26,7 @@ const searchClient: SearchClient = {
           page: 0,
           processingTimeMS: 0,
           hitsPerPage: 0,
-          exhaustiveNbHits: true,
+          exhaustiveNbHits: false,
           query: "",
           params: "",
         })),
@@ -56,7 +41,8 @@ const { summary_length } = config.settings;
 const tagLength = 6;
 const sliceLength = 30;
 
-const HitCompoment = ({ hit }: HitProps) => {
+// FIXME JavaScript Client v5 対応。型の定義がおかしいので全部anyにしている
+const HitCompoment = ({ hit }: any) => {
   const parser = new DOMParser();
 
   // ヒットしたキーワードの周辺の文字列を切り出す

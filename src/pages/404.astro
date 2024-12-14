@@ -3,15 +3,16 @@ import Base from "@layouts/Base.astro";
 import { markdownify } from "@lib/utils/textConverter";
 import { getEntry } from "astro:content";
 const entry = await getEntry("pages", "404");
+if (entry === undefined) return;
 const { Content } = await entry.render();
 ---
 
-<Base title={entry.data.title} noads={true}>
+<Base title={entry && entry.data.title} noads={true}>
   <section class="section">
     <div class="container">
       <div class="flex h-[40vh] items-center justify-center">
         <div class="toc-hidden text-center">
-          <h1 class="mb-4" set:html={markdownify(entry.data.title)} />
+          <h1 class="mb-4" set:html={entry && markdownify(entry.data.title)} />
           <Content />
         </div>
       </div>
