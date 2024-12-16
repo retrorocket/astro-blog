@@ -126,6 +126,9 @@ const AlgoliaSearchBox = () => {
       searchClient={searchClient}
       indexName="blog_retrorocket"
       stalledSearchDelay={10}
+      future={{
+        preserveSharedStateOnUnmount: true,
+      }}
     >
       <div className="form-input mb-[30px] flex items-center justify-between align-middle">
         <SearchBox

@@ -9,6 +9,13 @@ import type { AstroIntegration } from "astro";
 const jsdom = new JSDOM();
 const parser = new jsdom.window.DOMParser();
 
+interface RegisterRecord extends Record<string, string> {
+  objectID: string;
+  slug: string;
+  title: string;
+  content: string;
+}
+
 export default (): AstroIntegration => ({
   name: "algolia-queries",
   hooks: {
@@ -46,7 +53,7 @@ export default (): AstroIntegration => ({
             console.log(e.message);
           }
         })
-        .filter((v): v is any => v != null);
+        .filter((v): v is RegisterRecord => v != null);
 
       const client = algoliasearch(
         process.env.PUBLIC_ALGOLIA_APPID ?? "",
