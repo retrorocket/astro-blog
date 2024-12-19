@@ -9,7 +9,7 @@ import type { AstroIntegration } from "astro";
 const jsdom = new JSDOM();
 const parser = new jsdom.window.DOMParser();
 
-interface RegisterRecord extends Record<string, string> {
+interface BlogRecord extends Record<string, string> {
   objectID: string;
   slug: string;
   title: string;
@@ -53,7 +53,7 @@ export default (): AstroIntegration => ({
             console.log(e.message);
           }
         })
-        .filter((v): v is RegisterRecord => v != null);
+        .filter((v): v is BlogRecord => v != null);
 
       const client = algoliasearch(
         process.env.PUBLIC_ALGOLIA_APPID ?? "",
