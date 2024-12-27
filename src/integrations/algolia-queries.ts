@@ -6,15 +6,15 @@ import { readFileSync } from "fs";
 import { globSync } from "glob";
 import type { AstroIntegration } from "astro";
 
-const jsdom = new JSDOM();
-const parser = new jsdom.window.DOMParser();
-
-interface BlogRecord extends Record<string, string> {
+type BlogRecord = {
   objectID: string;
   slug: string;
   title: string;
   content: string;
-}
+};
+
+const jsdom = new JSDOM();
+const parser = new jsdom.window.DOMParser();
 
 export default (): AstroIntegration => ({
   name: "algolia-queries",

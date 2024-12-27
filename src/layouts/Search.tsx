@@ -14,6 +14,7 @@ const algoliaClient = algoliasearch(
   import.meta.env.PUBLIC_ALGOLIA_APIKEY,
 );
 
+// FIXME JavaScript Client v5 対応。SearchClientの定義がおかしいためanyにしている
 const searchClient = {
   ...algoliaClient,
   search(requests: any) {
@@ -41,7 +42,8 @@ const { summary_length } = config.settings;
 const tagLength = 6;
 const sliceLength = 30;
 
-// FIXME JavaScript Client v5 対応。型の定義がおかしいので全部anyにしている
+// FIXME JavaScript Client v5 対応。SearchResponseの定義がおかしいので全部anyにしている
+// https://github.com/algolia/algoliasearch-client-javascript/issues/1571
 const HitCompoment = ({ hit }: any) => {
   const parser = new DOMParser();
 
