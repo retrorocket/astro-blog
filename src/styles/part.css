@@ -1,0 +1,37 @@
+/* navbar toggler */
+input#nav-toggle:checked ~ label#show-button {
+  @apply hidden;
+}
+
+input#nav-toggle:checked ~ label#hide-button {
+  @apply flex md:hidden;
+}
+
+input#nav-toggle:checked ~ #nav-menu {
+  @apply block md:flex;
+}
+
+/* form style */
+.form-input,
+.form-textarea {
+  @apply border-border focus:border-primary dark:border-dark dark:focus:border-primary-dark focus:ring-transparent dark:bg-black;
+}
+.form-input:has(input:focus) {
+  @apply border-primary dark:border-primary-dark;
+}
+/* form style */
+.form-inputs * {
+  @apply mb-5 leading-10;
+}
+
+.form-input {
+  @apply border-border placeholder:text-text h-[50px] rounded-md border;
+}
+
+.header {
+  @apply top-0 left-0 z-40 w-full py-5 transition-all duration-300 md:py-3.5;
+
+  &-sticky {
+    @apply bg-body;
+  }
+}

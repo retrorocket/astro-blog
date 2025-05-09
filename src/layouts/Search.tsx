@@ -73,7 +73,7 @@ const HitCompoment = ({ hit }: any) => {
             if (child.nodeName.toLowerCase() === "mark")
               return (
                 <mark
-                  className="bg-primary bg-opacity-20 text-primary dark:text-primary-dark"
+                  className="bg-primary/20 text-primary dark:text-primary-dark"
                   key={i}
                 >
                   {child.textContent}
@@ -91,7 +91,7 @@ const HitCompoment = ({ hit }: any) => {
           if (child.nodeName.toLowerCase() === "mark")
             return (
               <mark
-                className="bg-primary bg-opacity-20 text-text dark:text-text-dark"
+                className="bg-primary/20 text-text dark:text-text-dark"
                 key={i}
               >
                 {child.textContent}

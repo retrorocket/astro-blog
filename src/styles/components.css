@@ -1,0 +1,141 @@
+/* section style */
+.section {
+  @apply pt-20 pb-12;
+}
+
+/* container */
+.container {
+  @apply mx-auto max-w-[1140px] px-3;
+  .sub-container {
+    @apply row px-2 sm:px-3;
+  }
+}
+
+/* social icon style */
+.social-icons {
+  @apply space-x-4;
+  li {
+    @apply inline-block;
+    a {
+      @apply border-primary bg-body text-primary hover:bg-primary hover:text-body dark:border-primary-dark dark:bg-theme-dark dark:text-primary-dark dark:hover:bg-primary-dark block h-11 w-11 rounded-full border text-center transition-all duration-300;
+      svg {
+        @apply m-auto h-11;
+      }
+    }
+  }
+}
+
+/* notice */
+.notice {
+  .notice-body {
+    p {
+      @apply my-0 text-[#666666];
+    }
+  }
+
+  &.note {
+    .notice-head {
+      @apply bg-[#6ab0de];
+    }
+    .notice-body {
+      @apply bg-[rgb(227,244,255)];
+    }
+  }
+
+  &.tip {
+    .notice-head {
+      @apply bg-[#78c578];
+    }
+    .notice-body {
+      @apply bg-[#e2ffe2];
+    }
+  }
+
+  &.info {
+    .notice-head {
+      @apply bg-[#f0b37e];
+    }
+    .notice-body {
+      @apply bg-[#ffedde];
+    }
+  }
+
+  &.warning {
+    .notice-head {
+      @apply bg-[#e06f6c];
+    }
+    .notice-body {
+      @apply bg-[#ffdad8];
+    }
+  }
+}
+
+.active-tab {
+  @apply bg-theme-light dark:bg-theme-dark;
+}
+
+/* content style */
+.content {
+  @apply prose dark:prose-invert max-w-none;
+  @apply prose-headings:mb-[.9em] prose-headings:mt-[.5em] prose-headings:font-bold prose-headings:text-gray-700 dark:prose-headings:text-[#C4CFE3];
+  @apply prose-h1:text-h1-sm md:prose-h1:text-h1;
+  @apply prose-h2:text-h2-sm md:prose-h2:text-h2;
+  @apply prose-h3:text-h3-sm md:prose-h3:text-h3;
+  @apply prose-hr:border-border;
+  @apply prose-p:text-base prose-p:text-text dark:prose-p:text-text-dark prose-p:leading-7;
+  @apply prose-blockquote:border-primary prose-blockquote:bg-stone-200/40 prose-blockquote:bg-[url('/assets/images/quote.svg')] prose-blockquote:bg-[right_0.5rem_bottom_0.5rem] prose-blockquote:bg-no-repeat prose-blockquote:px-4 prose-blockquote:py-1 dark:prose-blockquote:border-[#446189] dark:prose-blockquote:bg-[#262525];
+  @apply prose-strong:text-dark dark:prose-strong:text-text-dark-light;
+  @apply prose-a:text-primary prose-a:no-underline prose-a:hover:underline dark:prose-a:text-primary-dark;
+  @apply prose-table:overflow-hidden prose-table:border prose-table:border-border dark:prose-table:border-border-dark;
+  @apply prose-thead:border-border prose-thead:bg-theme-light prose-th:px-4 prose-th:py-4 prose-th:text-dark dark:prose-thead:border-border-dark dark:prose-thead:bg-theme-dark dark:prose-th:text-light;
+  @apply prose-tr:border-border dark:prose-tr:border-border-dark;
+  @apply prose-td:px-3 prose-td:py-4;
+  @apply prose-li:text-text dark:prose-li:text-text-dark;
+}
+
+/* toc, h2 */
+.blog-article {
+  h2 {
+    @apply bg-gradient-to-r from-gray-600 via-gray-400 to-gray-300 bg-[length:100%_1px] bg-bottom bg-no-repeat py-1 dark:from-gray-300 dark:via-gray-400 dark:to-gray-600;
+  }
+  nav.toc {
+    @apply before:text-text dark:before:text-text-dark before:text-xl before:content-['目次'];
+    @apply after:block after:w-full after:text-center after:text-lg after:content-['📖'];
+  }
+  img {
+    @apply max-h-[500px] object-scale-down object-left dark:grayscale-[25%] dark:filter;
+  }
+  figcaption {
+    @apply font-bold;
+  }
+}
+
+.toc-hidden {
+  nav.toc {
+    @apply hidden;
+  }
+}
+
+/* banner */
+.banner {
+  @apply relative bg-cover bg-center bg-no-repeat py-[100px] lg:pt-[230px] lg:pb-28;
+
+  &-illustration {
+    @apply lg:absolute lg:right-8 lg:bottom-0;
+
+    @media screen and (min-width: 992px) and (max-width: 1600px) {
+      @apply max-w-[600px];
+    }
+
+    img {
+      @apply w-full;
+    }
+  }
+}
+
+/* footer */
+.footer-copyright-text {
+  a {
+    @apply text-primary dark:text-primary-dark underline;
+  }
+}

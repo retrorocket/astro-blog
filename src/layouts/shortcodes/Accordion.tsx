@@ -22,7 +22,7 @@ const Accordion = ({
       )}
     >
       <button
-        className="relative block w-full bg-theme-light px-4 py-3 text-left text-dark dark:bg-theme-dark dark:text-light"
+        className="bg-theme-light text-dark dark:bg-theme-dark dark:text-light relative block w-full cursor-pointer px-4 py-3 text-left"
         onClick={() => setShow(!show)}
       >
         {title}

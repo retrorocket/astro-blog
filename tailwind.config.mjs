@@ -1,4 +1,3 @@
-import type { Config } from "tailwindcss";
 import theme from "./src/config/theme.json";
 
 let font_base = Number(theme.fonts.font_size.base.replace("px", ""));
@@ -64,7 +63,7 @@ module.exports = {
       fontFamily: {
         primary: [fontPrimary, fontPrimaryType],
       },
-      typography: (theme: any) => ({
+      typography: (theme) => ({
         DEFAULT: {
           css: {
             code: {
@@ -95,9 +94,4 @@ module.exports = {
       }),
     },
   },
-  plugins: [
-    require("@tailwindcss/typography"),
-    require("@tailwindcss/forms"),
-    require("tailwind-bootstrap-grid")({ generateContainer: false }),
-  ],
-} satisfies Config;
+};

@@ -1,0 +1,16 @@
+b,
+strong {
+  @apply font-semibold;
+}
+
+.shadow {
+  box-shadow: 0 10px 30px rgba(68, 74, 102, 0.1);
+}
+
+.category {
+  @apply bg-primary/5 text-primary hover:bg-primary/90 dark:border-border-dark dark:bg-primary-dark/5 dark:text-primary-dark dark:hover:bg-primary-dark/50 border-primary/15 rounded-lg border-2 px-2.5 py-0.5 transition hover:text-white;
+}
+
+.category-tag {
+  @apply bg-primary/5 text-primary hover:bg-primary/90 dark:border-border-dark dark:bg-primary-dark/5 dark:text-primary-dark dark:hover:bg-primary-dark/50 border-primary/15 rounded-lg border-2 px-4 py-2 transition hover:text-white;
+}

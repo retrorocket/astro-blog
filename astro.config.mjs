@@ -1,6 +1,6 @@
 import mdx from "@astrojs/mdx";
 import react from "@astrojs/react";
-import tailwind from "@astrojs/tailwind";
+import tailwindcss from "@tailwindcss/vite";
 import AutoImport from "astro-auto-import";
 import { defineConfig } from "astro/config";
 import rehypeFigure from "@microflash/rehype-figure";
@@ -8,8 +8,8 @@ import rehypeSlug from "rehype-slug";
 import rehypeToc from "rehype-toc";
 import config from "./src/config/config.json";
 import sitemap from "@astrojs/sitemap";
-import createOgImage from "./src/integrations/og-image";
-import algoliaQueries from "./src/integrations/algolia-queries";
+import createOgImage from "./src/integrations/og-image.tsx";
+import algoliaQueries from "./src/integrations/algolia-queries.ts";
 
 // https://astro.build/config
 export default defineConfig({
@@ -22,11 +22,6 @@ export default defineConfig({
     react(),
     sitemap({
       filter: (page) => page.search(/\/page\/|\/privacy-policy$/) === -1,
-    }),
-    tailwind({
-      config: {
-        applyBaseStyles: false,
-      },
     }),
     AutoImport({
       imports: [
@@ -60,4 +55,5 @@ export default defineConfig({
     },
     extendDefaultPlugins: true,
   },
+  vite: { plugins: [tailwindcss()] },
 });
