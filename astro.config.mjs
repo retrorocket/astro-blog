@@ -55,5 +55,11 @@ export default defineConfig({
     },
     extendDefaultPlugins: true,
   },
-  vite: { plugins: [tailwindcss()] },
+  vite: {
+    plugins: [
+      tailwindcss({
+        applyBaseStyles: false,
+      }),
+    ],
+  },
 });
