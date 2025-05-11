@@ -116,23 +116,6 @@
   }
 }
 
-/* banner */
-.banner {
-  @apply relative bg-cover bg-center bg-no-repeat py-[100px] lg:pt-[230px] lg:pb-28;
-
-  &-illustration {
-    @apply lg:absolute lg:right-8 lg:bottom-0;
-
-    @media screen and (min-width: 992px) and (max-width: 1600px) {
-      @apply max-w-[600px];
-    }
-
-    img {
-      @apply w-full;
-    }
-  }
-}
-
 /* footer */
 .footer-copyright-text {
   a {
