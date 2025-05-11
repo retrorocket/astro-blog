@@ -9,7 +9,7 @@ import plugin from "tailwindcss/plugin";
 module.exports = plugin.withOptions(() => {
   return ({ addComponents }) => {
     const gridColumns = 12;
-    const gridGutterWidth = "2rem";
+    const gridGutterWidth = "1.5rem";
     const gridGutters = {
       1: "0.25rem",
       2: "0.5rem",
