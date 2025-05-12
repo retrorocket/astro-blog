@@ -1,12 +1,12 @@
 ---
 import dateFormat from "@lib/utils/dateFormat";
 import { humanize, markdownify, slugify } from "@lib/utils/textConverter";
-import type { CollectionEntry } from "astro:content";
+import { render, type CollectionEntry } from "astro:content";
 import { BiCalendarEdit, BiRevision } from "react-icons/bi";
 
 type Props = { post: CollectionEntry<"posts"> };
 const { post } = Astro.props;
-const { Content } = await post.render();
+const { Content } = await render(post);
 const { title, categories, date, modified_date } = post.data;
 ---
 

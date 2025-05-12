@@ -1,10 +1,11 @@
 ---
 import { markdownify } from "@lib/utils/textConverter";
+import { render } from "astro:content";
 import { clsx } from "clsx";
 
 const { data } = Astro.props;
 const { title, show_toc } = data.data;
-const { Content } = await data.render();
+const { Content } = await render(data);
 ---
 
 <section class="section">

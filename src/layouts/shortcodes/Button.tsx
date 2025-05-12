@@ -1,11 +1,9 @@
 const Button = ({
   href,
-  style,
   rel,
   title,
 }: {
   href: string;
-  style?: string;
   rel?: string;
   title: string;
 }) => {

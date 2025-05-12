@@ -1,10 +1,10 @@
 ---
 import Base from "@layouts/Base.astro";
 import { markdownify } from "@lib/utils/textConverter";
-import { getEntry } from "astro:content";
+import { getEntry, render } from "astro:content";
 const entry = await getEntry("pages", "404");
 if (entry === undefined) return;
-const { Content } = await entry.render();
+const { Content } = await render(entry);
 ---
 
 <Base title={entry && entry.data.title} noads={true}>
