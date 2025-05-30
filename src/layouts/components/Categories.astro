@@ -7,23 +7,21 @@ import { humanize } from "@lib/utils/textConverter";
 <div class="container text-center">
   <div class="sub-container">
     <div class="mx-auto px-0 lg:col-10">
-      <div class="px-9">
-        <div class="card">
-          <h2 class="mb-12">Categories</h2>
-          <ul class="space-y-6 space-x-2 md:space-x-4">
-            {
-              categories.sort().map((category) => (
-                <li class="inline-block">
-                  {/* prettier-ignore */}
-                  <a href={`/categories/${category}`} class="category-tag">#{" "}{humanize(category ?? "")}</a>
-                </li>
-              ))
-            }
-            <li class="inline-block">
-              <a href="/categories" class="category-tag">All Archives</a>
-            </li>
-          </ul>
-        </div>
+      <div class="md:px-9">
+        <h2 class="mb-12">Categories</h2>
+        <ul class="space-y-6 space-x-2 md:space-x-4">
+          {
+            categories.sort().map((category) => (
+              <li class="inline-block">
+                {/* prettier-ignore */}
+                <a href={`/categories/${category}`} class="category-tag">#{" "}{humanize(category ?? "")}</a>
+              </li>
+            ))
+          }
+          <li class="inline-block">
+            <a href="/categories" class="category-tag">All Archives</a>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
