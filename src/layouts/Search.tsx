@@ -1,5 +1,10 @@
 import config from "@config/config.json";
-import { liteClient as algoliasearch } from "algoliasearch/lite";
+import {
+  liteClient as algoliasearch,
+  type BaseSearchParamsWithoutQuery,
+  type IndexSettingsAsSearchParams,
+  type SearchParamsQuery,
+} from "algoliasearch/lite";
 import {
   InstantSearch,
   SearchBox,
@@ -14,11 +19,19 @@ const algoliaClient = algoliasearch(
   import.meta.env.PUBLIC_ALGOLIA_APIKEY,
 );
 
-// FIXME JavaScript Client v5 対応。SearchClientの定義がおかしいためanyにしている
 const searchClient = {
   ...algoliaClient,
-  search(requests: any) {
-    if (requests.every(({ params }: any) => !params.query)) {
+  search<T>(
+    requests: {
+      indexName: string;
+      params: SearchParamsQuery &
+        BaseSearchParamsWithoutQuery &
+        IndexSettingsAsSearchParams;
+    }[],
+  ) {
+    if (
+      requests.every(({ params }) => !params.query || params?.query.length < 2)
+    ) {
       return Promise.resolve({
         results: requests.map(() => ({
           hits: [],
@@ -34,7 +47,7 @@ const searchClient = {
       });
     }
 
-    return algoliaClient.search(requests);
+    return algoliaClient.search<T>(requests);
   },
 };
 
@@ -42,7 +55,7 @@ const { summary_length } = config.settings;
 const tagLength = 6;
 const sliceLength = 30;
 
-// FIXME JavaScript Client v5 対応。SearchResponseの定義がおかしいので全部anyにしている
+// FIXME JavaScript Client v5 対応。SearchResponseで定義が再帰していてHighlightResultの中身を参照できないのでanyにしている
 // https://github.com/algolia/algoliasearch-client-javascript/issues/1571
 const HitCompoment = ({ hit }: any) => {
   const parser = new DOMParser();
@@ -58,11 +71,11 @@ const HitCompoment = ({ hit }: any) => {
   const slicedStr = tempSlicedStr.slice(0, -1 * tagLength) + removeTagStr;
 
   return (
-    <div className="card mb-12 break-words border-b border-border pb-[30px] dark:border-border-dark">
+    <div className="card border-border dark:border-border-dark mb-12 border-b pb-[30px] break-words">
       <h3 className="h4 pb-[10px]">
         <a
           href={`${hit.slug}`}
-          className="block font-normal text-primary hover:underline dark:text-primary-dark"
+          className="text-primary dark:text-primary-dark block font-normal hover:underline"
         >
           {[
             ...parser.parseFromString(
@@ -83,7 +96,7 @@ const HitCompoment = ({ hit }: any) => {
           })}
         </a>
       </h3>
-      <p className="text-lg text-text dark:text-text-dark">
+      <p className="text-text dark:text-text-dark text-lg">
         {searchResult >= 1 && <>... </>}
         {[
           ...parser.parseFromString(slicedStr, "text/html").body.childNodes,
@@ -102,7 +115,7 @@ const HitCompoment = ({ hit }: any) => {
         <> ...</>
       </p>
       <a
-        className="mt-3 inline-block border-b border-primary py-1 text-[15px] leading-[22px] text-primary dark:border-primary-dark dark:text-primary-dark"
+        className="border-primary text-primary dark:border-primary-dark dark:text-primary-dark mt-3 inline-block border-b py-1 text-[15px] leading-[22px]"
         href={`${hit.slug}`}
       >
         <span className="sr-only">この記事の</span>続きを読む
