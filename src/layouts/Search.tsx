@@ -14,6 +14,27 @@ import {
 } from "react-instantsearch";
 import React from "react";
 
+// FIXME SearchResponseで定義が再帰していてHighlightResultの中身を参照できないため、修正されるまで自前で定義する
+// https://github.com/algolia/algoliasearch-client-javascript/issues/1571
+
+type HighlightResultOption = {
+  value: string;
+};
+
+type Hit<T = Record<string, unknown>> = T & {
+  _highlightResult?: {
+    [key: string]: HighlightResultOption;
+  };
+};
+
+type HitProps = {
+  hit: Hit<{
+    content: string;
+    slug: string;
+    title: string;
+  }>;
+};
+
 const algoliaClient = algoliasearch(
   import.meta.env.PUBLIC_ALGOLIA_APPID,
   import.meta.env.PUBLIC_ALGOLIA_APIKEY,
@@ -55,9 +76,7 @@ const { summary_length } = config.settings;
 const tagLength = 6;
 const sliceLength = 30;
 
-// FIXME JavaScript Client v5 対応。SearchResponseで定義が再帰していてHighlightResultの中身を参照できないのでanyにしている
-// https://github.com/algolia/algoliasearch-client-javascript/issues/1571
-const HitCompoment = ({ hit }: any) => {
+const HitCompoment = ({ hit }: HitProps) => {
   const parser = new DOMParser();
 
   // ヒットしたキーワードの周辺の文字列を切り出す
