@@ -2,6 +2,7 @@ import config from "@config/config.json";
 import {
   liteClient as algoliasearch,
   type BaseSearchParamsWithoutQuery,
+  type HighlightResultOption,
   type IndexSettingsAsSearchParams,
   type SearchParamsQuery,
 } from "algoliasearch/lite";
@@ -16,10 +17,6 @@ import React from "react";
 
 // FIXME SearchResponseで定義が再帰していてHighlightResultの中身を参照できないため、修正されるまで自前で定義する
 // https://github.com/algolia/algoliasearch-client-javascript/issues/1571
-
-type HighlightResultOption = {
-  value: string;
-};
 
 type Hit<T = Record<string, unknown>> = T & {
   _highlightResult?: {
