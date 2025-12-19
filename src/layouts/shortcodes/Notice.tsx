@@ -1,7 +1,7 @@
 const Notice = ({ type, children }: { type: string; children: any }) => {
   return (
     <div className={`notice ${type} relative mb-8`}>
-      <div className="notice-head absolute left-0 top-0 z-10 flex h-[30px] w-full items-center px-3">
+      <div className="notice-head absolute left-0 top-0 z-10 flex h-7.5 w-full items-center px-3">
         <svg width="16px" height="16px" viewBox="0 0 512 512">
           <path
             fill="#fff"
@@ -10,7 +10,7 @@ const Notice = ({ type, children }: { type: string; children: any }) => {
         </svg>
         <p className="my-0 ml-1.5 text-base capitalize text-white">{type}</p>
       </div>
-      <div className="notice-body my-0 p-3 pt-[40px]">{children}</div>
+      <div className="notice-body my-0 p-3 pt-10">{children}</div>
     </div>
   );
 };

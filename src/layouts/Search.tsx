@@ -87,8 +87,8 @@ const HitCompoment = ({ hit }: HitProps) => {
   const slicedStr = tempSlicedStr.slice(0, -1 * tagLength) + removeTagStr;
 
   return (
-    <div className="card border-border dark:border-border-dark mb-12 border-b pb-[30px] break-words">
-      <h3 className="h4 pb-[10px]">
+    <div className="card border-border dark:border-border-dark mb-12 border-b pb-7.5 wrap-break-word">
+      <h3 className="h4 pb-2.5">
         <a
           href={`${hit.slug}`}
           className="text-primary dark:text-primary-dark block font-normal hover:underline"
@@ -131,7 +131,7 @@ const HitCompoment = ({ hit }: HitProps) => {
         <> ...</>
       </p>
       <a
-        className="border-primary text-primary dark:border-primary-dark dark:text-primary-dark mt-3 inline-block border-b py-1 text-[15px] leading-[22px]"
+        className="border-primary text-primary dark:border-primary-dark dark:text-primary-dark mt-3 inline-block border-b py-1 text-[15px] leading-5.5"
         href={`${hit.slug}`}
       >
         <span className="sr-only">この記事の</span>続きを読む
@@ -161,7 +161,7 @@ const AlgoliaSearchBox = () => {
         preserveSharedStateOnUnmount: true,
       }}
     >
-      <div className="form-input mb-[30px] flex items-center justify-between align-middle">
+      <div className="form-input mb-7.5 flex items-center justify-between align-middle">
         <SearchBox
           queryHook={queryHook}
           placeholder="Search"
