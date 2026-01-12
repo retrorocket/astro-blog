@@ -20,7 +20,7 @@ import React from "react";
 
 type Hit<T = Record<string, unknown>> = T & {
   _highlightResult?: {
-    [key: string]: HighlightResultOption;
+    [key in keyof HitProps["hit"]]: HighlightResultOption;
   };
 };
 
