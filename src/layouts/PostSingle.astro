@@ -15,7 +15,7 @@ const { title, categories, date, modified_date } = post.data;
     <div class="sub-container">
       <div class="mx-auto lg:col-10">
         <div
-          class="wrap-break-word py-8 md:p-15"
+          class="py-8 wrap-break-word md:p-15"
           role="main"
           itemprop="mainEntityOfPage"
           itemscope="itemscope"
@@ -28,10 +28,14 @@ const { title, categories, date, modified_date } = post.data;
           >
             <h1 itemprop="headline" set:html={markdownify(title)} />
             <ul
-              class="mb-8 mt-4 inline-flex flex-wrap items-center gap-x-3 gap-y-1 text-text dark:text-text-dark"
+              class="text-text dark:text-text-dark mt-4 mb-8 inline-flex flex-wrap items-center gap-x-3 gap-y-1"
             >
               <li class="flex flex-wrap items-center">
-                <BiCalendarEdit className="mr-2" />
+                <BiCalendarEdit
+                  className="mr-2"
+                  role="img"
+                  aria-label="投稿日"
+                />
                 <time datetime={dateFormat(date)} itemprop="datePublished"
                   >{dateFormat(date, "yyyy-MM-dd")}</time
                 >
@@ -39,7 +43,11 @@ const { title, categories, date, modified_date } = post.data;
               {
                 modified_date && (
                   <li class="flex flex-wrap items-center">
-                    <BiRevision className="mr-2" />
+                    <BiRevision
+                      className="mr-2"
+                      role="img"
+                      aria-label="更新日"
+                    />
                     <time
                       datetime={dateFormat(modified_date)}
                       itemprop="dateModified"

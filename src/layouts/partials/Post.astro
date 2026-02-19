@@ -13,7 +13,7 @@ const parser = new jsdom.window.DOMParser();
 ---
 
 <div
-  class="card mb-12 wrap-break-word border-b border-border pb-7.5 dark:border-border-dark"
+  class="card border-border dark:border-border-dark mb-12 border-b pb-7.5 wrap-break-word"
   itemscope="itemscope"
   itemtype="https://schema.org/BlogPosting"
   itemprop="blogPost"
@@ -21,15 +21,15 @@ const parser = new jsdom.window.DOMParser();
   <h3 class="h4" itemprop="headline">
     <a
       href={`/archives/${post.data.postid}`}
-      class="block font-normal text-primary hover:underline dark:text-primary-dark"
+      class="text-primary dark:text-primary-dark block font-normal hover:underline"
       >{post.data.title}</a
     >
   </h3>
   <ul
-    class="mb-4 mt-1.5 inline-flex flex-wrap items-center gap-x-3 gap-y-1 text-text dark:text-text-dark"
+    class="text-text dark:text-text-dark mt-1.5 mb-4 inline-flex flex-wrap items-center gap-x-3 gap-y-1"
   >
     <li class="flex flex-wrap items-center">
-      <BiCalendarEdit className="mr-2" />
+      <BiCalendarEdit className="mr-2" role="img" aria-label="投稿日" />
       <time datetime={dateFormat(post.data.date)} itemprop="datePublished"
         >{dateFormat(post.data.date, "yyyy-MM-dd")}</time
       >
@@ -47,14 +47,14 @@ const parser = new jsdom.window.DOMParser();
       </ul>
     </li>
   </ul>
-  <p class="text-lg text-text dark:text-text-dark" itemprop="description">
+  <p class="text-text dark:text-text-dark text-lg" itemprop="description">
     {
       parser.parseFromString(post.data.excerpt ?? "", "text/html")
         .documentElement.textContent
     }
   </p>
   <a
-    class="mt-3 inline-block border-b border-primary py-1 text-[15px] leading-5.5 text-primary dark:border-primary-dark dark:text-primary-dark"
+    class="border-primary text-primary dark:border-primary-dark dark:text-primary-dark mt-3 inline-block border-b py-1 text-[15px] leading-5.5"
     href={`/archives/${post.data.postid}`}
     ><span class="sr-only">この記事の</span>続きを読む</a
   >
