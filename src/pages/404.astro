@@ -3,7 +3,12 @@ import Base from "@layouts/Base.astro";
 import { markdownify } from "@lib/utils/textConverter";
 import { getEntry, render } from "astro:content";
 const entry = await getEntry("pages", "404");
-if (entry === undefined) return;
+if (!entry) {
+  return new Response(null, {
+    status: 404,
+    statusText: "Not found",
+  });
+}
 const { Content } = await render(entry);
 ---
 
