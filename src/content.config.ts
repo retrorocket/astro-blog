@@ -1,4 +1,5 @@
-import { defineCollection, z } from "astro:content";
+import { defineCollection } from "astro:content";
+import { z } from "astro/zod";
 
 // Post collection schema
 const postsCollection = defineCollection({
@@ -30,7 +31,7 @@ const pagesCollection = defineCollection({
     layout: z.string().optional(),
     draft: z.boolean().optional(),
     show_toc: z.boolean().optional(),
-    slug: z.string().optional()
+    slug: z.string().optional(),
   }),
 });
 
