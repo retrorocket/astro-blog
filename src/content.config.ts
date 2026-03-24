@@ -30,6 +30,7 @@ const pagesCollection = defineCollection({
     layout: z.string().optional(),
     draft: z.boolean().optional(),
     show_toc: z.boolean().optional(),
+    slug: z.string().optional()
   }),
 });
 
