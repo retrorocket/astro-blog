@@ -1,24 +1,14 @@
 ---
 import Base from "@layouts/Base.astro";
-import { markdownify } from "@lib/utils/textConverter";
-import { getEntry, render } from "astro:content";
-const entry = await getEntry("pages", "404");
-if (!entry) {
-  return new Response(null, {
-    status: 404,
-    statusText: "Not found",
-  });
-}
-const { Content } = await render(entry);
 ---
 
-<Base title={entry && entry.data.title} noads={true}>
+<Base title="Error 404" noads={true}>
   <section class="section">
     <div class="container">
       <div class="flex h-[40vh] items-center justify-center">
         <div class="toc-hidden text-center">
-          <h1 class="mb-4" set:html={entry && markdownify(entry.data.title)} />
-          <Content />
+          <h1 class="mb-4" set:html="Error 404" />
+          <h2>Page Not Found</h2>
         </div>
       </div>
     </div>
