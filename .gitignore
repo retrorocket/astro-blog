@@ -30,3 +30,6 @@ pnpm-lock.yaml
 # ignore this project temp files
 .temp
 src/content/posts
+
+# igonore vscode settings
+.vscode
