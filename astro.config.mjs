@@ -3,6 +3,7 @@ import react from "@astrojs/react";
 import tailwindcss from "@tailwindcss/vite";
 import AutoImport from "astro-auto-import";
 import { defineConfig } from "astro/config";
+import { unified } from "@astrojs/markdown-remark";
 import rehypeFigure from "@microflash/rehype-figure";
 import rehypeSlug from "rehype-slug";
 import rehypeToc from "rehype-toc";
@@ -33,22 +34,24 @@ export default defineConfig({
     mdx(),
   ],
   markdown: {
-    rehypePlugins: [
-      rehypeSlug,
-      rehypeFigure,
-      [
-        rehypeToc,
-        {
-          customizeTOC: (toc) => {
-            // 見出しが一つもない場合はTOCを生成しない
-            if (!toc.children.some((child) => child.children.length > 0)) {
-              return false;
-            }
-            return toc;
+    processor: unified({
+      rehypePlugins: [
+        rehypeSlug,
+        rehypeFigure,
+        [
+          rehypeToc,
+          {
+            customizeTOC: (toc) => {
+              // 見出しが一つもない場合はTOCを生成しない
+              if (!toc.children.some((child) => child.children.length > 0)) {
+                return false;
+              }
+              return toc;
+            },
           },
-        },
+        ],
       ],
-    ],
+    }),
     shikiConfig: {
       theme: "one-dark-pro",
       wrap: true,
