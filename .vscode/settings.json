@@ -1,7 +1,0 @@
-{
-  "typescript.tsdk": "node_modules/typescript/lib",
-  "prettier.prettierPath": "./node_modules/prettier",
-  "files.associations": {
-    "*.css": "tailwindcss"
-  }
-}
