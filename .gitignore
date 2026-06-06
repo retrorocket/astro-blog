@@ -31,5 +31,7 @@ pnpm-lock.yaml
 .temp
 src/content/posts
 
-# igonore vscode settings
+# igonore editor settings
 .vscode
+.markdownlint.json
+.editorconfig
