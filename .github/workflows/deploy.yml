@@ -16,23 +16,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Use Node.js
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v7
         with:
           node-version: 24
       - name: Use pnpm
-        uses: pnpm/action-setup@v5
+        uses: pnpm/action-setup@v6
         with:
           version: 11
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Checkout src/content repo
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           repository: retrorocket/blog-contents
           path: src/content/posts
           token: ${{ secrets.PERSONAL_TOKEN }}
       - name: Restore node_modules cache
-        uses: actions/cache/restore@v5
+        uses: actions/cache/restore@v6
         id: restore-cache
         with:
           path: "node_modules"
@@ -40,7 +40,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-modules-
       - name: Restore ogp image cache
-        uses: actions/cache/restore@v5
+        uses: actions/cache/restore@v6
         id: restore-image-cache
         with:
           path: "dist/og-images"
@@ -62,7 +62,7 @@ jobs:
           PUBLIC_ALGOLIA_APIKEY: ${{ secrets.PUBLIC_ALGOLIA_APIKEY }}
           PRIVATE_ALGOLIA_WRITE_KEY: ${{ secrets.PRIVATE_ALGOLIA_WRITE_KEY }}
       - name: rsync deployments
-        uses: burnett01/rsync-deployments@6.0.0
+        uses: burnett01/rsync-deployments@v9
         with:
           switches: -avzr --delete
           path: dist/
@@ -72,13 +72,13 @@ jobs:
           remote_user: ${{secrets.SSH_USERNAME}}
           remote_key: ${{secrets.SSH_PRIVATE_KEY}}
       - name: Save node_modules cache
-        uses: actions/cache/save@v5
+        uses: actions/cache/save@v6
         id: cache
         with:
           path: "node_modules"
           key: ${{ runner.os }}-modules-${{ hashFiles('node_modules/.modules.yaml', 'node_modules/.astro/assets/**') }}
       - name: Save og-images cache
-        uses: actions/cache/save@v5
+        uses: actions/cache/save@v6
         id: save-image-cache
         with:
           path: "dist/og-images"
