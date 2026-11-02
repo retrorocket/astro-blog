@@ -35,3 +35,4 @@ src/content/posts
 .vscode
 .markdownlint.json
 .editorconfig
+astro-blog.code-workspace
